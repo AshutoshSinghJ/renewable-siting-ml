@@ -41,7 +41,7 @@ and presents a similar number of slides. Every script and file belongs to exactl
 
 **Must know:** why this problem and dataset, every design decision, the filters, the grid, each feature
 and its source, coordinate systems, leakage, the two data problems, what the new features show
-(wind farms at the 85th percentile of local wind, 16.5 m above their surroundings, 12 km from towns).
+(wind farms at the 84th percentile of local wind, 15 m above their surroundings, 12 km from towns).
 
 ---
 

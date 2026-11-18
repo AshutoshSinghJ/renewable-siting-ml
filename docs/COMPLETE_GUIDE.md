@@ -604,11 +604,11 @@ to the nearest "town" (or "water") pixel, computed for the whole map at once.
 
 | | Solar | Wind | Hybrid |
 |---|---|---|---|
-| `wind_pct` (local wind percentile) | 0.44 | **0.85** | 0.67 |
-| `elev_rel` (m above surroundings) | −1.8 | **+16.5** | +3.4 |
+| `wind_pct` (local wind percentile) | 0.44 | **0.84** | 0.67 |
+| `elev_rel` (m above surroundings) | −1.8 | **+15.3** | +2.9 |
 | `dist_town` (km) | **5.4** | 12.2 | 7.1 |
 
-Wind farms sit in the **windiest 15% of their surroundings**, on raised ground, away from towns.
+Wind farms sit in the **windiest 16% of their surroundings**, on raised ground, away from towns.
 Solar farms sit at an average spot, slightly low, close to towns.
 
 **Engineering details:** the remote DEM reads sometimes failed, so each read is retried 3 times and
@@ -1040,7 +1040,7 @@ git). The 183 MB trained final model is rebuilt by `src/11`. All runs use seed 4
 10. Relative (country) features: no consistent gain.
 11. Improvement round: locked Japan, Turkey, Chile, Australia, South Africa first.
 12. Developed on 11 held-out regions with a pre-set score.
-13. Added local context: wind farms sit in the windiest 15% of their surroundings, 16 m higher.
+13. Added local context: wind farms sit in the windiest 16% of their surroundings, 15 m higher.
 14. Extra Trees won (0.794); neural networks didn't beat trees; reweighting didn't help.
 15. British Isles 35% → 54%, Nordic 36% → 64%; wind share 51% → 23%.
 16. Conformal prediction gives "Solar or Wind" when unsure, with 90% coverage.

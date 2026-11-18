@@ -159,6 +159,12 @@ Fixed seed 42; the entire pipeline re-ran from scratch with byte-identical outpu
 **Q: Can this be used to decide where to build in Odisha?**
 No. It predicts the type for a site where something will be built; it never judges suitability. And India results show it must not be trusted there without retraining.
 
+**Q: Can the model recommend what to build at a new location?**
+Only under a stated assumption: *if* existing farms reflect well-informed siting decisions, the model recommends which type fits a location *if it is developed*, and says "I don't know" when out of its depth. The assumption is reasonable (developers study the resource; Sachit et al. 2022 uses the same idea) but only partly true: subsidies and land prices also matter (UK solar farms sit in windy places), and accuracy varies from 35% to 92% by region. It never says "build here", because it never saw unsuitable land. (Report section 7.2, slide 16.)
+
+**Q: How does the model's confidence work?**
+Each of the 300 trees ends in a leaf holding training cells (e.g. 70% Wind, 30% Solar). The forest averages those shares, giving three probabilities that add up to 1. The top one is the prediction; its value is the confidence. Below 0.5 means no class has a majority, so Rule A says "I don't know".
+
 **Q: What is your biggest limitation?**
 Reliance on absolute wind speed, which doesn't transfer to regions where wind farms aren't much windier than solar farms.
 
@@ -275,6 +281,19 @@ Everyone should know section 1 (the story) and section 2 (the numbers).
 
 ---
 
-## 13. References to name
+## 13. References and why we used each
 
-Dunnett et al. 2020 (dataset) · Roberts et al. 2017 (spatial CV) · Meyer & Pebesma 2021 ("I don't know") · Sachit et al. 2022 (RF + SHAP siting) · Arderne et al. 2020 (Gridfinder).
+| Reference | Why we used it |
+|---|---|
+| Dunnett et al. 2020, *Scientific Data* | The dataset: all farm locations, plus the "real farm" filter |
+| Breiman 2001, *Machine Learning* | Random Forest, the main model |
+| Sachit et al. 2022, *ISPRS IJGI* | Precedent: RF + SHAP on real plants; feature choice; existing plants as evidence of good sites |
+| Roberts et al. 2017, *Ecography* | Why random splits cheat on maps; spatial block CV |
+| Meyer & Pebesma 2021, *Methods Ecol. Evol.* | "I don't know" Rule B (area of applicability) |
+| Lundberg & Lee 2017 (NeurIPS); Lundberg et al. 2020 (*Nat. Mach. Intell.*) | SHAP and TreeExplainer |
+| Arderne et al. 2020, *Scientific Data* | Gridfinder power lines (distance to grid) |
+| Horn 1981, *Proc. IEEE* | Slope formula |
+| Efron & Tibshirani 1993; Pedregosa et al. 2011 | Bootstrap confidence intervals; scikit-learn |
+| Global Solar Atlas, Global Wind Atlas (Davis et al. 2023), Copernicus DEM, GADM | Sunshine, wind speed, elevation/slope, website borders |
+
+If asked about "Wu et al. 2026" (it was in the original brief): we did not use it and could not verify it, so it is not cited.

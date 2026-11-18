@@ -341,6 +341,35 @@ Mean |SHAP|, averaged over classes: **wind100 0.166** > ghi 0.070 > elev 0.035 >
 - Next steps: relative (region-normalised) features, more Hybrid examples from other continents,
   a calibrated unfamiliar-location threshold, and a label cross-check with Global Energy Monitor.
 
+## 7.2 Using the model on new locations: an explicit assumption
+
+The model is trained only on places where farms were actually built. On its own it therefore
+answers *"given a farm exists here, which type is it?"*. To use it on a **new** location, one
+further assumption is needed:
+
+> **Assumption:** existing utility-scale installations reflect well-informed siting decisions.
+> Under this assumption, the model recommends which technology (Solar, Wind or Hybrid) best fits
+> a location *if it is developed*, and answers "I don't know" when the location is unlike the
+> places it learned from or the evidence is unclear.
+
+**Why the assumption is reasonable:** developers assess wind and solar resource, terrain and grid
+access before building, so real installations carry that expert information. The same idea, using
+existing plants as evidence of suitable sites, underlies Sachit et al. (2022).
+
+**Why it is only partly true (evidence from this project):**
+- Siting also follows land prices, subsidies, permits and existing grid connections. UK solar
+  farms stand in windy places (median 7.7 m/s) for those reasons, not because windy land suits solar.
+- Accuracy depends strongly on the region (35% British Isles to 92% Italy), so the recommendation
+  is only trustworthy where the model was shown to work.
+- OpenStreetMap covers some countries much better than others, so "expert decisions" are mostly
+  European, American and Chinese ones.
+
+**How to use it correctly:**
+1. Read the output as "which type fits *if* something is built here", never "build here". The
+   model never saw unsuitable land, so it cannot flag a protected forest, a city or a lake.
+2. Respect "I don't know": if either rule fires, do not use the prediction.
+3. Trust it most in regions resembling those where it scored well (southern Europe, the USA).
+
 ## 8. Reproduce
 
 ```
@@ -350,15 +379,34 @@ python src/03_train_evaluate.py
 python src/03b_extra_checks.py      # optional: model comparison + feature subsets (training region only)
 python src/03c_region_holdout.py    # optional: each of 8 regions held out in turn + overfitting check
 python src/03d_other_continents.py  # optional: Europe-trained model on the USA, China and India (needs their GWA files)
+python src/03e_relative_features.py # optional experiment: relative wind/sun features (not adopted)
 python src/04_explain.py
 python src/05_dont_know.py
 ```
 
-## 9. Key references
+## 9. References and what we used them for
 
-- Dunnett, S. et al. (2020). Harmonised global datasets of wind and solar farm locations and power. *Scientific Data* 7:130.
-- Sachit, M. S. et al. (2022). *ISPRS Int. J. Geo-Inf.* 11(8):422.
-- Roberts, D. R. et al. (2017). Cross-validation strategies for data with temporal, spatial, hierarchical, or phylogenetic structure. *Ecography* 40:913–929.
-- Meyer, H. & Pebesma, E. (2021). Predicting into unknown space? Estimating the area of applicability of spatial prediction models. *Methods in Ecology and Evolution* 12:1620–1633.
-- Arderne, C. et al. (2020). Predictive mapping of the global power system using open data. *Scientific Data* 7:19.
-- Wu et al. (2026). Comparison of RF, gradient boosting, MaxEnt and logistic regression for US solar/wind siting.
+**Papers**
+
+| Reference | What we used it for |
+|---|---|
+| Dunnett, S., Sorichetta, A., Taylor, G. & Eigenbrod, F. (2020). Harmonised global datasets of wind and solar farm locations and power. *Scientific Data* 7, 130. | All labels: solar and wind farm locations, plus the authors' recommended "real farm" filter |
+| Breiman, L. (2001). Random Forests. *Machine Learning* 45(1), 5–32. | The main model (Random Forest) |
+| Sachit, M. S., Shafri, H. Z. M., Abdullah, A. F. & Rafie, A. S. M. (2022). Global spatial suitability mapping of wind and solar systems using an explainable AI-based approach. *ISPRS Int. J. Geo-Inf.* 11(8), 422. | Precedent for Random Forest + SHAP on real wind and solar plants; choice of resource, terrain and grid features; idea of existing plants as evidence of good sites (Section 7.2) |
+| Roberts, D. R. et al. (2017). Cross-validation strategies for data with temporal, spatial, hierarchical, or phylogenetic structure. *Ecography* 40, 913–929. | Why random splits overestimate accuracy on map data; spatial block cross-validation and a held-out test region |
+| Meyer, H. & Pebesma, E. (2021). Predicting into unknown space? Estimating the area of applicability of spatial prediction models. *Methods in Ecology and Evolution* 12, 1620–1633. | Rule B of "I don't know": weighted feature-space distance to the training data and a cross-validation-based threshold |
+| Lundberg, S. M. & Lee, S.-I. (2017). A unified approach to interpreting model predictions. *Advances in Neural Information Processing Systems* 30. | SHAP values (Section 5) |
+| Lundberg, S. M. et al. (2020). From local explanations to global understanding with explainable AI for trees. *Nature Machine Intelligence* 2, 56–67. | TreeExplainer, the fast exact SHAP method for tree models |
+| Arderne, C., Zorn, C., Nicolas, C. & Koks, E. E. (2020). Predictive mapping of the global power system using open data. *Scientific Data* 7, 19. | Gridfinder power-line map, used for the distance-to-grid feature |
+| Horn, B. K. P. (1981). Hill shading and the reflectance map. *Proceedings of the IEEE* 69(1), 14–47. | The standard slope formula used to compute slope from elevation |
+| Efron, B. & Tibshirani, R. J. (1993). *An Introduction to the Bootstrap.* Chapman & Hall. | Bootstrap 95% confidence intervals for the test results |
+| Pedregosa, F. et al. (2011). Scikit-learn: Machine learning in Python. *Journal of Machine Learning Research* 12, 2825–2830. | Software for all models, cross-validation and metrics |
+
+**Data sources**
+
+| Source | What we used it for |
+|---|---|
+| Global Solar Atlas 2.0 (Solargis, World Bank Group / ESMAP), https://globalsolaratlas.info | Sunshine (GHI) feature |
+| Global Wind Atlas (DTU Wind Energy, World Bank Group / ESMAP), https://globalwindatlas.info; described in Davis, N. N. et al. (2023), *Bulletin of the American Meteorological Society* 104(8), E1507–E1525 | Wind speed at 100 m, official per-country files |
+| Copernicus DEM GLO-90 (European Space Agency), via https://registry.opendata.aws/copernicus-dem/ | Elevation and slope |
+| GADM, Database of Global Administrative Areas, https://gadm.org | Country borders on the website maps only (not used by the model) |

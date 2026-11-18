@@ -280,16 +280,16 @@ with the surrounding 50 km of land), which is future work."
 
 ## 12. Team of six: who did what
 
-| Person | Role | Owns | Should be able to explain |
+| Member | Role | Owns | Should be able to explain |
 |---|---|---|---|
-| 1 | **Data & labels** | `01_prepare_labels.py`, Dunnett filtering, 5 km grid, train/test split | Why Dunnett, the ≥ 1 MW filter, Hybrid definition, why Iberia |
-| 2 | **Features & GIS** | `02_extract_features.py`, rasters, DEM, Gridfinder; caught the fake wind file and island cells | The 5 features, leakage, data-quality fixes |
-| 3 | **Modelling & validation** | `03_*`, `04_explain.py`, `05_dont_know.py`: models, spatial CV, region and continent tests, SHAP, "I don't know" | Baselines, macro F1, overfitting, why UK/India fail |
-| 4 | **Web UI** | `website/`, `website2/`: globe map, results and about views | How the map is drawn, what each view shows |
-| 5 | **GitHub & deployment** | Repository, README, `requirements.txt`, Vercel/GitHub Pages deploy, reproducibility re-run | How to run the pipeline, how the site is hosted |
-| 6 | **Report & presentation** | `REPORT_NOTES` (PDF/Word), the 19-slide PPT, viva guide | The story, numbers table, limitations, references |
+| **Ashutosh Singh** | Project lead and **dataset** | `src/01`, `02`, `06`: Dunnett filtering, 5 km grid, split, features, fake wind file and island fixes, local-context features | Why Dunnett, the filters, Hybrid definition, why Iberia, features, leakage, what the new features show |
+| **Astitva Tripathi** | Model selection and training | `src/03`, `03b`–`03e`, `07`, `10`: baselines, RF, spatial CV, regions, continents, LORO, Extra Trees, neural networks | Baselines, macro F1, overfitting, why UK/India fail, why Extra Trees, why not deep learning |
+| **Divyanshu Puri** | Explainability, "I don't know", final test, GitHub | `src/04`, `05`, `08`, `09`, `11`; repository and GitHub Pages | SHAP, Rule A/B, conformal sets, archetypes, the locked-test tie, hosting and reproducibility |
+| **Madhusudan** | UI / UX | `web/globe`, `web/detailed`, `build_site.py` | How the map is drawn, what each view shows, design choices |
+| **Aryan Singh** | Report and references | `REPORT_NOTES`, KIIT-format report, references | Structure, limitations, assumption, references |
+| **Keshav Sudarshan** | Presentation and viva preparation | 25-slide PPT, viva guide, journey, mind map | The story, slide messages, numbers, likely questions |
 
-Everyone should know section 1 (the story) and section 2 (the numbers).
+Full split: `docs/CONTRIBUTIONS.md`. Everyone should know section 1 (the story) and section 2 (the numbers).
 
 ---
 

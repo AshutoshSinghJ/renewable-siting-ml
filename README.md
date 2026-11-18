@@ -120,14 +120,18 @@ All runs use `random_state=42`; a full re-run reproduces every output exactly.
 
 ## Team
 
+Guide: **Dr. N Sangita Acharya**, School of Computer Science and Engineering, KIIT.
+
 | Member | Role |
 |---|---|
-| 1 | Data & labels: Dunnett filtering, 5 km grid, region split |
-| 2 | Features & GIS: rasters, DEM, grid distance, data-quality fixes |
-| 3 | Modelling & validation: models, spatial CV, region/continent tests, SHAP, "I don't know" |
-| 4 | Web UI: globe and detailed websites |
-| 5 | GitHub & deployment: repository, reproducibility, GitHub Pages |
-| 6 | Report & presentation: report, slides, viva guide |
+| Ashutosh Singh | Project lead: idea, design and dataset (labels, features, local-context features) |
+| Astitva Tripathi | Model selection and training (baselines, Random Forest, spatial CV, Extra Trees, neural networks) |
+| Divyanshu Puri | Explainability, "I don't know", conformal prediction, locked final test, GitHub deployment |
+| Madhusudan | UI / UX of both websites |
+| Aryan Singh | Project report and references |
+| Keshav Sudarshan | Presentation and viva preparation |
+
+Full split of every script and file: [docs/CONTRIBUTIONS.md](docs/CONTRIBUTIONS.md).
 
 ## References
 

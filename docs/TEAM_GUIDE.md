@@ -2,12 +2,18 @@
 
 **Project:** Which Renewable Fits Here? Predicting Solar, Wind or Hybrid sites from geography
 
-| Person | Contribution | Section |
+**Guide:** Dr. N Sangita Acharya
+
+| Member | Role | Section |
 |---|---|---|
-| **Ashutosh** | Initiation, project design, dataset | [Part 1](#part-1--ashutosh-initiation-project-design-and-dataset) |
-| **Astitv** and **Divyanshu Puri** | Model selection and training; web deployment on GitHub | [Part 2](#part-2--astitv-and-divyanshu-puri-model-selection-training-and-github-deployment) |
-| **Madhu** | UI / UX of both websites | [Part 3](#part-3--madhu-ui-and-ux) |
-| **Aryan Singh** and **Keshav** | Report and presentation | [Part 4](#part-4--aryan-singh-and-keshav-report-and-presentation) |
+| **Ashutosh Singh** | Project lead: idea, design and **dataset** (labels, features, local-context features) | Part 1 |
+| **Astitva Tripathi** | Model selection and training (baselines, Random Forest, spatial CV, Extra Trees, neural networks) | Part 2A |
+| **Divyanshu Puri** | Explainability, "I don't know", conformal prediction, locked final test, GitHub deployment | Part 2A (SHAP, "I don't know") and 2B |
+| **Madhusudan** | UI / UX of both websites | Part 3 |
+| **Aryan Singh** | Project report and references | Part 4A |
+| **Keshav Sudarshan** | Presentation and viva preparation | Part 4B–4D |
+
+The exact split of every script and file is in [CONTRIBUTIONS.md](CONTRIBUTIONS.md).
 
 Everyone reads **Part 0** first. Then read your own part carefully, and skim the others so you can
 hand questions to the right person in the viva.
@@ -25,7 +31,13 @@ hand questions to the right person in the viva.
 > farms are much windier than solar farms (southern Europe 90–92%, USA 90%, China 84%) and fails
 > where they are not (British Isles 35%, India 53%), because it relies on absolute wind speed.
 > Hybrid sites were not learned. The model can also say 'I don't know', and in India it did so for
-> 92% of cells."
+> 92% of cells.
+>
+> Then we ran an improvement round: we locked five untouched countries first, added local context
+> (is this site windier than the land around it?) and switched to Extra Trees. On 11 held-out regions
+> accuracy rose from 74% to 79%, the British Isles from 35% to 54%. On the locked countries every
+> model tied at about 90%, because they are easy, and conformal 'I don't know' sets kept the true
+> answer 94% of the time."
 
 ### Problem statement
 > Given the location of an existing onshore, utility-scale renewable installation, can a model
@@ -52,17 +64,21 @@ says "build here".
 | USA / China / India | 90% / 84% / 53% |
 | "I don't know" | Iberia 40%, India 92%, China 76% |
 | Most important feature | Wind speed (SHAP 0.166), then sunshine (0.070) |
+| **Improvement round, 11 held-out regions** | **0.736 → 0.794** (British Isles 0.354 → 0.536) |
+| Final model | Extra Trees, 13 features; wind's share of SHAP 51% → 23% |
+| **Locked final test (JPN, TUR, CHL, AUS, ZAF)** | final 0.892 · wind rule 0.905 · old RF 0.896 (a tie) |
+| Conformal "I don't know" on locked test | true answer in set 94.3% (target 90%) |
 
 ### Who answers what in the viva
 
 | If asked about… | Answered by |
 |---|---|
-| Why this problem, dataset, Europe, features, leakage | Ashutosh |
-| Why Random Forest, baselines, metrics, results, overfitting, "I don't know" | Astitv |
-| GitHub, deployment, reproducibility, how to run the code | Divyanshu Puri |
-| Website design, map, interactions, colours | Madhu |
+| Why this problem, dataset, Europe, features, leakage, data errors, local-context features | Ashutosh Singh |
+| Why Random Forest / Extra Trees, baselines, spatial CV, metrics, regions, overfitting, neural networks | Astitva Tripathi |
+| SHAP, "I don't know", conformal prediction, archetypes, locked final test, GitHub, reproducibility | Divyanshu Puri |
+| Website design, map, interactions, colours | Madhusudan |
 | Report structure, references, limitations, conclusion | Aryan Singh |
-| Presentation flow, slide messages, summary | Keshav |
+| Presentation flow, slide messages, summary | Keshav Sudarshan |
 
 ### Links
 - Repository: https://github.com/AshutoshSinghJ/renewable-siting-ml
@@ -71,7 +87,7 @@ says "build here".
 
 ---
 
-## Part 1 — Ashutosh: initiation, project design and dataset
+## Part 1 — Ashutosh Singh: initiation, project design and dataset
 
 ### 1.1 How the project started
 1. **Starting idea:** solar and wind farms are built in different kinds of places. Can a machine
@@ -174,9 +190,9 @@ Top countries: Germany 3,054 cells · USA 2,342 · China 2,313 · Italy 1,644 ·
 
 ---
 
-## Part 2 — Astitv and Divyanshu Puri: model selection, training and GitHub deployment
+## Part 2 — Astitva Tripathi and Divyanshu Puri: models, explainability, "I don't know" and GitHub
 
-Suggested focus: **Astitv** leads on model selection, training and evaluation (2A); **Divyanshu**
+Suggested focus: **Astitva** leads on model selection, training and evaluation (2A); **Divyanshu**
 leads on GitHub, deployment and reproducibility (2B). Both should be able to explain both.
 
 ### 2A. Model selection and training (`src/03` to `src/05`)
@@ -263,7 +279,7 @@ Confusion matrix (RF, Iberia): Solar 696 right / 59 → Wind; Wind 697 right / 6
 - Confidence ≠ accuracy: most Iberian "I don't know" answers came from Rule B while the model was
   confident.
 
-#### Viva questions for Astitv
+#### Viva questions for Astitva Tripathi
 - Why RF and not deep learning? · Why these baselines? · What is macro F1? · Is it overfitting?
   · Why is the test higher than validation? (Iberia is easier; the wind rule jumps too.) · Is it just
   "windy = wind"? (Mostly, and we show it.) · How does "I don't know" work?
@@ -315,13 +331,13 @@ cd - && git worktree remove ../pages
 - Steps 3–5 run straight from `data/processed/`. Steps 1, 2, 3d, 3e need `data/raw/` (see its README).
 - A full re-run from scratch reproduced every output byte-for-byte (seed 42).
 
-#### Viva questions for Divyanshu
+#### Viva questions for Divyanshu Puri
 - How is the site hosted? (GitHub Pages from the `gh-pages` branch.)
 - Why aren't the raw files on GitHub? (25 GB; download links in `data/raw/README.md`.)
 - How can someone reproduce the results? (requirements, processed data, scripts in order.)
 - What happens when you push? (Pages rebuilds and the live site updates in ~30 s.)
 
-#### Improvement round (Astitv and Divyanshu)
+#### Improvement round (Astitva and Divyanshu)
 | Script | What it does | Output |
 |---|---|---|
 | `06_features_v2.py` | 8 local-context features + base features for the locked countries | `features_v2.csv` |
@@ -338,7 +354,7 @@ three new views (Improved model, Archetypes, Final test); the detailed site was 
 
 ---
 
-## Part 3 — Madhu: UI and UX
+## Part 3 — Madhusudan: UI and UX
 
 ### 3.1 The two websites
 
@@ -395,14 +411,14 @@ tooltip (features, class probabilities, right/wrong, "I don't know" reason).
 - Respects "reduced motion" settings; visible keyboard focus; text alternatives on the map canvas.
 - Tested in the browser at desktop and phone sizes with no console errors.
 
-### 3.6 Viva questions for Madhu
+### 3.6 Viva questions for Madhusudan
 - Why a dark theme and glowing dots? · Why these colours? · Why two websites? · How does the globe
   draw 14,000 points smoothly? (canvas, not SVG) · What happens when I hover a dot? · Does it work
   on a phone? · How is the data inside the page? (packed as JSON by `build_site.py`)
 
 ---
 
-## Part 4 — Aryan Singh and Keshav: report and presentation
+## Part 4 — Aryan Singh and Keshav Sudarshan: report and presentation
 
 Suggested focus: **Aryan Singh** leads the report and references (4A); **Keshav** leads the slides
 and presentation flow (4B). Both should know the whole storyline.
@@ -490,14 +506,17 @@ other_continents, overfit_check, dont_know_summary, feature_importance, relative
 
 | Slides | Speaker |
 |---|---|
-| 1–5 (question, data, split, features) | Ashutosh |
-| 6–11 (pipeline, models, results, overfitting) | Astitv |
-| 12–15 (regions, continents, SHAP, "I don't know") | Astitv / Divyanshu Puri |
-| 16 + live website demo | Madhu |
-| 17 (checks) + GitHub repo | Divyanshu Puri |
-| 18–20 (limitations, conclusion, references) | Keshav / Aryan Singh |
+| 1–5 (question, data, split, features) | Ashutosh Singh |
+| 6–13 (pipeline, models, results, checks, regions, continents) | Astitva Tripathi |
+| 14–15 (SHAP, "I don't know") | Divyanshu Puri |
+| 16–18 (improvement round: features, before/after, model choice) | Astitva Tripathi |
+| 19–20 (conformal, archetypes, locked final test) | Divyanshu Puri |
+| 21 + live website demo | Madhusudan |
+| 22 (checks) + GitHub repo | Divyanshu Puri |
+| 23 (limitations), 25 (references) | Aryan Singh |
+| 24 (what we found) + opening and closing | Keshav Sudarshan |
 
-### 4D. Viva questions for Aryan Singh and Keshav
+### 4D. Viva questions for Aryan Singh and Keshav Sudarshan
 - What's the main finding in one sentence? · What are the limitations? · Why these references? ·
   What does the model *not* claim? (It never says "build here".) · What would you do next?
   (Relative/local wind context, more Hybrid examples, calibrated threshold, label check with Global

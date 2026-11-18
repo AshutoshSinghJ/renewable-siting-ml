@@ -1,3 +1,7 @@
+> **Note:** this is the original brief written at the start of the project. The work later went further:
+> an improvement round (local-context features, Extra Trees, conformal "I don't know", a locked final
+> test on five countries). See `docs/COMPLETE_GUIDE.md` and the report, Section 8.
+
 # Project: Predicting Renewable Installation Type from Geography (ML)
 
 Minor project (5 credits). Build it in one night. **Keep everything simple, explainable and standard.** Prefer plain Python scripts over frameworks. Do not add features, models or steps that are not listed here.

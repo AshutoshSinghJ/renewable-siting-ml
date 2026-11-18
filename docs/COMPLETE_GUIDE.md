@@ -922,8 +922,10 @@ unchanged in the improvement round; the globe site is the main site.
 | Mind map | `docs/MINDMAP.md` | One-page overview |
 | GitHub repo | https://github.com/AshutoshSinghJ/renewable-siting-ml | Code, processed data, results; tags `v1.0-final`, `v1.0.1` |
 
-**Team:** Ashutosh (initiation, project design, dataset); Astitv and Divyanshu Puri (model selection
-and training, GitHub deployment); Madhu (UI/UX); Aryan Singh and Keshav (report and presentation).
+**Team** (guide: Dr. N Sangita Acharya): Ashutosh Singh (project lead and dataset); Astitva Tripathi
+(model selection and training); Divyanshu Puri (explainability, "I don't know", final test, GitHub);
+Madhusudan (UI/UX); Aryan Singh (report and references); Keshav Sudarshan (presentation and viva
+preparation). Details: `docs/CONTRIBUTIONS.md`.
 
 ## 37. How to reproduce everything
 

@@ -36,7 +36,7 @@ The model answers *"if something is built here, which type fits?"*. It never jud
 - No serious overfitting: 0.81 on training data, 0.73 on unseen blocks.
 
 Full details: [report (PDF)](outputs/REPORT_NOTES.pdf) · [slides](outputs/Project_Presentation.pptx) ·
-[project journey](docs/JOURNEY.md) · [viva guide](docs/VIVA_GUIDE.md)
+[project journey](docs/JOURNEY.md) · [mind map](docs/MINDMAP.md) · [viva guide](docs/VIVA_GUIDE.md)
 
 ## How it works
 
@@ -68,6 +68,7 @@ renewable-siting-ml/
 ├── docs/
 │   ├── JOURNEY.md         what we did, what happened, what we learnt
 │   ├── VIVA_GUIDE.md      viva preparation and likely questions
+│   ├── MINDMAP.md         one-page mind map of the project
 │   └── PROJECT_BRIEF.md   original brief and design decisions
 └── tools/                 helpers: report → Word, split map figure
 ```

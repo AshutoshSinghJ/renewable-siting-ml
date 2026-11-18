@@ -164,10 +164,14 @@ section + section { margin-top: 44px; }
   .h-title h1 { font-size: 18px; }
   .h-title p { display: none; }
   .h-stats { top: auto; bottom: 74px; right: max(16px, env(safe-area-inset-right, 0px)); min-width: 0; padding: 8px 10px; gap: 4px; }
+  .h-stats { width: 136px; }
   .h-stats b { font-size: 16px; }
-  .h-panel { left: max(16px, env(safe-area-inset-left, 0px)); bottom: 74px; width: calc(100% - 170px); max-height: 32%; padding: 10px 12px; }
+  .h-stats span { font-size: 9px; letter-spacing: .04em; line-height: 1.3; }
+  .h-panel { left: max(16px, env(safe-area-inset-left, 0px)); bottom: 74px; width: calc(100% - 184px); max-height: 32%; padding: 10px 12px; }
   .h-zoom { top: 80px; bottom: auto; }
   .h-panel .note { display: none; }
+  .reglist button { grid-template-columns: minmax(0, 1fr) 44px 30px; gap: 6px; padding: 3px 2px; font-size: 12px; }
+  .reglist .v { font-size: 11px; }
   .steps { grid-template-columns: minmax(0, 1fr); }
   .tip { width: 210px; }
 }

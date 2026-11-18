@@ -7,16 +7,17 @@
 **How the work is divided.** Ashutosh Singh started the project and owns its design and the whole
 dataset. The rest is split evenly: each of the other five members owns **one technical part of the
 pipeline** (scripts and results) **and one deliverable** (repository, presentation, report or website),
-and presents a similar number of slides. Every script and file belongs to exactly one person.
+and presents the slides for that part. Slides 1, 2, 24 and 26–28 (opening, roadmap, key results, future work,
+conclusion, references) are presented by the whole team. Every script and file belongs to exactly one person.
 
 | # | Member | Technical part | Deliverable | Slides |
 |---|---|---|---|---|
-| 1 | **Ashutosh Singh** | Project start and design; **dataset**: labels, features, local-context features (`src/01`, `02`, `06`) | Project brief, data and method guide | 2–5, 16 |
-| 2 | **Astitva Tripathi** | **Models and training**: baselines, Random Forest, tuning, model comparison, Extra Trees, neural networks (`src/03`, `03b`, `07`, `10`) | Model results tables | 7, 8, 10, 18 |
-| 3 | **Divyanshu Puri** | **Validation and testing**: overfitting, every region held out, other continents, relative features, locked final test (`src/03c`, `03d`, `03e`, `11`) | **GitHub repository and GitHub Pages** | 11–13, 20 + GitHub demo |
-| 4 | **Keshav Sudarshan** | **Explainability**: SHAP for the original model and SHAP by region for the final model (`src/04`, SHAP part of `09`) | **Presentation** (25 slides, speaker notes), project journey, mind map | 1, 6, 14, 24 |
-| 5 | **Aryan Singh** | **"I don't know"**: confidence and unfamiliar-place rules, conformal prediction (`src/05`, `08`); **checking the results** against the output files | **Project report** (both formats), references, limitations | 15, 19, 22, 23, 25 |
-| 6 | **Madhusudan** | **Visualisation**: siting archetypes (k-means, archetype part of `09`), all figures and maps (`tools/make_map.py`, charts), website build (`web/globe/build_site.py`, `template.html`) | **The globe website** and its screenshots | 9, 17, 21 + live website demo |
+| 1 | **Ashutosh Singh** | Project start and design; **dataset**: labels, features, local-context features (`src/01`, `02`, `06`) | Project brief, data and method guide | 3–7, 11 |
+| 2 | **Astitva Tripathi** | **Models and training**: baselines, Random Forest, tuning, model comparison, Extra Trees, neural networks (`src/03`, `03b`, `07`, `10`) | Model results tables | 8, 9, 12 |
+| 3 | **Divyanshu Puri** | **Validation and testing**: overfitting, every region held out, other continents, relative features, locked final test (`src/03c`, `03d`, `03e`, `11`) | **GitHub repository and GitHub Pages** | 10, 13, 14 + GitHub demo |
+| 4 | **Keshav Sudarshan** | **Explainability**: SHAP for the original model and SHAP by region for the final model (`src/04`, SHAP part of `09`) | **Presentation** (28 slides, phase by phase, speaker notes), project journey, mind map | 15, 16 |
+| 5 | **Aryan Singh** | **"I don't know"**: confidence and unfamiliar-place rules, conformal prediction (`src/05`, `08`); **checking the results** against the output files | **Project report** (both formats), references, limitations | 17, 25 |
+| 6 | **Madhusudan** | **Visualisation**: siting archetypes (k-means, archetype part of `09`), all figures and maps (`tools/make_map.py`, charts), website build (`web/globe/build_site.py`, `template.html`) | **The globe website**: UI/UX design and build, screenshots | 18–23 + live website demo |
 
 ---
 
@@ -88,7 +89,7 @@ a tie, how the site is hosted, how to reproduce the results.
   Hybrid learned as "windy, not sunny" (213 of 308 training Hybrids in Germany).
 - **SHAP by region (`src/09`):** in the final model wind's share fell from ~51% to **23%**; the local
   wind percentile is the most important feature in the British Isles.
-- **Presentation:** the 25-slide deck with one message per slide, native charts and speaker notes;
+- **Presentation:** the 28-slide deck, organised phase by phase with the presenter named on every slide, and speaker notes;
   speaking order and timing; the 20-step project journey and the mind map.
 
 **Must know:** how SHAP works, what drives each class, why Hybrid fails, the flow of the whole presentation.
@@ -122,17 +123,28 @@ main finding in one sentence, the limitations and the assumption, why each refer
   **windy, cloudy lowland** (44% solar / 52% wind, model accuracy 64%).
 - **Figures and maps:** the train/test map (`tools/make_map.py`), confusion matrix, region charts,
   before/after chart and archetype map used in the report and slides.
-- **The globe website** (Map · Results · About): dark theme; one colour per class everywhere (Solar
-  amber, Wind teal, Hybrid purple, wrong red, "I don't know" grey); eight map views (What was built,
-  Iberia test, Every region tested, Other continents, **Improved model**, **Archetypes**, **Final
-  test**, Wind speed); hover tooltips with prediction and conformal answer.
-- Technical: `build_site.py` packs the result files as JSON into one self-contained page; D3.js 7.9.0
-  on an HTML canvas (~17,000 dots), orthographic globe, fly animations; phone layout, keyboard focus,
-  reduced-motion support; screenshots for the report.
+- **The globe website** (Map · Results · About): eight map views (What was built, Iberia test, Every
+  region tested, Other continents, **Improved model**, **Archetypes**, **Final test**, Wind speed); hover
+  or tap a dot for its wind, sunshine, elevation, model probabilities, right/wrong and conformal answer;
+  click a region in the list and the camera flies there.
+- **How it is built:** Python script `build_site.py` packs the result CSV files as JSON into
+  `template.html`, giving one self-contained `index.html` (1.8 MB, no server) that GitHub Pages hosts.
+  HTML gives the structure, CSS the look, JavaScript the behaviour. **D3.js 7.9.0** projects longitude
+  and latitude onto an orthographic globe, and an **HTML canvas** draws all 17,189 dots (SVG would be slow
+  with that many; small charts on the Results tab use D3 scales). Main JavaScript pieces: `DATA`, `state`,
+  `setMode()`, `colorOf()`, `draw()`, `fly()`, `pick()`, `showTip()`.
+- **UI/UX design choices:** dark theme so the bright dots stand out; one colour per class everywhere
+  (Solar amber, Wind teal, Hybrid purple, wrong red, "I don't know" grey), the same as in the slides and
+  report; map first, filling the screen, with small floating panels (title, key numbers, legend, region
+  list, zoom buttons + − EU); one view = one question, in plain words; fonts Chakra Petch (headings),
+  Inter (text) and JetBrains Mono (numbers).
+- **Accessibility and phones:** keyboard focus outlines, ARIA labels on buttons, tabs and the globe,
+  `aria-pressed` on the view buttons; camera flights switch off under the reduced-motion setting; separate
+  layouts below 860 px and 600 px; drag, scroll and pinch zoom; tested at phone width (375 px).
 
 **Must know:** the four archetypes and why the windy, cloudy lowland is hard, what each figure shows,
-why these colours, how the globe draws so many points, what each view shows, how the data gets into
-the page.
+why these colours and the dark theme, how the globe draws so many points (canvas, not SVG), what each
+view shows, how the data gets into the page, the accessibility and phone features, the live demo order.
 
 ---
 
@@ -145,4 +157,4 @@ the page.
 | Overfitting, regions, other continents, locked final test, GitHub, reproducibility | Divyanshu Puri |
 | SHAP, what drives the model, why Hybrid fails, presentation flow | Keshav Sudarshan |
 | "I don't know", Rule A/B, conformal prediction, how results were checked, limitations, references | Aryan Singh |
-| Archetypes, figures and maps, the globe website | Madhusudan |
+| Archetypes, figures and maps, the globe website, its UI/UX design and build | Madhusudan |

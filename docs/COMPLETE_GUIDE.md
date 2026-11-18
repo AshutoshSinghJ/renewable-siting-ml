@@ -885,7 +885,7 @@ One website, built from the project CSVs by `build_site.py`, which packs the dat
 `index.html` (no server needed).
 
 **Globe website**: https://AshutoshSinghJ.github.io/renewable-siting-ml/
-- **Map**: a 3-D globe (D3.js 7.9.0, orthographic projection, HTML canvas, ~17,000 dots). Views:
+- **Map**: a 3-D globe (D3.js 7.9.0, orthographic projection, HTML canvas, 17,189 dots). Views:
   - *What was built*: every cell coloured Solar / Wind / Hybrid.
   - *Iberia test*: right/wrong on Spain and Portugal.
   - *Every region tested*: accuracy of each held-out region.
@@ -904,12 +904,54 @@ One website, built from the project CSVs by `build_site.py`, which packs the dat
 
 **Hosting:** GitHub Pages serves the `gh-pages` branch.
 
+### 35.1 What the website is made of (UI/UX)
+
+**Building blocks**
+
+| Part | What it is | Why |
+|---|---|---|
+| `build_site.py` (Python) | Reads the result CSVs and the simplified GADM borders, packs them as JSON and writes it into `template.html` | The website shows exactly the numbers in the report; nothing is typed by hand |
+| `template.html` | HTML (structure: top bar, 3 tabs, globe, floating panels), CSS (look: colours, fonts, phone layouts) and JavaScript (behaviour) | One file, no framework, easy to read |
+| `index.html` | The finished page, about 1.8 MB, with the data inside | Opens without a server; GitHub Pages serves it as it is |
+| D3.js 7.9.0 | Orthographic projection (longitude/latitude to screen), graticule, borders, scales, animation timer | Standard library for maps and charts |
+| HTML canvas | Draws all 17,189 dots on every frame | SVG with that many elements would be slow |
+| SVG (D3) | The small charts on the Results tab | Sharp text and lines for a few dozen marks |
+
+Main JavaScript pieces: `DATA` (the packed results), `state` (current view, rotation, zoom),
+`setMode()` (switch view), `colorOf()` (the colour of a dot in this view), `draw()` (redraw the globe),
+`fly()` (animate the camera), `pick()` (find the dot under the pointer, within 9 px) and `showTip()`
+(the tooltip).
+
+**Visual design (UI)**
+- **Dark theme**, so the bright dots stand out against the Earth.
+- **One colour per class everywhere** (website, slides, report): Solar amber `#F6B03E`, Wind teal
+  `#36D0BC`, Hybrid purple `#B794F6`, wrong red `#FF5C5C`, "I don't know" grey `#9AB0B9`.
+- **Fonts:** Chakra Petch for headings, Inter for text, JetBrains Mono for numbers (digits line up).
+- **Layout:** the map fills the screen; small floating panels hold the title, the key numbers, the legend
+  with a clickable region list, the zoom buttons (+, −, EU) and the 8 view buttons.
+- **Drawing details:** each dot is drawn twice (a soft glow, then a solid core); Hybrid dots are drawn
+  last so the rare class is not hidden; the test countries are outlined with a red dashed line.
+
+**User experience (UX)**
+- **Map first:** the visitor sees the data immediately; detail lives in the Results and About tabs.
+- **One view = one question:** "Where are the real farms?", "Which predictions were wrong?", "Did the new
+  model help?" and so on, with plain-language button names.
+- **Interaction:** drag to rotate, scroll or pinch to zoom; click a region in the list and the camera
+  flies there; hover or tap a dot to see its wind, sunshine, elevation, class probabilities, whether the
+  model was right, and its conformal answer.
+- **Links:** each tab has its own address (`#map`, `#results`, `#about`).
+
+**Accessibility and phones**
+- Visible keyboard focus outlines; ARIA labels on the tabs, buttons and globe; `aria-pressed` on view buttons.
+- Camera flights are skipped when the system asks for reduced motion.
+- Separate layouts below 860 px and 600 px; dot size scales with the screen; tested at 375 px width.
+
 ## 36. Report, slides, documents and GitHub
 
 | Deliverable | Where | Content |
 |---|---|---|
 | Report | `outputs/REPORT_NOTES.pdf` / `.docx` / `.md` (20 pages) | Sections 1–7 original study, Section 8 improvement round, reproduce, references |
-| Presentation | `outputs/Project_Presentation.pptx` (25 slides, speaker notes) | Slides 1–15 original study, 16–20 improvement round, 21 assumption, 22 checks, 23 limitations, 24 findings, 25 references |
+| Presentation | `outputs/Project_Presentation.pptx` (28 slides, speaker notes) | Phase by phase: 1–2 title and roadmap, 3–7 problem and data, 8–10 models and first tests, 11–14 improvement and locked test, 15–17 explanations and uncertainty, 18–23 website (UI/UX, build, views, archetypes, live demo), 24–28 results, limitations, future work, conclusion, references |
 | This guide | `docs/COMPLETE_GUIDE.md` | Everything, start to end |
 | Journey | `docs/JOURNEY.md` | 20 steps: did, happened, learnt |
 | Data and method | `docs/DATA_AND_METHOD.md` | Technical details of every dataset and step |
@@ -920,7 +962,7 @@ One website, built from the project CSVs by `build_site.py`, which packs the dat
 **Team** (guide: Dr. N Sangita Acharya): Ashutosh Singh (project start, design and dataset);
 Astitva Tripathi (models and training); Divyanshu Puri (validation, locked final test, GitHub);
 Keshav Sudarshan (SHAP, presentation); Aryan Singh ("I don't know", conformal prediction, result
-checks, report); Madhusudan (archetypes, figures and maps, website). Details: `docs/CONTRIBUTIONS.md`.
+checks, report); Madhusudan (archetypes, figures and maps, website UI/UX design and build). Details: `docs/CONTRIBUTIONS.md`.
 
 ## 37. How to reproduce everything
 

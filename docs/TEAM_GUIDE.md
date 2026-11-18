@@ -6,12 +6,13 @@
 
 | Member | Role | Presents slides |
 |---|---|---|
-| **Ashutosh Singh** | Project start, design and **dataset** (labels, features, local-context features) | 2–5, 16 |
-| **Astitva Tripathi** | Models and training (baselines, Random Forest, model comparison, Extra Trees, neural networks) | 7, 8, 10, 18 |
-| **Divyanshu Puri** | Validation and testing (regions, continents, locked final test) and GitHub deployment | 11–13, 20 |
-| **Keshav Sudarshan** | Explainability (SHAP) and the presentation | 1, 6, 14, 24 |
-| **Aryan Singh** | "I don't know" (confidence rules, conformal prediction), result checks, the project report and references | 15, 19, 22, 23, 25 |
-| **Madhusudan** | Visualisation: siting archetypes, all figures and maps, the globe website | 9, 17, 21 + live demo |
+| **Ashutosh Singh** | Project start, design and **dataset** (labels, features, local-context features) | 3–7, 11 |
+| **Astitva Tripathi** | Models and training (baselines, Random Forest, model comparison, Extra Trees, neural networks) | 8, 9, 12 |
+| **Divyanshu Puri** | Validation and testing (regions, continents, locked final test) and GitHub deployment | 10, 13, 14 |
+| **Keshav Sudarshan** | Explainability (SHAP) and the presentation | 15, 16 |
+| **Aryan Singh** | "I don't know" (confidence rules, conformal prediction), result checks, the project report and references | 17, 25 |
+| **Madhusudan** | Visualisation: siting archetypes, all figures and maps, the globe website (UI/UX design and build) | 18–23 + live demo |
+| **Whole team** | Opening, roadmap, key results, future work, conclusion, references | 1, 2, 24, 26–28 |
 
 Ashutosh owns the start, design and dataset; each of the other five owns one technical part and one deliverable, with a similar share of slides. The parts
 below explain each topic in depth; the owner of each topic is in the table above. The exact split of every script and file is in [CONTRIBUTIONS.md](CONTRIBUTIONS.md).
@@ -372,7 +373,7 @@ used in the report and slides (train/test map, confusion matrix, region charts, 
 |---|---|
 | Dark "control room" theme | Glowing dots read best on dark; matches the map-first, Kaspersky-like feel |
 | One colour per class everywhere: **Solar amber, Wind teal, Hybrid purple, wrong red, "I don't know" grey** | The same colour means the same thing on every chart, map and slide |
-| Fonts: Chakra Petch / Space Grotesk (headings), Inter (text), JetBrains Mono (numbers) | Technical feel; monospaced digits line up in stats |
+| Fonts: Chakra Petch (headings), Inter (text), JetBrains Mono (numbers) | Technical feel; monospaced digits line up in stats |
 | Numbers in floating corner panels that change per view | Like a dashboard: the key number for each view is always visible |
 | Hybrid dots drawn last | They're rare and would otherwise be hidden under Solar and Wind |
 | Plain-language labels ("What was built", "Model on Iberia") | Non-experts understand them without reading the report |
@@ -466,65 +467,62 @@ other_continents, overfit_check, dont_know_summary, feature_importance, relative
 
 "Wu et al. 2026" from the original brief was **removed**: not used and not verifiable.
 
-### 4B. The presentation (`outputs/Project_Presentation.pptx`, 25 slides)
+### 4B. The presentation (`outputs/Project_Presentation.pptx`, 28 slides)
 
-| # | Slide | Its one message |
-|---|---|---|
-| 1 | Which renewable fits here? | Title |
-| 2 | The question | Problem + the four possible answers; type, not "build here" |
-| 3 | Data: real installations from OpenStreetMap | 68,786 → 24,078 → 18,705 → 10,724 |
-| 4 | Train on Europe, test on an unseen region | Map + split table + why Iberia |
-| 5 | Five features, and three we left out | Features vs leakage |
-| 6 | Pipeline: six simple scripts | Steps + validation rules |
-| 7 | Three baselines and one main model | Why each model; metrics |
-| 8 | Result: 90% accuracy on the unseen region | Chart; +1.8 points over the wind rule |
-| 9 | Solar and Wind transfer well; Hybrid does not | Confusion matrix |
-| 10 | Is the Random Forest the right choice? | Other classifiers; feature subsets |
-| 11 | Is the Random Forest overfitting? | 0.81 / 0.73 / 0.90; Iberia is easier |
-| 12 | Does it hold in other regions? Only in the south | 8 regions; 71%; why the UK fails |
-| 13 | Other continents: USA works, China partly, India fails | 90 / 84 / 53 |
-| 14 | What drives the predictions (SHAP) | Wind first, sun second; why Hybrid fails |
-| 15 | Saying "I don't know" | 40%; Rule A works, Rule B cautious |
-| 16 | Improvement round: teaching the model local context | Locked test first; 8 new features |
-| 17 | Before and after | 11 held-out regions 0.736 → 0.794; British Isles +18 |
-| 18 | Which model, and what drives it now | Extra Trees wins; NNs don't; wind share 51% → 23% |
-| 19 | Better "I don't know" and four types of place | Conformal sets; archetypes |
-| 20 | Locked final test | All models tie ~0.9; conformal 94% coverage |
-| 21 | Using the model on a new location | The assumption and how to use it |
-| 22 | How we checked the results | Fake wind data, islands, reproducible, no leakage |
-| 23 | Limitations | Honest limits |
-| 24 | What we found | Answers + next steps |
-| 25 | References | Reference → why table |
+The deck tells the project **phase by phase**; every slide names its phase and its presenter at the top.
+
+| # | Phase | Slide | Its one message | Presents |
+|---|---|---|---|---|
+| 1 | — | Which renewable fits here? | Title, team, guide | Whole team |
+| 2 | Roadmap | Our project, phase by phase | 7 phases and who presents each | Whole team |
+| 3 | 01 Problem | The problem: choosing the right renewable type | MCDA/AHP expert weights vs learning from real farms | Ashutosh |
+| 4 | 01 Initiation | Before coding, we defined the rules | Question, scope, 5 km grid, unseen-region testing, no leakage, reproducible | Ashutosh |
+| 5 | 02 Collect data | We used open, real-world datasets | Dunnett 2020 labels + solar, wind, DEM, Gridfinder, GHS-SMOD | Ashutosh |
+| 6 | 02 Refine data | From raw records to trustworthy labels | 68,786 → 24,078 → 18,705 → 10,724 | Ashutosh |
+| 7 | 02 Prepare tests | Train on one region. Test on another. | 9,176 train / 1,548 Iberia test | Ashutosh |
+| 8 | 03 Train models | We started simple before using complex models | 3 baselines + Random Forest; metrics | Astitva |
+| 9 | 03 First test | Original test: good Solar and Wind, weak Hybrid | 90.1% vs 88.2%; confusion matrix; Hybrid 1/25 | Astitva |
+| 10 | 03 Verify | One good test region was not enough | British Isles 35%; USA/China/India 90/84/53% | Divyanshu |
+| 11 | 04 Improve features | We taught the model local context | 5 → 13 features | Ashutosh |
+| 12 | 04 Final model | Extra Trees gave the best regional performance | Mean region accuracy 78.1% (pooled 79.4%) | Astitva |
+| 13 | 04 Regional results | The biggest gains were in difficult regions | British Isles 35 → 54%; all 11 regions 74 → 79% | Divyanshu |
+| 14 | 04 Final test | Five countries were locked before improvement | 1,062 cells; 89.2% vs wind rule 90.5%: a tie | Divyanshu |
+| 15 | 05 Explain | Why did the original model fail in the north? | SHAP: wind 0.166 dominates | Keshav |
+| 16 | 05 Explain | The improved model uses more than wind speed | Wind share ~51% → 23%; local wind percentile 17% | Keshav |
+| 17 | 05 Uncertainty | Sometimes the right answer is "I am not sure" | Conformal sets; 89.5% / 94.3% coverage | Aryan |
+| 18 | 06 UI/UX showcase | We turned the results into an interactive globe | Map · Results · About | Madhusudan |
+| 19 | 06 Website build | How the website works, from data to pixels | CSV → build_site.py → template.html → D3 + canvas → GitHub Pages | Madhusudan |
+| 20 | 06 Interaction design | Eight views. Eight clear questions. | One question per view | Madhusudan |
+| 21 | 06 UI/UX decisions | The design choices serve a purpose | Dark theme, class colours, phone, keyboard, reduced motion | Madhusudan |
+| 22 | 06 Clustering | K-Means found four geographical site types | k = 4; windy, cloudy lowland 64% | Madhusudan |
+| 23 | 06 Live demo | Live demo: what I will click, in order | 7-step tour of the website | Madhusudan |
+| 24 | 07 Key results | What did we actually achieve? | 73.6 → 79.4%; 35 → 54%; 89.2%; 94.3% | Whole team |
+| 25 | 07 Limitations | Where we must be careful | Coverage, Hybrid, regional differences, no suitability claim | Aryan |
+| 26 | 07 Future | What would make the next version stronger? | 5 next steps | Whole team |
+| 27 | 07 Conclusion | Our final message | 4 takeaways; thank you | Whole team |
+| 28 | Sources | References and project sources | Key references | Whole team |
 
 - Every slide has **speaker notes** (in PowerPoint: View → Notes).
-- **Timing:** ~1 minute per slide → 22–25 minutes; keep slides 8, 12, 17 and 20 for the main emphasis.
-- **Design:** Cambria headings, Calibri text; same class colours as the websites; native,
-  editable charts on slides 8, 10, 11, 12.
-- Pictures of every slide are in the share zip (`photos/slides/`).
+- **Timing:** ~1 minute per slide → about 28 minutes including the live demo; emphasise slides 9, 10, 13 and 14.
+- **Design:** light slides with dark title, website and conclusion slides; the same class colours as the website.
 
-### 4C. How to present (suggested speaking order)
+### 4C. How to present (speaking order)
 
 | Slides | Speaker |
 |---|---|
-| 1 (title, opening) | Keshav Sudarshan |
-| 2–5 (question, data, split, features) | Ashutosh Singh |
-| 6 (pipeline) | Keshav Sudarshan |
-| 7–8 (models, Iberia result) | Astitva Tripathi |
-| 9 (confusion matrix: Solar and Wind transfer, Hybrid does not) | Madhusudan |
-| 10 (is Random Forest the right choice?) | Astitva Tripathi |
-| 11–13 (overfitting, regions, other continents) | Divyanshu Puri |
-| 14 (SHAP) | Keshav Sudarshan |
-| 15 ("I don't know") | Aryan Singh |
-| 16 (improvement round: local-context features) | Ashutosh Singh |
-| 17 (before and after) | Madhusudan |
-| 18 (which model and what drives it) | Astitva Tripathi |
-| 19 (conformal "I don't know" and archetypes) | Aryan Singh |
-| 20 (locked final test) | Divyanshu Puri |
-| 21 (using the model on a new location) + live website demo | Madhusudan |
-| 22 (how we checked the results) | Aryan Singh |
-| 23 (limitations) | Aryan Singh |
-| 24 (what we found, closing) | Keshav Sudarshan |
-| 25 (references) | Aryan Singh |
+| 1–2 (title, roadmap) | Whole team (one person opens and hands over) |
+| 3–7 (problem, rules, data, labels, train/test split) | Ashutosh Singh |
+| 8–9 (models, first test) | Astitva Tripathi |
+| 10 (one test region is not enough) | Divyanshu Puri |
+| 11 (local-context features) | Ashutosh Singh |
+| 12 (Extra Trees chosen) | Astitva Tripathi |
+| 13–14 (regional gains, locked final test) | Divyanshu Puri |
+| 15–16 (SHAP before and after) | Keshav Sudarshan |
+| 17 (conformal "I am not sure") | Aryan Singh |
+| 18–23 (website, build, views, UI/UX, archetypes, live demo) | Madhusudan |
+| 24 (key results) | Whole team |
+| 25 (limitations) | Aryan Singh |
+| 26–28 (future work, conclusion, references) | Whole team |
 
 ### 4D. Viva questions for Aryan Singh and Keshav Sudarshan
 - What's the main finding in one sentence? · What are the limitations? · Why these references? ·

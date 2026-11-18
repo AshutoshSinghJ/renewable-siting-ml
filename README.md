@@ -3,7 +3,7 @@
 **Predicting whether a renewable energy site is Solar, Wind or Hybrid from geography alone,
 tested on regions the model has never seen, with an option to answer "I don't know".**
 
-Minor project · Machine learning · Geospatial · 2026
+Major project · Machine learning · Geospatial · 2026
 
 🌍 **Live website:** https://AshutoshSinghJ.github.io/renewable-siting-ml/
 
@@ -51,6 +51,15 @@ The model answers *"if something is built here, which type fits?"*. It never jud
 
 Full details: [report (PDF)](outputs/REPORT_NOTES.pdf) · [slides](outputs/Project_Presentation.pptx) ·
 [complete guide](docs/COMPLETE_GUIDE.md) · [contributions](docs/CONTRIBUTIONS.md) · [project journey](docs/JOURNEY.md) · [mind map](docs/MINDMAP.md)
+
+## The website
+
+An interactive 3-D globe with three tabs: **Map**, **Results** and **About**.
+
+- **Eight map views**, one question each: What was built · Iberia test · Every region tested · Other continents · Improved model · Archetypes · Final test · Wind speed. Red = wrong prediction, grey = "I don't know".
+- **Interaction:** drag to spin, scroll or pinch to zoom, click a region to fly there, hover or tap a dot to see its wind, sunshine, elevation, class probabilities, right/wrong and conformal answer.
+- **Built with:** `build_site.py` packs the result CSVs as JSON into `template.html` → one self-contained `index.html` (no server); D3.js 7.9.0 orthographic globe drawn on an HTML canvas (17,189 dots); SVG charts on the Results tab; hosted on GitHub Pages.
+- **Design:** dark theme so the dots stand out; one colour per class everywhere (Solar amber, Wind teal, Hybrid purple); fonts Chakra Petch, Inter, JetBrains Mono; keyboard focus, ARIA labels, reduced-motion support and a phone layout.
 
 ## How it works
 
@@ -126,7 +135,7 @@ Guide: **Dr. N Sangita Acharya**, School of Computer Science and Engineering, KI
 | Divyanshu Puri | Validation and testing (regions, continents, locked final test) and GitHub deployment |
 | Keshav Sudarshan | Explainability (SHAP) and the presentation |
 | Aryan Singh | "I don't know" (confidence rules, conformal prediction), result checks, the project report and references |
-| Madhusudan | Visualisation: siting archetypes, all figures and maps, the globe website |
+| Madhusudan | Visualisation: siting archetypes, all figures and maps, the globe website (UI/UX design and build) |
 
 Full split of every script and file: [docs/CONTRIBUTIONS.md](docs/CONTRIBUTIONS.md).
 

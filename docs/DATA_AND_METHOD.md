@@ -572,9 +572,13 @@ while the model was confident. Rule B checks *where* the model is used, not how 
 |---|---|
 | Projection | Orthographic (a globe, as seen from space) |
 | Library | D3.js 7.9.0 |
-| Drawing | HTML canvas (~17,000 dots) |
+| Drawing | HTML canvas (17,189 dots) |
 | Borders | GADM, simplified to ~0.1° (`world.json`) |
 | Data | Packed into the page by `build_site.py` from the project CSVs |
+| Page | One self-contained `index.html` (HTML structure, CSS look, JavaScript behaviour), about 1.8 MB, hosted on GitHub Pages |
+| Charts | Results tab charts drawn as SVG with D3 scales |
+| Design | Dark theme; Solar amber, Wind teal, Hybrid purple, wrong red, "I don't know" grey; fonts Chakra Petch, Inter, JetBrains Mono |
+| Accessibility | Keyboard focus, ARIA labels, reduced-motion support, phone layouts below 860 px and 600 px |
 
 **How the globe draws:** the visible hemisphere is tested for each cell (cells on the far side are
 skipped); each dot is drawn twice, first a soft glow, then a solid core in its class colour; Hybrid

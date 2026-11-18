@@ -1,0 +1,5 @@
+archetype,name,ghi,wind100,elev,slope,dist_town,dist_water,Hybrid,Solar,Wind,model_accuracy,cells,main_regions
+0,"calm, sunny lowland",3.94,5.37,288.93,2.15,5.0,30.36,0.017,0.817,0.167,0.854,5229,"Germany & Austria 25%, Italy 23%, Central & Eastern 11%"
+1,"windy, very sunny mountain",4.72,7.27,716.02,0.92,22.47,51.48,0.015,0.277,0.708,0.84,3085,"USA 41%, China 26%, Iberia 15%"
+2,"very windy, sunny mountain",4.28,8.01,894.34,7.55,14.14,29.92,0.015,0.048,0.937,0.94,2570,"China 36%, Iberia 22%, USA 9%"
+3,"windy, cloudy lowland",2.95,7.33,63.54,0.67,5.83,15.56,0.039,0.439,0.522,0.638,5243,"Germany & Austria 33%, British Isles 18%, France & Benelux 12%"

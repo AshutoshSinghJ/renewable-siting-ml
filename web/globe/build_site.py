@@ -54,6 +54,46 @@ cells["split"] += "O" * len(oc)
 cells["lpred"] += "".join(oc.rf_pred.map(code))
 cells["oidk"] = "".join(np.where(oc.idk, "1", "0"))
 
+# ---- improvement round (src/06-11) ----
+# improved model (Extra Trees, 13 features) predicted each development cell while its region was held out
+v2 = pd.read_csv(OUT + "v2_loro_predictions.csv").set_index("cell_id")
+q = json.load(open(OUT + "v2_conformal_thresholds_overall.json"))["thresholds_score_1_minus_p"]
+BIT = {"Hybrid": 1, "Solar": 2, "Wind": 4}                # conformal answer set as a bitmask digit
+
+
+def setcode(ph, ps, pw):
+    return str(sum(BIT[c] for c, p in [("Hybrid", ph), ("Solar", ps), ("Wind", pw)] if 1 - p <= q[c]))
+
+
+ids = list(feat.cell_id) + list(oc.cell_id)
+vv = v2.reindex(ids)
+cells["vpred"] = "".join(vv.pred.map(code).fillna("-"))
+cells["vset"] = "".join(setcode(a, b, c) if pd.notna(a) else "-" for a, b, c in zip(vv.p_hybrid, vv.p_solar, vv.p_wind))
+arch = pd.read_csv(OUT + "v2_archetype_cells.csv").set_index("cell_id").archetype.reindex(ids)
+cells["arch"] = "".join(arch.fillna(-1).astype(int).map(lambda a: "-" if a < 0 else str(a)))
+
+# locked final-test countries, appended last (scored once by src/11_final_test.py)
+ft = pd.read_csv(OUT + "v2_final_test_predictions.csv")
+fv = pd.read_csv("data/processed/features_v2.csv").set_index("cell_id").loc[ft.cell_id]
+cells["nDev"] = len(ids)
+for k, v in {"lon": ft.lon.round(3), "lat": ft.lat.round(3), "cty": ft.country, "ghi": fv.ghi.round(2).values,
+             "ws": fv.wind100.round(2).values, "elev": fv.elev.round(0).astype(int).values,
+             "lps": ft.p_solar, "lpw": ft.p_wind, "lph": ft.p_hybrid}.items():
+    cells[k] += pd.Series(v).tolist()
+cells["reg"] += [-1] * len(ft)
+cells["lab"] += "".join(ft.label.map(code))
+cells["split"] += "F" * len(ft)
+cells["lpred"] += "".join(ft.pred.map(code))
+cells["oidk"] += "0" * len(ft)
+cells["vpred"] += "".join(ft.pred.map(code))
+cells["vset"] += "".join(setcode(a, b, c) for a, b, c in zip(ft.p_hybrid, ft.p_solar, ft.p_wind))
+cells["arch"] += "-" * len(ft)
+
+# before / after accuracy per held-out region (old 5-feature RF vs improved model, both held-out)
+ba = pd.DataFrame({"region": v2.region, "before": v2.pred_base == v2.label, "after": v2.pred == v2.label})
+before_after = ba.groupby("region")[["before", "after"]].mean().round(3).reset_index().to_dict("records")
+before_after.append({"region": "All 11 regions", "before": round(ba.before.mean(), 3), "after": round(ba.after.mean(), 3)})
+
 # World borders, simplified. Rings oriented clockwise, which is what d3's spherical paths expect.
 # Reading the full GADM file takes minutes, so the simplified result is cached in web/globe/world.json.
 WORLD_CACHE = "web/globe/world.json"
@@ -87,6 +127,11 @@ data = {
     "results": recs("results.csv"), "diffs": recs("paired_differences.csv"), "idk": recs("dont_know_summary.csv"),
     "region": recs("region_holdout.csv"), "overfit": recs("overfit_check.csv"), "shap": recs("feature_importance.csv"),
     "cont": recs("other_continents.csv"),
+    "v2": {"before_after": before_after, "models": recs("v2_models.csv"), "patch": recs("v2_patch_nn.csv"),
+           "conformal": recs("v2_conformal_summary.csv"), "final": recs("v2_final_test.csv"),
+           "final_conformal": recs("v2_final_test_conformal.csv"), "overfit": recs("v2_overfit_check.csv"),
+           "archetypes": recs("v2_archetypes.csv"), "shap": recs("v2_shap_importance.csv"),
+           "lock": json.load(open("data/processed/final_test_lock.json"))["countries"]},
     "conf": pd.crosstab(tp.index.map(feat.set_index("cell_id").label), tp.rf_pred)
               .reindex(index=["Solar", "Wind", "Hybrid"], columns=["Solar", "Wind", "Hybrid"], fill_value=0).values.tolist(),
 }

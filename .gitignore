@@ -11,3 +11,7 @@ __pycache__/
 node_modules/
 .DS_Store
 Thumbs.db
+
+# large or rebuildable caches (rebuild with src/10 and src/11)
+data/processed/patches_dev.npz
+outputs/final_model_extra_trees.joblib

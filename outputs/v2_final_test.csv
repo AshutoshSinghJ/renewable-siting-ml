@@ -1,0 +1,6 @@
+model,accuracy,macro_f1,balanced_acc,Japan,Turkey,Chile,Australia,South Africa
+Majority class,0.354,0.174,0.333,0.223,0.333,0.197,0.793,0.418
+Wind-speed rule (>= 6.47 m/s),0.905,0.601,0.607,0.903,0.913,0.951,0.873,0.836
+"Old model: RF, 5 features, Europe only",0.896,0.595,0.6,0.91,0.871,0.93,0.947,0.806
+"RF, 5 features, all development regions",0.902,0.6,0.608,0.91,0.888,0.951,0.867,0.925
+"Final: Extra Trees, 13 features, all regions",0.892,0.592,0.601,0.89,0.878,0.958,0.887,0.851

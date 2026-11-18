@@ -16,7 +16,13 @@ sections 3–6 the "why" behind every choice, section 7 likely questions with sh
 > are not (British Isles 35%, India 53%), because it relies on absolute wind speed. China (84%)
 > sits in between: it works, but mostly because 81% of Chinese sites are wind farms. Hybrid sites
 > were not learned. The model can also say 'I don't know', and in India it did so for 92% of
-> cells, which is exactly when it should."
+> cells, which is exactly when it should.
+>
+> Then an improvement round: I locked five untouched countries first, added local context (is
+> this site windier than the land around it? higher than its surroundings? near a town?) and
+> switched to Extra Trees. On 11 held-out regions accuracy rose from 74% to 79%, the British
+> Isles from 35% to 54%. On the locked countries every model tied at about 90%, because those
+> countries are easy, and conformal 'I don't know' sets kept the true answer 94% of the time."
 
 ---
 
@@ -39,6 +45,12 @@ sections 3–6 the "why" behind every choice, section 7 likely questions with sh
 | "I don't know" on Iberia | 40% of cells; accuracy on the rest 0.938 |
 | "I don't know" on India | 92% of cells |
 | Most important feature (SHAP) | Wind speed 0.166, then sunshine 0.070 |
+| **Improvement round: 11 held-out regions** | **0.736 → 0.794** (mean region 0.706 → 0.781; worst 0.354 → 0.536) |
+| Final model | Extra Trees, 13 features (5 original + 8 local-context) |
+| Wind's share of SHAP | about 51% → 23% |
+| **Locked test (JPN, TUR, CHL, AUS, ZAF; 1,062 cells)** | **final 0.892**, old RF 0.896, wind rule 0.905 (all within chance) |
+| Conformal sets on locked test | coverage 0.943 (target 0.90), single answer 85%, right when single 0.936 |
+| Final model overfitting | train 0.995 · held-out regions 0.794 · locked 0.892 |
 
 ---
 
@@ -297,3 +309,40 @@ Everyone should know section 1 (the story) and section 2 (the numbers).
 | Global Solar Atlas, Global Wind Atlas (Davis et al. 2023), Copernicus DEM, GADM | Sunshine, wind speed, elevation/slope, website borders |
 
 If asked about "Wu et al. 2026" (it was in the original brief): we did not use it and could not verify it, so it is not cited.
+
+---
+
+## 14. Improvement round (`src/06`–`11`)
+
+**What we did, in order**
+1. **Locked a final test first**: Japan, Turkey, Chile, Australia, South Africa (1,072 cells), committed to git before any experiment (`data/processed/final_test_lock.json`).
+2. **Development = leave-one-region-out over 11 regions** (8 EU + USA, China, India). Selection score fixed in advance: mean accuracy across regions.
+3. **Eight local-context features** (`src/06`): `wind_pct` / `wind_rel` (wind vs land within 30 km), `ghi_pct` / `ghi_rel` (same for sunshine), `elev_rel` (height vs 2.5 km surroundings), `rugged`, `dist_town`, `dist_water` (GHS settlement map).
+4. **Seven models + a patch neural network** (`src/07`, `src/10`); **Extra Trees** won → final model.
+5. **Conformal prediction** (`src/08`) for "I don't know"; **archetypes** and **SHAP by region** (`src/09`).
+6. **Locked test scored once** (`src/11`).
+
+**Key numbers**
+
+| | Before | After |
+|---|---|---|
+| 11 held-out regions | 0.736 | **0.794** |
+| British Isles | 0.354 | 0.536 |
+| Nordic & Baltic | 0.364 | 0.643 |
+| Central Europe | 0.752 | 0.890 |
+| China / India | 0.849 / 0.607 | 0.822 / 0.611 |
+
+Models (held-out accuracy, 13 features): Extra Trees **0.794** · RF 0.780 · wind rule 0.776 · MLP 0.763 · gradient boosting 0.744 · patch NN 0.738 · logistic regression 0.670.
+
+**Likely questions**
+
+- **Why did the improvement not show on the locked test?** The locked countries are easy: the one-line wind rule already scores 0.906 there (vs 0.776 in development). All models tie at 0.89–0.91 and the gaps are inside the bootstrap CIs (final − old −0.005, CI −0.020 to +0.009). Our gain is in windy, cloudy lowlands, which these five countries do not have. We did not tune after seeing the test.
+- **Isn't 0.995 on training data overfitting?** Extra Trees grows deep trees with random splits and averages them; fitting the training set almost perfectly is how it works. What matters is unseen data: it was best of six models on 11 held-out regions and 0.892 on locked countries. The depth-limited RF (0.780) is the simpler alternative with a smaller gap.
+- **Why Extra Trees and not deep learning?** We tried: MLP 0.763 and a network on raw 11 × 11 map patches 0.738. With ~16,000 tabular rows, trees on good features win.
+- **How does conformal prediction work?** On held-out-region predictions, compute 1 − p(true class); the 90th percentile is the threshold (≈ 0.7). For a new place, every class with p ≥ 0.3 enters the answer set. One class = confident answer; two = "I don't know" (e.g. Solar or Wind). It promises ~90% coverage if new places resemble the calibration places; it got 94% on the locked countries but only 72% in the British Isles.
+- **Why drop Rule B (unfamiliar place)?** Cells it flagged were more accurate (0.93) than the rest (0.79): it was not finding errors.
+- **Is there leakage in the new features?** No: wind, sunshine, terrain, towns and sea are not changed by building a farm (towns come from a 1 km settlement map).
+- **What are the archetypes?** K-means on geography only: calm sunny lowland (82% solar), windy very sunny upland (71% wind), very windy sunny mountain (94% wind), windy cloudy lowland (44% solar / 52% wind, the hard one, 64% accuracy).
+- **Why did reweighting not help?** Training cells weighted to look like the held-out region gave 0.779 vs 0.780: the problem is that the *relationship* differs between regions, not just the mix of places.
+
+**New references**: Geurts et al. 2006 (Extra Trees); Angelopoulos & Bates 2021 (conformal prediction); Shimodaira 2000 (covariate-shift weighting); GHS-SMOD (European Commission JRC, towns and water).

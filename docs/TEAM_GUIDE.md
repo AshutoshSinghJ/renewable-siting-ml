@@ -321,6 +321,21 @@ cd - && git worktree remove ../pages
 - How can someone reproduce the results? (requirements, processed data, scripts in order.)
 - What happens when you push? (Pages rebuilds and the live site updates in ~30 s.)
 
+#### Improvement round (Astitv and Divyanshu)
+| Script | What it does | Output |
+|---|---|---|
+| `06_features_v2.py` | 8 local-context features + base features for the locked countries | `features_v2.csv` |
+| `07_global_experiments.py` | Feature sets A–E and 7 models, leave-one-region-out over 11 regions | `v2_feature_sets.csv`, `v2_models.csv`, `v2_loro_predictions.csv` |
+| `08_conformal.py` | Conformal answer sets ("I don't know") | `v2_conformal_*.csv/json` |
+| `09_patterns.py` | Archetypes (k-means) and SHAP by region | `v2_archetypes*.csv/png`, `v2_shap_*.csv/png` |
+| `10_patch_nn.py` | Neural network on raw 11 × 11 map patches | `v2_patch_nn.csv` |
+| `11_final_test.py` | Locked test, scored once | `v2_final_test*.csv`, `v2_overfit_check.csv` |
+
+Key results: 11 held-out regions 0.736 → 0.794 (Extra Trees, final); locked test final 0.892 vs
+wind rule 0.905 (a tie); conformal coverage 0.943. The 183 MB trained model and the patch cache are
+not in git (`.gitignore`): rerun `src/11` and `src/10` to rebuild them. The globe site (main site) has
+three new views (Improved model, Archetypes, Final test); the detailed site was left as it was.
+
 ---
 
 ## Part 3 — Madhu: UI and UX
@@ -392,7 +407,7 @@ tooltip (features, class probabilities, right/wrong, "I don't know" reason).
 Suggested focus: **Aryan Singh** leads the report and references (4A); **Keshav** leads the slides
 and presentation flow (4B). Both should know the whole storyline.
 
-### 4A. The report (`outputs/REPORT_NOTES.pdf`, `.docx`, `.md`, 14 pages)
+### 4A. The report (`outputs/REPORT_NOTES.pdf`, `.docx`, `.md`, 20 pages)
 
 | Section | What it contains |
 |---|---|
@@ -435,7 +450,7 @@ other_continents, overfit_check, dont_know_summary, feature_importance, relative
 
 "Wu et al. 2026" from the original brief was **removed**: not used and not verifiable.
 
-### 4B. The presentation (`outputs/Project_Presentation.pptx`, 20 slides)
+### 4B. The presentation (`outputs/Project_Presentation.pptx`, 25 slides)
 
 | # | Slide | Its one message |
 |---|---|---|
@@ -454,14 +469,19 @@ other_continents, overfit_check, dont_know_summary, feature_importance, relative
 | 13 | Other continents: USA works, China partly, India fails | 90 / 84 / 53 |
 | 14 | What drives the predictions (SHAP) | Wind first, sun second; why Hybrid fails |
 | 15 | Saying "I don't know" | 40%; Rule A works, Rule B cautious |
-| 16 | Using the model on a new location | The assumption and how to use it |
-| 17 | How we checked the results | Fake wind data, islands, reproducible, no leakage |
-| 18 | Limitations | Six honest limits |
-| 19 | What we found | Three answers + next steps |
-| 20 | References | Reference → why table |
+| 16 | Improvement round: teaching the model local context | Locked test first; 8 new features |
+| 17 | Before and after | 11 held-out regions 0.736 → 0.794; British Isles +18 |
+| 18 | Which model, and what drives it now | Extra Trees wins; NNs don't; wind share 51% → 23% |
+| 19 | Better "I don't know" and four types of place | Conformal sets; archetypes |
+| 20 | Locked final test | All models tie ~0.9; conformal 94% coverage |
+| 21 | Using the model on a new location | The assumption and how to use it |
+| 22 | How we checked the results | Fake wind data, islands, reproducible, no leakage |
+| 23 | Limitations | Honest limits |
+| 24 | What we found | Answers + next steps |
+| 25 | References | Reference → why table |
 
 - Every slide has **speaker notes** (in PowerPoint: View → Notes).
-- **Timing:** ~1 minute per slide → 18–20 minutes; keep slides 8, 12 and 15 for the main emphasis.
+- **Timing:** ~1 minute per slide → 22–25 minutes; keep slides 8, 12, 17 and 20 for the main emphasis.
 - **Design:** Cambria headings, Calibri text; same class colours as the websites; native,
   editable charts on slides 8, 10, 11, 12.
 - Pictures of every slide are in the share zip (`photos/slides/`).

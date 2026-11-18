@@ -586,7 +586,53 @@ the "fly" animation moves smoothly between views.
 
 ---
 
-## 12. Summary: every decision and its justification
+## 12. Improvement round: new data and methods
+
+### 12.1 Locked final test
+Five countries never used before were chosen to cover new climates and continents (Japan, Turkey,
+Chile, Australia, South Africa) and locked in `data/processed/final_test_lock.json` before any
+experiment. Their base features came from the same sources as before (official per-country Global
+Wind Atlas files; Global Solar Atlas; Copernicus DEM; Gridfinder). 1,062 of 1,072 cells had all
+features (10 had no grid line within 20 km).
+
+### 12.2 New features (`src/06_features_v2.py`)
+| Feature | Source | Map step | Why |
+|---|---|---|---|
+| `wind_pct` | Global Wind Atlas 100 m | Average to ~2 km (factor 8), take the 30 km window around the cell, share of land calmer than the site | Developers choose the windiest spot locally |
+| `wind_rel` | same | site wind minus the 30 km mean | same, in m/s |
+| `ghi_pct`, `ghi_rel` | Global Solar Atlas | same as wind | same idea for sunshine |
+| `elev_rel` | Copernicus DEM (online COG) | site height minus mean height within 2.5 km | wind farms sit on ridges |
+| `rugged` | same | spread (standard deviation) of heights within 2.5 km | rough vs flat land |
+| `dist_town` | GHS-SMOD (1 km, Mollweide), classes 21–30 | distance transform to the nearest town or city pixel | solar is built near demand |
+| `dist_water` | GHS-SMOD class 10 | distance transform to the nearest water pixel | coastal wind |
+
+None is changed by building a farm (no leakage). Remote DEM reads were retried three times and cached
+every 100 tiles (`data/processed/terrain_context.csv`).
+
+### 12.3 Validation and models (`src/07`, `src/10`)
+- Leave-one-region-out over 11 regions; score fixed in advance = mean accuracy across regions.
+- Feature sets A (5 original) to D (all 13) and E (local only); D won (RF 0.780).
+- Models on D: majority, wind rule, logistic regression, Random Forest, **Extra Trees (final:
+  300 trees, min_samples_leaf 2, balanced classes, seed 42)**, gradient boosting, MLP; covariate-shift
+  reweighting; and an MLP on raw 11 × 11 patches of wind, sunshine and elevation (6 km spacing).
+
+### 12.4 Conformal prediction (`src/08`)
+Cross-conformal per region: for each held-out region, the threshold comes from the other regions'
+held-out predictions. Score = 1 − p(true class); threshold = 90th percentile (≈ 0.7, so a class is in
+the set if p ≥ 0.3). Two variants: per class (Mondrian) and overall; overall chosen (coverage 0.895,
+set size 1.27, 73% single answers). Rule B (area of applicability) was dropped.
+
+### 12.5 Patterns (`src/09`)
+- Archetypes: k-means (k = 4 by silhouette, 0.15) on standardised geography only, no labels.
+- SHAP: TreeExplainer on a 100-tree copy of the final model, 80 cells per region.
+
+### 12.6 Locked test (`src/11`)
+Final model trained on all 11 regions, scored once; bootstrap CIs for differences.
+Final 0.892, old RF 0.896, wind rule 0.905, so a tie; conformal coverage 0.943.
+
+---
+
+## 13. Summary: every decision and its justification
 
 | Decision | Justification | Evidence |
 |---|---|---|
@@ -609,8 +655,15 @@ the "fly" animation moves smoothly between views.
 | "I don't know" (2 rules) | Don't guess outside experience | Meyer & Pebesma 2021; India 92% |
 | Extra regions and continents | One test region isn't enough | 71% pooled; USA 90, China 84, India 53 |
 | Relative features rejected | No consistent gain | 0.712 → 0.733, macro F1 down |
+| Locked final test first | Honest final number | 5 countries committed before experiments |
+| Local-context features | "Windier than nearby" works where absolute wind fails | 11 regions 0.736 → 0.780 (RF) |
+| Extra Trees final model | Best mean-region and worst-region accuracy | 0.794 vs RF 0.780, MLP 0.763 |
+| Conformal "I don't know" | Promised error rate | 0.943 coverage on locked test |
+| Rule B dropped | Flagged cells were more accurate | 0.93 vs 0.79 |
 
 **One-sentence conclusion:** geography, mostly wind speed, separates solar from wind farms well
 wherever wind farms stand in much windier places than solar farms (southern Europe, the USA, largely
 China) and fails where they don't (the British Isles, India); Hybrid isn't learned, and the model can
-say "I don't know" when it is out of its depth.
+say "I don't know" when it is out of its depth. Local context (wind compared with nearby land) and
+Extra Trees lift held-out accuracy from 0.74 to 0.79, mostly in the hard northern regions; on five
+locked, easy countries every model scores about 0.9.

@@ -1,0 +1,3 @@
+D. C + town/water distance (all 13)
+ghi,wind100,elev,slope,dist_grid,wind_rel,wind_pct,ghi_rel,ghi_pct,elev_rel,rugged,dist_town,dist_water
+Extra Trees

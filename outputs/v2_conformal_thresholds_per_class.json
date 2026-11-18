@@ -1,0 +1,9 @@
+{
+  "alpha": 0.1,
+  "variant": "per_class",
+  "thresholds_score_1_minus_p": {
+    "Hybrid": 0.9878,
+    "Solar": 0.6718,
+    "Wind": 0.6476
+  }
+}

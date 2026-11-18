@@ -1,0 +1,6 @@
+feature_set,n_features,accuracy,macro_f1,balanced_acc,mean_region_acc,worst_region_acc,worst_region
+A. base 5 (current),5,0.736,0.536,0.547,0.706,0.354,British Isles
+B. base + local wind/sun context,9,0.766,0.547,0.55,0.737,0.44,British Isles
+C. B + terrain context,11,0.774,0.553,0.556,0.743,0.442,Nordic & Baltic
+D. C + town/water distance (all 13),13,0.78,0.552,0.553,0.756,0.494,British Isles
+E. D without absolute wind/sun,11,0.724,0.516,0.519,0.712,0.448,Nordic & Baltic

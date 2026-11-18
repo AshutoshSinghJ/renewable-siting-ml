@@ -94,6 +94,36 @@ The project in the order it actually happened. Each step: **what we did → what
 - **Happened:** Its top solar feature was land cover, which shows the farms themselves.
 - **Learnt:** High scores can come from leakage. Our design gives lower but trustworthy numbers.
 
+### 16. Locking an untouched final test
+
+- **Did:** Before any new experiment, locked five countries never used before (Japan, Turkey, Chile, Australia, South Africa; 1,072 cells) and committed the list to git.
+- **Happened:** From then on every choice was made on leave-one-region-out over 11 regions (8 EU + USA, China, India), with the score fixed in advance (mean accuracy across regions).
+- **Learnt:** A test only stays honest if it is locked before you start trying things.
+
+### 17. Teaching the model local context
+
+- **Did:** Added eight features: wind and sunshine compared with the land within 30 km (`wind_pct`, `wind_rel`, `ghi_pct`, `ghi_rel`), height vs surroundings and ruggedness, distance to town and to the sea (`src/06`).
+- **Happened:** Wind farms sit at the 84th percentile of local wind (solar 44th), 15 m above their surroundings, 12 km from a town (solar 5 km). Held-out accuracy 0.736 → 0.780 with the same Random Forest.
+- **Learnt:** "Windier than nearby" is what the region-relative idea of step 14 was missing.
+
+### 18. Choosing a model, including neural networks
+
+- **Did:** Compared majority, wind rule, logistic regression, Random Forest, Extra Trees, gradient boosting, an MLP, a neural network on raw 11 × 11 map patches, and covariate-shift reweighting (`src/07`, `src/10`).
+- **Happened:** Extra Trees won (0.794 overall, worst region 0.536) and became the final model. The neural networks scored 0.763 and 0.738; reweighting gave no gain.
+- **Learnt:** On ~16,000 tabular rows, trees on good features beat deep learning. Wind's share of the model's reasoning fell from about half to 23% (SHAP, `src/09`).
+
+### 19. A measured "I don't know" and four types of place
+
+- **Did:** Replaced the confidence threshold with conformal prediction sets (`src/08`); grouped places into four archetypes with k-means (`src/09`).
+- **Happened:** Sets kept the true answer 90% of the time with 73% single answers. The old "unfamiliar place" rule was dropped: the cells it flagged were more accurate than the rest. The hardest archetype is the windy, cloudy lowland (64%), where both technologies are built side by side.
+- **Learnt:** "I don't know" should come with a promised error rate, and every rule should be checked against data.
+
+### 20. The locked final test
+
+- **Did:** Trained the final model on all 11 regions and scored the five locked countries once (`src/11`).
+- **Happened:** Every sensible model tied at about 0.89–0.91 (final 0.892, old RF 0.896, wind rule 0.905; differences within chance). Conformal sets held the true answer for 94% of cells.
+- **Learnt:** The locked countries were easy (the wind rule scores 0.906 there vs 0.776 in development), so they cannot show the gain; the gain is real on the hard regions. Reporting a tie honestly is better than tuning until the test looks good.
+
 ---
 
 ## The project in one paragraph
@@ -102,5 +132,8 @@ Geography, mostly wind speed, separates solar from wind farms well wherever wind
 much windier places than solar farms (southern Europe 90–92%, USA 90%, China 84%), and fails
 where they don't (British Isles 35%, India 53%). Hybrid sites aren't learned with this data. The
 model can say "I don't know", which helped exactly where it failed most (India). The biggest
+improvement round added local context (wind compared with nearby land, terrain, towns) and Extra
+Trees: held-out accuracy 0.736 → 0.794, British Isles 35% → 54%; on five locked countries all models
+tie at about 90%, and conformal "I don't know" sets kept 94% coverage. The biggest
 lessons: test on whole unseen regions, compare against simple baselines, check inputs, and
 explain failures instead of hiding them.

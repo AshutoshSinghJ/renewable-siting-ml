@@ -239,6 +239,63 @@ section + section { margin-top: 44px; }
         <p>Mean SHAP value per feature: how far each one moves the predicted probabilities. Wind speed dominates, sunshine comes second.</p>
       </div>
     </div>
+
+    <section style="margin-top:64px">
+      <p class="eyebrow">Improvement round</p>
+      <h2>Teaching the model “windier than its surroundings”</h2>
+      <p class="lead">The original model relied on absolute wind speed, so it failed where solar farms also stand in windy places. We added local-context features, trained on Europe, the USA, China and India, compared six models, and replaced “I don't know” with conformal prediction. Every choice was made on 11 held-out regions; five untouched countries were scored once at the end.</p>
+      <div class="bigs" id="v2Bigs"></div>
+      <div class="cards">
+        <div class="card wide">
+          <h3>Before and after: every region held out in turn</h3>
+          <div class="chart" id="v2BA"></div>
+          <p>Grey = original 5-feature model, teal = improved model, both predicting regions they never saw. The biggest gains are exactly where the original failed: the British Isles, the Nordic and Baltic countries, Germany and France.</p>
+        </div>
+        <div class="card">
+          <h3>What we added</h3>
+          <div class="feats">
+            <div><b class="k-wind">Local wind percentile</b><span>wind farms 84th, solar 44th</span></div>
+            <div><b class="k-wind">Wind vs local mean</b><span>within 30 km</span></div>
+            <div><b class="k-solar">Sunshine vs local area</b><span>within 30 km</span></div>
+            <div><b>Height vs surroundings</b><span>wind farms +15 m (ridges)</span></div>
+            <div><b>Ruggedness</b><span>terrain variation within 2.5 km</span></div>
+            <div><b class="k-hybrid">Distance to town</b><span>solar 5 km, wind 12 km</span></div>
+            <div><b class="k-hybrid">Distance to water</b><span>sea or large lake</span></div>
+          </div>
+          <p>None of these is changed by building a farm, so there is no leakage.</p>
+        </div>
+        <div class="card">
+          <h3>Wind matters less now</h3>
+          <div class="chart" id="v2Shap"></div>
+          <p>Absolute wind speed fell from about half of the model's reasoning to under a quarter; “windier than its surroundings” is now second.</p>
+        </div>
+        <div class="card wide">
+          <h3>Which model? Six compared on 11 held-out regions</h3>
+          <div class="reftbl"><table id="v2Models"></table></div>
+          <p>Extra Trees, a more randomised Random Forest, generalised best. Neural networks, including one that learns local context from raw map patches, did not beat it: normal for about 16,000 rows of tabular data.</p>
+        </div>
+        <div class="card">
+          <h3>A better “I don't know”: conformal prediction</h3>
+          <div class="feats" id="v2Conf"></div>
+          <p>The model gives one answer, or “Solar or Wind” when unsure, with a measured target of 90% correct. The old “unfamiliar place” rule was dropped: the cells it flagged were more accurate than the rest.</p>
+        </div>
+        <div class="card">
+          <h3>Siting archetypes</h3>
+          <div class="reftbl"><table id="v2Arch"></table></div>
+          <p>Sites grouped by geography only. The hard place is the windy, cloudy lowland, where solar and wind farms really are built side by side.</p>
+        </div>
+        <div class="card wide callout" style="border-color:rgba(54,208,188,.45);background:rgba(54,208,188,.05)">
+          <h3 style="color:var(--fg)">Locked final test: five untouched countries, scored once</h3>
+          <div class="reftbl"><table id="v2Final"></table></div>
+          <p id="v2FinalText"></p>
+        </div>
+        <div class="card wide">
+          <h3>Is the final model overfitting?</h3>
+          <div class="chart" id="v2Over"></div>
+          <p>Extra Trees fits its own training data almost perfectly; that is how it works (deep trees with random splits, averaged). What matters is unseen data: it was the best of six models on held-out regions. The simpler depth-limited Random Forest scores 0.780 there, with a much smaller gap.</p>
+        </div>
+      </div>
+    </section>
   </div>
 </div>
 
@@ -258,6 +315,10 @@ section + section { margin-top: 44px; }
         <li><span class="n">02 · FEATURES</span><b>Five layers</b><p>Sunshine, wind speed at 100 m, elevation, slope and distance to the grid, sampled at each farm.</p></li>
         <li><span class="n">03 · MODEL</span><b>Random Forest</b><p>Compared with a majority guess, a wind-speed rule and logistic regression.</p></li>
         <li><span class="n">04 · TESTS</span><b>Unseen regions</b><p>Scored on Spain and Portugal once, then on each European region in turn, then on the USA, China and India.</p></li>
+        <li><span class="n">05 · IMPROVE</span><b>Local context</b><p>8 new features: is the site windier, sunnier or higher than the land around it? How far to the nearest town and coast?</p></li>
+        <li><span class="n">06 · RETRAIN</span><b>Wider world</b><p>Trained on Europe, USA, China and India; tested on 11 held-out regions; Extra Trees chosen out of 6 models.</p></li>
+        <li><span class="n">07 · UNSURE</span><b>Conformal sets</b><p>The model answers one type, or “Solar or Wind” when unsure, with a measured 90% guarantee.</p></li>
+        <li><span class="n">08 · FINAL</span><b>Locked test</b><p>Japan, Turkey, Chile, Australia and South Africa: chosen first, scored once at the very end.</p></li>
       </ol>
     </section>
 
@@ -268,6 +329,7 @@ section + section { margin-top: 44px; }
           <div><b class="k-wind">Validation</b><p>Spatial cross-validation inside the training region: 5 folds of whole 100 km blocks. Used only to choose model settings.</p></div>
           <div><b class="k-solar">Test</b><p>Spain and Portugal, scored once at the end, never used for tuning.</p></div>
           <div><b class="k-hybrid">Extra</b><p>Each of 8 regions held out in turn with the same settings, then the Europe-trained model applied unchanged to the USA, China and India.</p></div>
+          <div><b style="color:var(--fg)">Locked</b><p>Improvement round: 11 regions held out in turn for every choice; five untouched countries scored once at the end.</p></div>
         </div>
       </div>
       <div class="card">
@@ -277,6 +339,8 @@ section + section { margin-top: 44px; }
           <div><b class="k-wind">Wind speed, 100 m</b><span>Global Wind Atlas</span></div>
           <div><b>Elevation, slope</b><span>Copernicus DEM</span></div>
           <div><b class="k-hybrid">Distance to grid</b><span>Gridfinder</span></div>
+          <div><b class="k-wind">Local context (new)</b><span>wind and sun vs the land within 30 km; height vs 2.5 km around</span></div>
+          <div><b>Town and water distance (new)</b><span>GHS settlement map</span></div>
           <div><b class="k-wrong">Not used</b><span>land cover, roads, capacity: the farm itself changes them</span></div>
         </div>
       </div>
@@ -299,18 +363,19 @@ section + section { margin-top: 44px; }
       <div class="card">
         <h3>Limitations</h3>
         <ul class="plain">
-          <li><b>Absolute wind speed</b> does not transfer where wind farms are not much windier than solar farms: the UK (35%) and India (53%).</li>
+          <li><b>Wind still matters most.</b> Local context raised the British Isles from 35% to 54%, but where both technologies are built side by side (windy, cloudy lowlands) accuracy stays near 64%.</li>
           <li><b>Few Hybrid examples</b> (333), most of them in Germany.</li>
           <li><b>OpenStreetMap coverage</b> is uneven, and the data is a 2020 snapshot.</li>
           <li><b>Type, not suitability.</b> The model never says where to build.</li>
+          <li><b>Conformal guarantee</b> weakens where regions differ most (72% coverage in the British Isles).</li>
         </ul>
       </div>
       <div class="card">
         <h3>Next steps</h3>
         <ul class="plain">
-          <li>Use <b>relative wind speed</b> (compared with the surrounding region) so the model transfers to windy countries.</li>
+          <li>Train a <b>convolutional network</b> on terrain and wind maps around each site (needs PyTorch).</li>
           <li>Add <b>Hybrid examples</b> from other continents.</li>
-          <li><b>Calibrate</b> the unfamiliar-location threshold.</li>
+          <li>Find <b>harder untouched test regions</b> (windy lowlands outside Europe).</li>
           <li>Cross-check labels with <b>Global Energy Monitor</b>.</li>
         </ul>
       </div>
@@ -343,7 +408,11 @@ section + section { margin-top: 44px; }
 <script>const DATA=/*__DATA__*/null;</script>
 <script>
 (() => {
-  const D = DATA, C = D.cells, N = C.lon.length, nTest = C.pred.length, nEU = C.nEU;   // rows >= nEU: USA, China, India
+  // rows: [0, nEU) Europe · [nEU, nDev) USA, China, India · [nDev, N) locked final-test countries
+  const D = DATA, C = D.cells, N = C.lon.length, nTest = C.pred.length, nEU = C.nEU, nDev = C.nDev;
+  const V2 = D.v2;
+  const ARCH_COL = ["#e8c547", "#5aa9e6", "#c77dff", "#ff8c69"];
+  const isMulti = (d) => !["1", "2", "4"].includes(d);              // conformal set with more than one label
   const CONT = Object.fromEntries(D.cont.map((r) => [r.region, r]));
   const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
   const COL = { S: css("--solar"), W: css("--wind"), H: css("--hybrid") }, NAME = { S: "Solar", W: "Wind", H: "Hybrid" };
@@ -380,10 +449,18 @@ section + section { margin-top: 44px; }
   const state = { mode: "built", rot: [60, -20], k: 1 };
 
   const MODES = [
-    ["built", "What was built"], ["iberia", "Iberia test"], ["regions", "Every region tested"], ["world", "Other continents"], ["idk", "I don't know"], ["wind", "Wind speed"],
+    ["built", "What was built"], ["iberia", "Iberia test"], ["regions", "Every region tested"], ["world", "Other continents"],
+    ["improved", "Improved model"], ["archetypes", "Archetypes"], ["final", "Final test"], ["wind", "Wind speed"],
   ];
   const USA = { rot: [96, -38], k: 1.5 }, INDIA = { rot: [-80, -22], k: 1.9 }, CHINA = { rot: [-104, -35], k: 1.6 };
-  const PLACE = { IND: "India", USA: "USA", CHN: "China" }, FLY = { usa: USA, china: CHINA, india: INDIA };
+  const PLACE = { IND: "India", USA: "USA", CHN: "China", ...V2.lock }, FLY = { usa: USA, china: CHINA, india: INDIA };
+  // fly targets for the locked countries: centre of their cells
+  const LOCK_ZOOM = { JPN: 4, TUR: 4, CHL: 2.4, AUS: 1.7, ZAF: 3.2 };
+  for (const iso of Object.keys(V2.lock)) {
+    let x = 0, y = 0, n = 0;
+    for (let i = nDev; i < N; i++) if (C.cty[i] === iso) { x += C.lon[i]; y += C.lat[i]; n++; }
+    FLY[iso] = { rot: [-x / n, -y / n], k: LOCK_ZOOM[iso] || 3 };
+  }
   const windRamp = d3.interpolateRgbBasis(["#123047", "#1f6f8b", "#36d0bc", "#e2f8d2"]);
 
   function colorOf(i) {
@@ -391,8 +468,10 @@ section + section { margin-top: 44px; }
       case "built": return COL[C.lab[i]];
       case "iberia": return isTest(i) ? (C.pred[i] === C.lab[i] ? COL[C.lab[i]] : RED) : null;
       case "regions": return i < nEU ? (C.lpred[i] === C.lab[i] ? COL[C.lab[i]] : RED) : null;
-      case "world": return i < nEU ? null : C.oidk[i - nEU] === "1" ? css("--idk") : C.lpred[i] === C.lab[i] ? COL[C.lab[i]] : RED;
-      case "idk": return isTest(i) ? (C.final[i] !== "?" ? COL[C.pred[i]] : C.lc[i] === "1" ? css("--lowconf") : css("--idk")) : null;
+      case "world": return i < nEU || i >= nDev ? null : C.oidk[i - nEU] === "1" ? css("--idk") : C.lpred[i] === C.lab[i] ? COL[C.lab[i]] : RED;
+      case "improved": return i >= nDev ? null : C.vpred[i] === C.lab[i] ? COL[C.lab[i]] : RED;
+      case "archetypes": return C.arch[i] === "-" ? null : ARCH_COL[+C.arch[i]];
+      case "final": return i < nDev ? null : isMulti(C.vset[i]) ? css("--idk") : C.vpred[i] === C.lab[i] ? COL[C.lab[i]] : RED;
       case "wind": return windRamp(Math.max(0, Math.min(1, (C.ws[i] - 3) / 7)));
     }
   }
@@ -411,8 +490,9 @@ section + section { margin-top: 44px; }
     // land
     ctx.beginPath(); path(D.world); ctx.fillStyle = css("--land"); ctx.fill();
     ctx.strokeStyle = css("--border"); ctx.lineWidth = 0.6; ctx.stroke();
-    if (state.mode === "iberia" || state.mode === "idk") {
-      const ib = { type: "FeatureCollection", features: D.world.features.filter((f) => f.properties.iso === "ESP" || f.properties.iso === "PRT") };
+    if (state.mode === "iberia" || state.mode === "final") {
+      const isos = state.mode === "iberia" ? ["ESP", "PRT"] : Object.keys(V2.lock);
+      const ib = { type: "FeatureCollection", features: D.world.features.filter((f) => isos.includes(f.properties.iso)) };
       ctx.beginPath(); path(ib); ctx.fillStyle = "rgba(54,208,188,0.07)"; ctx.fill();
       ctx.setLineDash([5, 4]); ctx.strokeStyle = RED; ctx.lineWidth = 1.1; ctx.stroke(); ctx.setLineDash([]);
     }
@@ -502,10 +582,17 @@ section + section { margin-top: 44px; }
   }
   const pb = (n, v, c) => `<div class="pb"><span>${n}</span><div><b style="width:${Math.round(v * 100)}%;background:${c}"></b></div><span>${Math.round(v * 100)}%</span></div>`;
   function showTip(i, mx, my) {
-    const L = C.lab[i], other = i >= nEU, reg = other ? PLACE[C.cty[i]] : D.regions[C.reg[i]];
+    const L = C.lab[i], locked = i >= nDev, other = i >= nEU && !locked, reg = i >= nEU ? PLACE[C.cty[i]] : D.regions[C.reg[i]];
     let h = `<h4><i style="background:${COL[L]};box-shadow:0 0 8px ${COL[L]}"></i>${NAME[L]}<span class="muted" style="font:400 12px var(--font-body)">· ${C.cty[i]} · ${reg}</span></h4>
       <dl><dt>Wind 100 m</dt><dd>${C.ws[i].toFixed(1)} m/s</dd><dt>Sunshine</dt><dd>${C.ghi[i].toFixed(2)} kWh/m²/d</dd><dt>Elevation</dt><dd>${fmt(C.elev[i])} m</dd></dl>`;
-    if (other) {
+    const setText = (d) => ["Hybrid", "Solar", "Wind"].filter((_, k) => (+d >> k) & 1).join(" or ");
+    if (locked || state.mode === "improved" || state.mode === "archetypes") {
+      const okV = C.vpred[i] === L;
+      if (state.mode === "archetypes" && C.arch[i] !== "-") h += `<div style="font-weight:600;color:${ARCH_COL[+C.arch[i]]}">Archetype: ${V2.archetypes[+C.arch[i]].name}</div>`;
+      if (locked) h += `<div>${pb("Solar", C.lps[i], COL.S)}${pb("Wind", C.lpw[i], COL.W)}${pb("Hybrid", C.lph[i], COL.H)}</div>`;
+      h += `<div style="color:${okV ? COL.W : RED};font-weight:600">${locked ? "Final model (locked test)" : "Improved model, region held out"}: ${NAME[C.vpred[i]]}, ${okV ? "correct" : "wrong"}</div>`;
+      if (C.vset[i] !== "-") h += `<div class="muted">Conformal answer: ${isMulti(C.vset[i]) ? "unsure — " : ""}${setText(C.vset[i])}</div>`;
+    } else if (other) {
       const okO = C.lpred[i] === L;
       h += `<div>${pb("Solar", C.lps[i], COL.S)}${pb("Wind", C.lpw[i], COL.W)}${pb("Hybrid", C.lph[i], COL.H)}</div>
         <div style="color:${okO ? COL.W : RED};font-weight:600">Europe-trained model says ${NAME[C.lpred[i]]}: ${okO ? "correct" : "wrong"}</div>`;
@@ -564,10 +651,36 @@ section + section { margin-top: 44px; }
       }).join("");
       P.innerHTML = `<h3>Each region held out in turn</h3><div class="legend">${item(COL.W, "Right (class colour)") + item(RED, "Wrong")}</div><div class="reglist">${rows}</div><p class="note">Click a region to fly there.</p>`;
       P.querySelector(".reglist").onclick = (e) => { const b = e.target.closest("button"); if (!b) return; const c = regCenter[+b.dataset.r]; fly({ rot: [-c[0], -c[1]], k: 6 }); };
-    } else if (m === "idk") {
-      const idk = D.idk[1];
-      S.innerHTML = stat(Math.round(idk.pct_I_dont_know) + "%", "“I don't know”") + stat(f3(idk.accuracy), "accuracy when it answers") + stat(fmt(idk.n_cells), "answered cells");
-      P.innerHTML = `<h3>I don't know</h3><div class="legend">${item(COL.S, "Answered Solar") + item(COL.W, "Answered Wind") + item(COL.H, "Answered Hybrid") + item(css("--lowconf"), "Abstained: low confidence") + item(css("--idk"), "Abstained: unfamiliar place")}</div>`;
+    } else if (m === "improved") {
+      const ba = V2.before_after, all = ba.find((r) => r.region === "All 11 regions");
+      const worst = (k) => Math.min(...ba.filter((r) => r.region !== "All 11 regions").map((r) => r[k]));
+      S.innerHTML = stat(Math.round(all.before * 100) + "% → " + Math.round(all.after * 100) + "%", "accuracy, 11 held-out regions", "k-wind") +
+        stat(Math.round(worst("before") * 100) + "% → " + Math.round(worst("after") * 100) + "%", "worst region") + stat("13", "features (was 5)");
+      const rows = ba.filter((r) => r.region !== "All 11 regions").sort((a, b) => (b.after - b.before) - (a.after - a.before)).map((r) => {
+        const d = Math.round((r.after - r.before) * 100);
+        return `<button type="button" data-r="${r.region}"><span>${r.region}</span><span class="bar" style="position:relative"><b style="width:${r.before * 100}%;background:var(--faint);position:absolute;height:100%"></b><b style="width:${r.after * 100}%;background:${COL.W};opacity:.75"></b></span><span class="v" style="color:${d > 0 ? COL.W : d < 0 ? RED : "inherit"}">${d > 0 ? "+" : ""}${d}</span></button>`;
+      }).join("");
+      P.innerHTML = `<h3>Improved model, each region held out</h3><div class="legend">${item(COL.W, "Right (class colour)") + item(RED, "Wrong")}</div>
+        <p class="note">Bar: grey = old model, teal = improved. Number = change in points. Click to fly there.</p><div class="reglist">${rows}</div>`;
+      P.querySelector(".reglist").onclick = (e) => {
+        const b = e.target.closest("button"); if (!b) return;
+        const r = b.dataset.r, t = FLY[{ USA: "usa", China: "china", India: "india" }[r]];
+        if (t) return fly(t, 1400);
+        const c = regCenter[D.regions.indexOf(r)]; fly({ rot: [-c[0], -c[1]], k: 6 });
+      };
+    } else if (m === "archetypes") {
+      S.innerHTML = stat("4", "types of place") + stat("64%", "accuracy, hardest type", "k-wrong") + stat("94%", "accuracy, easiest type", "k-wind");
+      P.innerHTML = `<h3>Siting archetypes</h3><p class="note">Sites grouped by geography alone (no labels used), then compared with what was built.</p><div class="legend">` +
+        V2.archetypes.map((a, k) => `<div style="align-items:flex-start"><i style="background:${ARCH_COL[k]};box-shadow:0 0 6px ${ARCH_COL[k]};margin-top:4px"></i><span><b>${a.name}</b><br><span class="muted">${Math.round(a.Solar * 100)}% solar, ${Math.round(a.Wind * 100)}% wind · model ${Math.round(a.model_accuracy * 100)}% right</span></span></div>`).join("") +
+        `</div><p class="note">The hard place: windy, cloudy lowlands, where both technologies are built side by side.</p>`;
+    } else if (m === "final") {
+      const fin = V2.final.find((r) => r.model.startsWith("Final")), old = V2.final.find((r) => r.model.startsWith("Old")), fc = V2.final_conformal[0];
+      S.innerHTML = stat(Math.round(fin.accuracy * 100) + "%", "final model accuracy") + stat(Math.round(fc.coverage * 100) + "%", "true answer in set (target 90%)", "k-wind") + stat(Math.round(fc.share_unsure * 100) + "%", "answered “Solar or Wind”");
+      const rows = Object.entries(V2.lock).map(([iso, name]) =>
+        `<button type="button" data-c="${iso}"><span>${name}</span><span class="bar"><b style="width:${fin[name] * 100}%;background:${COL.W}"></b></span><span class="v">${Math.round(fin[name] * 100)}%</span></button>`).join("");
+      P.innerHTML = `<h3>Locked final test (scored once)</h3><div class="legend">${item(COL.W, "Single answer, right (class colour)") + item(RED, "Single answer, wrong") + item(css("--idk"), "Unsure: Solar or Wind")}</div>
+        <div class="reglist">${rows}</div><p class="note">Chosen before the improvement round and never used for any choice. Old model ${Math.round(old.accuracy * 100)}%, final ${Math.round(fin.accuracy * 100)}%: a tie, because these countries are easy (the wind rule also scores ~91%). Click to fly there.</p>`;
+      P.querySelector(".reglist").onclick = (e) => { const b = e.target.closest("button"); if (b) fly(FLY[b.dataset.c], 1400); };
     } else {
       const stops = d3.range(0, 1.01, 0.1).map((t) => windRamp(t)).join(",");
       S.innerHTML = stat("3 → 10", "m/s at 100 m") + stat("6.6", "m/s rule threshold");
@@ -578,7 +691,8 @@ section + section { margin-top: 44px; }
     state.mode = m; tip.hidden = true;
     modesEl.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.m === m));
     hud(); draw();
-    if (m === "iberia" || m === "idk") fly(IBERIA); else if (m === "world") fly(USA, 1400); else if (state.k > 7 || m === "regions") fly(EUROPE);
+    if (m === "iberia") fly(IBERIA); else if (m === "world") fly(USA, 1400); else if (m === "final") fly(FLY.JPN, 1400);
+    else if (state.k > 7 || m === "regions" || m === "improved" || m === "archetypes") fly(EUROPE);
   }
   hud();
 
@@ -665,6 +779,90 @@ section + section { margin-top: 44px; }
       svg.append("rect").attr("x", left).attr("y", y).attr("width", x(r.mean_abs_shap_all) - left).attr("height", 18).attr("rx", 4)
         .style("fill", r.feature === "wind100" ? COL.W : r.feature === "ghi" ? COL.S : css("--faint"));
       svg.append("text").attr("x", x(r.mean_abs_shap_all) + 8).attr("y", y + 14).text(r.mean_abs_shap_all.toFixed(3)).style("fill", css("--fg"));
+    });
+  })();
+
+  // ======================= improvement round =======================
+  (function v2() {
+    const pct = (v) => Math.round(v * 100) + "%";
+    const ba = V2.before_after, all = ba.find((r) => r.region === "All 11 regions");
+    const regs = ba.filter((r) => r.region !== "All 11 regions");
+    const worstB = Math.min(...regs.map((r) => r.before)), worstA = Math.min(...regs.map((r) => r.after));
+    const fin = V2.final.find((r) => r.model.startsWith("Final")), fc = V2.final_conformal[0];
+    const windShare = V2.shap.find((r) => r.feature === "wind100").share_of_total;
+    document.getElementById("v2Bigs").innerHTML = [
+      [pct(all.before) + " → " + pct(all.after), "accuracy on 11 held-out regions"],
+      [pct(worstB) + " → " + pct(worstA), "worst region (British Isles)"],
+      [pct(fc.coverage), "true answer in the conformal set on the locked countries (target 90%)"],
+    ].map(([v, l]) => `<div class="big"><b>${v}</b><span>${l}</span></div>`).join("");
+
+    // before/after dumbbell chart
+    const rows = regs.slice().sort((a, b) => a.after - b.after), w = 760, rowH = 30, left = 170, h = rows.length * rowH + 40;
+    const x = d3.scaleLinear([0.3, 1], [left, w - 50]);
+    const svg = d3.select("#v2BA").append("svg").attr("viewBox", `0 0 ${w} ${h}`);
+    [["Original model", css("--faint")], ["Improved model", COL.W]].forEach(([t, c], i) => {
+      svg.append("circle").attr("cx", left + i * 160 + 5).attr("cy", 9).attr("r", 5).style("fill", c);
+      svg.append("text").attr("x", left + i * 160 + 15).attr("y", 13).text(t);
+    });
+    x.ticks(7).forEach((t) => { svg.append("line").attr("x1", x(t)).attr("x2", x(t)).attr("y1", 22).attr("y2", h - 20).style("stroke", css("--line"));
+      svg.append("text").attr("x", x(t)).attr("y", h - 5).attr("text-anchor", "middle").text(Math.round(t * 100) + "%"); });
+    rows.forEach((r, i) => {
+      const y = 30 + i * rowH + rowH / 2;
+      svg.append("text").attr("class", "lab").attr("x", 0).attr("y", y + 4).text(r.region);
+      svg.append("line").attr("x1", x(r.before)).attr("x2", x(r.after)).attr("y1", y).attr("y2", y).style("stroke", r.after >= r.before ? COL.W : RED).style("stroke-width", 2.5).style("opacity", .6);
+      svg.append("circle").attr("cx", x(r.before)).attr("cy", y).attr("r", 5).style("fill", css("--faint"));
+      svg.append("circle").attr("cx", x(r.after)).attr("cy", y).attr("r", 6).style("fill", COL.W);
+      const d = Math.round((r.after - r.before) * 100);
+      svg.append("text").attr("x", w - 4).attr("y", y + 4).attr("text-anchor", "end").text((d > 0 ? "+" : "") + d).style("fill", d > 0 ? COL.W : d < 0 ? RED : css("--muted"));
+    });
+
+    // SHAP share chart (top 8 features)
+    const names = { wind100: "Wind speed", wind_pct: "Local wind percentile", ghi: "Sunshine", wind_rel: "Wind vs local mean", dist_town: "Distance to town",
+      elev_rel: "Height vs surroundings", elev: "Elevation", dist_grid: "Distance to grid", slope: "Slope", rugged: "Ruggedness", dist_water: "Distance to water", ghi_pct: "Local sun percentile", ghi_rel: "Sun vs local mean" };
+    const sh = V2.shap.slice(0, 8), sw = 460, sh_h = sh.length * 26 + 10, sl = 170;
+    const sx2 = d3.scaleLinear([0, d3.max(sh, (r) => r.share_of_total) * 1.15], [sl, sw - 40]);
+    const s2 = d3.select("#v2Shap").append("svg").attr("viewBox", `0 0 ${sw} ${sh_h}`);
+    sh.forEach((r, i) => {
+      const y = i * 26 + 4, isNew = !["wind100", "ghi", "elev", "slope", "dist_grid"].includes(r.feature);
+      s2.append("text").attr("class", "lab").attr("x", 0).attr("y", y + 13).text(names[r.feature] || r.feature);
+      s2.append("rect").attr("x", sl).attr("y", y).attr("width", sx2(r.share_of_total) - sl).attr("height", 16).attr("rx", 3).style("fill", isNew ? COL.W : css("--faint"));
+      s2.append("text").attr("x", sx2(r.share_of_total) + 6).attr("y", y + 13).text(pct(r.share_of_total)).style("fill", css("--fg"));
+    });
+
+    // model table
+    const allModels = V2.models.concat(V2.patch.filter((r) => r.model.includes("patches")).map((r) => ({ ...r, model: "Neural network on raw map patches" })));
+    document.getElementById("v2Models").innerHTML = "<thead><tr><th>Model</th><th>Accuracy</th><th>Macro F1</th><th>Average per region</th><th>Worst region</th></tr></thead><tbody>" +
+      allModels.map((r) => `<tr style="${r.model === "Extra Trees" ? "color:var(--accent)" : ""}"><td>${r.model}${r.model === "Extra Trees" ? " (final)" : ""}</td><td>${f3(r.accuracy)}</td><td>${f3(r.macro_f1)}</td><td>${f3(r.mean_region_acc)}</td><td>${f3(r.worst_region_acc)}</td></tr>`).join("") + "</tbody>";
+
+    // conformal summary
+    const cv = V2.conformal.find((r) => r.variant === "overall");
+    document.getElementById("v2Conf").innerHTML = [
+      ["Held-out regions: true answer in set", pct(cv.coverage)], ["Held-out regions: single answer given", pct(cv.single_label_share)],
+      ["Held-out regions: right when single", pct(cv.accuracy_when_single)], ["Locked countries: true answer in set", pct(fc.coverage)],
+      ["Locked countries: single answer given", pct(fc.single_label_share)], ["Locked countries: right when single", pct(fc.accuracy_when_single)],
+    ].map(([a, b]) => `<div><b>${a}</b><span>${b}</span></div>`).join("");
+
+    // archetypes
+    document.getElementById("v2Arch").innerHTML = "<thead><tr><th>Type of place</th><th>Built</th><th>Model right</th></tr></thead><tbody>" +
+      V2.archetypes.map((a, k) => `<tr><td><span style="color:${ARCH_COL[k]}">●</span> ${a.name}</td><td>${pct(a.Solar)} solar, ${pct(a.Wind)} wind</td><td>${pct(a.model_accuracy)}</td></tr>`).join("") + "</tbody>";
+
+    // locked final test
+    const cn = Object.values(V2.lock);
+    document.getElementById("v2Final").innerHTML = `<thead><tr><th>Model</th><th>Accuracy</th><th>Macro F1</th>${cn.map((c) => `<th>${c}</th>`).join("")}</tr></thead><tbody>` +
+      V2.final.map((r) => `<tr style="${r.model.startsWith("Final") ? "color:var(--accent)" : ""}"><td>${r.model}</td><td>${f3(r.accuracy)}</td><td>${f3(r.macro_f1)}</td>${cn.map((c) => `<td>${pct(r[c])}</td>`).join("")}</tr>`).join("") + "</tbody>";
+    const old = V2.final.find((r) => r.model.startsWith("Old")), rule = V2.final.find((r) => r.model.startsWith("Wind"));
+    document.getElementById("v2FinalText").textContent = `On the five locked countries every sensible model scores about 89–91% (final ${pct(fin.accuracy)}, original ${pct(old.accuracy)}, one-line wind rule ${pct(rule.accuracy)}); the differences are within chance (95% intervals overlap by about ±2 points). These countries are “easy”: wind farms there stand in much windier places than solar farms, so even the wind rule works. The improvement round targets the hard regions (windy, cloudy lowlands), which these countries do not contain. We did not tune anything after seeing this result. What did carry over: the conformal sets contained the true answer for ${pct(fc.coverage)} of locked cells, above the 90% target.`;
+
+    // overfitting chart
+    const ov = V2.overfit, ow = 460, oh = ov.length * 40 + 26, ol = 190;
+    const ox = d3.scaleLinear([0, 1], [ol, ow - 50]);
+    const s3 = d3.select("#v2Over").append("svg").attr("viewBox", `0 0 ${ow} ${oh}`);
+    const on2 = ["Training data (seen)", "11 held-out regions", "Locked countries"];
+    ov.forEach((r, i) => {
+      const y = i * 40 + 6;
+      s3.append("text").attr("class", "lab").attr("x", 0).attr("y", y + 15).text(on2[i]);
+      s3.append("rect").attr("x", ol).attr("y", y).attr("width", ox(r.accuracy) - ol).attr("height", 22).attr("rx", 4).style("fill", i === 0 ? css("--faint") : COL.W);
+      s3.append("text").attr("x", ox(r.accuracy) + 8).attr("y", y + 15).text(pct(r.accuracy)).style("fill", css("--fg"));
     });
   })();
 

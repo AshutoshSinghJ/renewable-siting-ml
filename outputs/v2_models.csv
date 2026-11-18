@@ -1,0 +1,8 @@
+model,accuracy,macro_f1,balanced_acc,mean_region_acc,worst_region_acc,worst_region
+Majority class,0.419,0.22,0.276,0.443,0.147,Italy
+Wind-speed rule,0.776,0.522,0.528,0.761,0.349,British Isles
+Logistic regression,0.67,0.53,0.589,0.634,0.23,British Isles
+Random Forest,0.78,0.552,0.553,0.756,0.494,British Isles
+Extra Trees,0.794,0.536,0.542,0.781,0.536,British Isles
+Gradient boosting,0.744,0.553,0.579,0.718,0.428,Nordic & Baltic
+Neural network (MLP),0.763,0.516,0.521,0.752,0.492,British Isles

@@ -1,0 +1,3 @@
+group,share,accuracy
+flagged unfamiliar,0.05,0.928
+not flagged,0.95,0.787

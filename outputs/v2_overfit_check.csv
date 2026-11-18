@@ -1,0 +1,4 @@
+scored_on,accuracy
+training data (seen),0.995
+held-out regions (11-region test),0.794
+locked final countries,0.892

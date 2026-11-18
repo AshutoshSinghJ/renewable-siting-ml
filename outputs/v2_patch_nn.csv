@@ -1,0 +1,4 @@
+model,accuracy,macro_f1,mean_region_acc,worst_region_acc,british_isles,india
+Neural network on raster patches + base (247 inputs),0.738,0.506,0.721,0.434,0.434,0.571
+Neural network on 13 hand-made features,0.757,0.517,0.743,0.513,0.513,0.56
+Extra Trees on 13 hand-made features (final),0.794,0.536,0.781,0.536,0.536,0.611

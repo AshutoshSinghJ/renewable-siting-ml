@@ -17,6 +17,9 @@ British Isles, 40% on the Nordic and Baltic countries); across all eight Europea
 in turn the model is right 71% of the time. Applied unchanged to other continents, it scores 90%
 on the USA, 84% on China (barely above always guessing Wind, 81%) and only 53% on India, where it
 correctly answers "I don't know" for 92% of cells.
+An improvement round (Section 8) added local-context features and wider training: on 11 held-out
+regions accuracy rose from 0.736 to 0.794 and the worst region from 0.354 to 0.536; on five locked,
+untouched countries every model ties at about 0.89-0.91 because those countries are easy.
 Hybrid is not learned (too few, geographically concentrated examples). "I don't know" partly works
 (the low-confidence rule works; the unfamiliar-location rule is too cautious in Iberia but catches
 India).
@@ -338,7 +341,9 @@ Mean |SHAP|, averaged over classes: **wind100 0.166** > ghi 0.070 > elev 0.035 >
 - Hybrid sites are not learned with this data.
 - The model can say "I don't know": the low-confidence rule works; the unfamiliar-location rule is
   too cautious in Iberia but correctly catches India.
-- Next steps: relative (region-normalised) features, more Hybrid examples from other continents,
+- Improvement round: local-context features raised held-out accuracy from 0.736 to 0.794 (British
+  Isles +18 points); conformal sets kept 94% coverage on five locked countries, where all models tie.
+- Next steps: a convolutional network on terrain and wind maps, harder untouched test regions, more Hybrid examples from other continents,
   a calibrated unfamiliar-location threshold, and a label cross-check with Global Energy Monitor.
 
 ## 7.2 Using the model on new locations: an explicit assumption
@@ -370,7 +375,173 @@ existing plants as evidence of suitable sites, underlies Sachit et al. (2022).
 2. Respect "I don't know": if either rule fires, do not use the prediction.
 3. Trust it most in regions resembling those where it scored well (southern Europe, the USA).
 
-## 8. Reproduce
+## 8. Improvement round: better generalisation
+
+The original model relied on **absolute** wind speed and failed where solar farms also stand in
+windy places (British Isles 35%, India 53%). The improvement round tried to fix that, under strict
+rules so the result stays honest.
+
+### 8.1 Rules: a locked test set first
+- **Before** any experiment, five countries never used before were **locked** as a final test:
+  Japan, Turkey, Chile, Australia, South Africa (1,072 cells: 684 Solar, 381 Wind, 7 Hybrid;
+  `data/processed/final_test_lock.json`, committed to git before any result).
+- Every choice (features, model, thresholds) was made on **leave-one-region-out over 11 regions**:
+  the 8 European regions + USA, China and India (16,127 cells). Each region is predicted by a model
+  trained on the other 10.
+- Selection score fixed in advance: **mean accuracy across regions** (rewards working everywhere,
+  not just in the largest regions), with macro F1 as tie-breaker.
+- The locked countries were scored **once**, at the end. Nothing was changed after seeing them.
+
+### 8.2 New features (`src/06_features_v2.py`)
+| Feature | How | Why |
+|---|---|---|
+| `wind_pct`, `wind_rel` | Share of land within 30 km that is calmer than the site; site minus the 30 km mean (Global Wind Atlas at ~2 km) | Developers pick the windiest spot **locally**; works even where all land is windy |
+| `ghi_pct`, `ghi_rel` | Same for sunshine | Same idea for solar |
+| `elev_rel`, `rugged` | Site height minus the mean within 2.5 km; spread of heights (Copernicus DEM) | Wind farms sit on ridges and hilltops |
+| `dist_town` | km to the nearest town or city (GHS settlement map, classes 21-30) | Solar is built near demand |
+| `dist_water` | km to the nearest sea or large lake (GHS class 10) | Coastal wind sites |
+
+None of these is changed by building a farm, so there is no leakage. Medians on the development
+data: wind farms sit at the **84th percentile** of local wind (solar 44th), **15 m above** the
+surrounding terrain (solar 2 m below), and **12 km** from a town (solar 5 km).
+
+### 8.3 Which features help? (Random Forest, 11 held-out regions)
+| Feature set | Accuracy | Macro F1 | Mean region accuracy | Worst region |
+|---|---|---|---|---|
+| A. base 5 (current) | 0.736 | 0.536 | 0.706 | 0.354 (British Isles) |
+| B. base + local wind/sun context | 0.766 | 0.547 | 0.737 | 0.440 (British Isles) |
+| C. B + terrain context | 0.774 | 0.553 | 0.743 | 0.442 (Nordic & Baltic) |
+| D. C + town/water distance (all 13) | 0.780 | 0.552 | 0.756 | 0.494 (British Isles) |
+| E. D without absolute wind/sun | 0.724 | 0.516 | 0.712 | 0.448 (Nordic & Baltic) |
+
+Every group helps. Removing absolute wind and sunshine (set E) hurts overall but lifts the British
+Isles to 0.754: in windy countries "windier than nearby" is more useful than "windy".
+
+### 8.4 Which model? (13 features, 11 held-out regions; `src/07`, `src/10`)
+| Model | Accuracy | Macro F1 | Mean region accuracy | Worst region |
+|---|---|---|---|---|
+| Majority class | 0.419 | 0.220 | 0.443 | 0.147 |
+| Wind-speed rule | 0.776 | 0.522 | 0.761 | 0.349 |
+| Logistic regression | 0.670 | 0.530 | 0.634 | 0.230 |
+| Random Forest | 0.780 | 0.552 | 0.756 | 0.494 |
+| Extra Trees **(final)** | 0.794 | 0.536 | 0.781 | 0.536 |
+| Gradient boosting | 0.744 | 0.553 | 0.718 | 0.428 |
+| Neural network (MLP) | 0.763 | 0.516 | 0.752 | 0.492 |
+| Neural network on raw map patches (247 inputs) | 0.738 | 0.506 | 0.721 | 0.434 |
+
+- **Extra Trees** (extremely randomised trees) wins on the pre-set score and on the worst region, and
+  becomes the final model. It is a more randomised Random Forest, designed to overfit less.
+- **Neural networks did not beat it.** An MLP on the 13 features scored 0.763; an MLP that learns
+  local context by itself from 11 x 11 raw map patches (247 inputs) scored 0.738. It did learn some
+  context (British Isles 0.434 vs 0.354), but tree models on good features win on ~16,000 tabular rows.
+- **Covariate-shift reweighting** (training cells weighted to resemble the held-out region) gave no
+  gain (0.779 vs 0.780) and was not adopted.
+- The one-line wind rule is still close on accuracy (0.776): wind remains the main signal.
+
+### 8.5 Before and after, by held-out region
+| Region | Original 5-feature RF | Improved model | Change (points) |
+|---|---|---|---|
+| British Isles | 0.354 | 0.536 | +18 |
+| India | 0.607 | 0.611 | +0 |
+| Nordic & Baltic | 0.364 | 0.643 | +28 |
+| Germany & Austria | 0.602 | 0.691 | +9 |
+| France & Benelux | 0.635 | 0.733 | +10 |
+| China | 0.849 | 0.822 | -3 |
+| Central & Eastern | 0.752 | 0.890 | +14 |
+| Iberia | 0.893 | 0.907 | +1 |
+| Balkans & Greece | 0.905 | 0.909 | +0 |
+| Italy | 0.899 | 0.920 | +2 |
+| USA | 0.904 | 0.926 | +2 |
+
+Overall: **0.736 → 0.794**; mean across regions 0.706 → 0.781; worst region **0.354 → 0.536**.
+
+### 8.6 What drives the improved model (SHAP, `src/09_patterns.py`)
+| Feature | Share of total SHAP importance |
+|---|---|
+| Wind speed (absolute) | 23% |
+| Local wind percentile (new) | 17% |
+| Sunshine | 10% |
+| Wind vs local mean (new) | 7% |
+| Distance to town (new) | 7% |
+| Height vs surroundings (new) | 6% |
+| Elevation | 5% |
+| Distance to grid | 5% |
+
+Absolute wind speed fell from about **half** of the model's reasoning to **23%**. In the British
+Isles the local wind percentile is the most important feature.
+
+![How wind speed pushes the prediction towards Wind, by region](v2_shap_wind_dependence.png)
+
+### 8.7 Siting archetypes
+K-means on geography only (no labels), k = 4 chosen by silhouette (0.15, so the groups overlap):
+
+| Archetype | Built | Model accuracy | Main regions |
+|---|---|---|---|
+| Calm, sunny lowland | 82% Solar | 85% | Germany, Italy, Central Europe |
+| Windy, very sunny upland | 71% Wind | 84% | USA, China, Iberia |
+| Very windy, sunny mountain | 94% Wind | 94% | China, Iberia, USA |
+| **Windy, cloudy lowland** | **44% Solar, 52% Wind** | **64%** | Germany, British Isles, France |
+
+The hardest place is the windy, cloudy lowland, where both technologies really are built side by side.
+
+![Siting archetypes](v2_archetypes_map.png)
+
+### 8.8 A better "I don't know": conformal prediction (`src/08_conformal.py`)
+Split conformal prediction turns probabilities into answer **sets** with a target error rate: the
+threshold is the 90th percentile of (1 - probability of the true class) on held-out-region
+predictions, and every class within it enters the set. A set like Solar-or-Wind means "unsure".
+
+| Calibration | True answer in set | Avg set size | Single answer | Right when single |
+|---|---|---|---|---|
+| Per class (Mondrian) | 0.888 | 1.98 | 21% | 0.935 |
+| **Overall (chosen)** | **0.895** | **1.27** | **73%** | **0.859** |
+
+Coverage drops where regions differ most (British Isles 0.72, India 0.79): the guarantee assumes new
+places resemble the calibration places. The old "unfamiliar place" rule (Rule B) was dropped: cells it
+flagged were **more** accurate (0.93) than the rest (0.79), so it did not identify errors.
+
+### 8.9 Locked final test (`src/11_final_test.py`, scored once)
+1,062 of 1,072 locked cells had all features (10 lacked a grid line within 20 km).
+
+| Model | Accuracy | Macro F1 | Japan | Turkey | Chile | Australia | South Africa |
+|---|---|---|---|---|---|---|---|
+| Majority class | 0.354 | 0.174 | 0.22 | 0.33 | 0.20 | 0.79 | 0.42 |
+| Wind-speed rule (>= 6.47 m/s) | 0.905 | 0.601 | 0.90 | 0.91 | 0.95 | 0.87 | 0.84 |
+| Old model: RF, 5 features, Europe only | 0.896 | 0.595 | 0.91 | 0.87 | 0.93 | 0.95 | 0.81 |
+| RF, 5 features, all development regions | 0.902 | 0.600 | 0.91 | 0.89 | 0.95 | 0.87 | 0.93 |
+| Final: Extra Trees, 13 features, all regions | 0.892 | 0.592 | 0.89 | 0.88 | 0.96 | 0.89 | 0.85 |
+
+- **Every sensible model ties at about 0.89-0.91.** Final vs original: -0.005 (95% CI -0.020 to
+  +0.009); final vs wind rule: -0.014 (CI -0.029 to +0.001). The differences are within chance.
+- **Why:** the locked countries are "easy". The wind rule scores 0.906 there against 0.776 on the
+  development regions: wind farms stand in much windier places than solar farms in all five. The
+  improvement targets the hard regions (windy, cloudy lowlands), which these countries do not contain.
+- **Conformal sets carried over:** the true answer was in the set for **94%** of locked cells (target
+  90%); 85% got a single answer, right 94% of the time; 15% got "Solar or Wind".
+- Hybrid: 0 of 7 correct.
+
+### 8.10 Overfitting of the final model
+| Scored on | Accuracy |
+|---|---|
+| Training data (seen) | 0.995 |
+| 11 held-out regions | 0.794 |
+| Locked countries | 0.892 |
+
+Extra Trees fits its training data almost perfectly; that is how the method works (deep trees with
+random splits, then averaging). What matters is unseen data, where it was the best of six models. The
+depth-limited Random Forest (0.780 held-out, about 0.8 on training data) is the simpler alternative
+with a smaller gap.
+
+### 8.11 What the improvement round shows
+1. Local context helps exactly where absolute wind fails: British Isles +18 and Nordic & Baltic +28
+   points (held-out regions).
+2. Wind's dominance fell from about half to under a quarter of the model's reasoning.
+3. On easy regions every model, even a one-line rule, scores about 90%; the gain appears only where
+   the problem is genuinely hard.
+4. Conformal prediction gives a usable, measured "I don't know" that held up on untouched countries.
+5. Deep learning did not beat trees on this tabular problem.
+
+## 9. Reproduce
 
 ```
 python src/01_prepare_labels.py
@@ -382,9 +553,17 @@ python src/03d_other_continents.py  # optional: Europe-trained model on the USA,
 python src/03e_relative_features.py # optional experiment: relative wind/sun features (not adopted)
 python src/04_explain.py
 python src/05_dont_know.py
+
+# improvement round
+python src/06_features_v2.py        # new local-context features (+ base features for the locked countries)
+python src/07_global_experiments.py # feature sets and 7 models on 11 held-out regions
+python src/08_conformal.py           # conformal prediction sets
+python src/09_patterns.py            # siting archetypes and SHAP by region
+python src/10_patch_nn.py            # neural network on raw map patches
+python src/11_final_test.py          # one-time locked final test
 ```
 
-## 9. References and what we used them for
+## 10. References and what we used them for
 
 **Papers**
 

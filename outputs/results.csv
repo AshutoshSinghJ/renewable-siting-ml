@@ -1,0 +1,5 @@
+model,accuracy,accuracy_ci_low,accuracy_ci_high,macro_f1,macro_f1_ci_low,macro_f1_ci_high,recall_Hybrid,recall_Solar,recall_Wind,precision_Hybrid
+majority_class,0.49,0.465,0.516,0.219,0.212,0.227,0.0,1.0,0.0,0.0
+wind_speed_rule,0.882,0.866,0.899,0.593,0.582,0.603,0.0,0.926,0.868,0.0
+logistic_regression,0.844,0.826,0.861,0.641,0.618,0.666,0.56,0.836,0.86,0.07
+random_forest,0.901,0.886,0.915,0.627,0.599,0.675,0.04,0.918,0.911,0.143

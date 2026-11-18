@@ -1,0 +1,4 @@
+scored_on,accuracy,macro_f1
+training data (seen),0.812,0.701
+"spatial CV, unseen 100 km blocks",0.732,0.545
+Iberia test region (unseen),0.901,0.627

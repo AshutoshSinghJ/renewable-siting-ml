@@ -1,0 +1,4 @@
+region,n_cells,n_Hybrid,n_Solar,n_Wind,majority_share,rf_accuracy,rf_macro_f1,rule_accuracy,rf_recall_Hybrid,rf_recall_Solar,rf_recall_Wind,pct_I_dont_know,pct_unfamiliar,confident_accuracy,median_ghi,median_wind_solar,median_wind_wind
+India,777,3,208,566,0.728,0.533,0.356,0.541,0.0,1.0,0.364,92.149,91.763,0.77,5.411,5.457,6.425
+USA,2326,1,855,1470,0.632,0.896,0.592,0.927,0.0,0.844,0.927,49.57,47.979,0.871,4.443,5.681,8.117
+China,2300,40,407,1853,0.806,0.839,0.514,0.823,0.0,0.737,0.88,76.043,73.522,0.73,4.328,5.284,7.683

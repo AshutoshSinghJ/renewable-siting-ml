@@ -1,0 +1,5 @@
+features,cv_macro_f1,cv_macro_f1_std,cv_accuracy,cv_balanced_accuracy
+wind100 only,0.503,0.023,0.698,0.517
+wind100 + ghi,0.524,0.021,0.71,0.545
+"wind100 + ghi + terrain (elev, slope)",0.54,0.026,0.732,0.558
+all 5 features,0.543,0.023,0.732,0.563

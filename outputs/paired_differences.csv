@@ -1,0 +1,5 @@
+comparison,metric,diff,ci_low,ci_high
+random_forest - wind_speed_rule,accuracy,0.018,0.005,0.032
+random_forest - wind_speed_rule,macro_f1,0.034,0.006,0.082
+random_forest - logistic_regression,accuracy,0.057,0.043,0.071
+random_forest - logistic_regression,macro_f1,-0.014,-0.051,0.035

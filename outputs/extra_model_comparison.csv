@@ -1,0 +1,7 @@
+model,cv_macro_f1,cv_macro_f1_std,cv_accuracy,cv_balanced_accuracy
+Random Forest (main model),0.543,0.023,0.732,0.563
+Gradient boosting (HistGradientBoosting),0.542,0.023,0.763,0.548
+Extra Trees,0.537,0.023,0.738,0.551
+"k-nearest neighbours (k=15, scaled)",0.51,0.009,0.763,0.521
+"SVM RBF (scaled, balanced)",0.476,0.027,0.576,0.561
+"Logistic regression (scaled, balanced)",0.477,0.036,0.604,0.526

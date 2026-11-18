@@ -1,0 +1,735 @@
+<title>Which Renewable Fits Here?</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="A machine-learning model that predicts whether a renewable site is Solar, Wind or Hybrid from geography, tested on Spain and Portugal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: a dark "control room" — sticky nav, hero with a live stat strip, a full-width glowing map
+   with a control rail, then readable sections on a 1120px column. Deliberately single dark theme. */
+:root {
+  color-scheme: dark;
+  --bg: #061219;          /* night sky over the map */
+  --panel: #0B1D26;       /* control rail, cards */
+  --panel-2: #10262F;
+  --line: #1B3542;
+  --land: #0E2530;        /* country fill on the map */
+  --border: #23414F;      /* country borders */
+  --fg: #E4EDEF;
+  --muted: #8EA6AF;
+  --faint: #5E7883;
+  --solar: #F4AE3F;       /* class colours, used everywhere */
+  --wind: #3CCDBA;
+  --hybrid: #B392F0;
+  --wrong: #F0605A;
+  --idk: #9FB3BC;
+  --lowconf: #F28DB5;
+  --accent: #F4AE3F;
+  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --step--1: 0.8125rem; --step-0: 1rem; --step-1: 1.2rem; --step-2: 1.6rem; --step-3: 2.3rem; --step-4: clamp(2.4rem, 5vw, 3.6rem);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font: 400 var(--step-0)/1.6 var(--font-body); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+a { color: var(--wind); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; line-height: 1.15; margin: 0; }
+h2 { font-size: var(--step-3); font-weight: 600; }
+h3 { font-size: var(--step-1); font-weight: 600; }
+p { margin: 0; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.eyebrow { font: 500 var(--step--1)/1.4 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.lead { color: var(--muted); font-size: var(--step-1); max-width: 62ch; }
+.muted { color: var(--muted); }
+.k-solar { color: var(--solar); } .k-wind { color: var(--wind); } .k-hybrid { color: var(--hybrid); } .k-wrong { color: var(--wrong); }
+
+/* nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; gap: 24px; min-height: 56px; flex-wrap: wrap; padding-block: 8px; }
+.brand { font: 600 var(--step-0) var(--font-display); display: flex; align-items: center; gap: 10px; color: var(--fg); text-decoration: none; }
+.brand-dots { display: inline-flex; gap: 4px; }
+.brand-dots i { width: 8px; height: 8px; border-radius: 50%; display: block; box-shadow: 0 0 8px currentColor; }
+.nav nav { display: flex; gap: 18px; flex-wrap: wrap; margin-left: auto; }
+.nav nav a { color: var(--muted); text-decoration: none; font-size: var(--step--1); font-family: var(--font-mono); }
+.nav nav a:hover { color: var(--fg); }
+
+/* hero */
+.hero { padding-block: 56px 28px; display: grid; gap: 20px; }
+.hero h1 { font-size: var(--step-4); font-weight: 700; letter-spacing: -0.02em; }
+.hero h1 span { color: var(--accent); }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-top: 12px; }
+.stat { padding: 14px 16px; background: var(--panel); display: grid; gap: 2px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 0 -1px -1px 0; }
+.stat b { font: 600 var(--step-2)/1.1 var(--font-mono); font-variant-numeric: tabular-nums; }
+.stat span { font-size: var(--step--1); color: var(--muted); }
+
+/* map */
+.mapsec { padding-block: 8px 48px; }
+.mapgrid { display: grid; grid-template-columns: 280px minmax(0, 1fr); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--panel); }
+.rail { padding: 18px; display: grid; gap: 18px; align-content: start; border-right: 1px solid var(--line); }
+.rail h3 { font: 500 var(--step--1) var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.seg { display: grid; gap: 6px; }
+.seg button { text-align: left; background: var(--panel-2); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px; font: 500 var(--step--1) var(--font-body); cursor: pointer; }
+.seg button small { display: block; color: var(--muted); font-weight: 400; margin-top: 2px; }
+.seg button[aria-pressed="true"] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, var(--panel-2)); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-flex; align-items: center; gap: 7px; background: var(--panel-2); border: 1px solid var(--line); color: var(--fg); border-radius: 999px; padding: 5px 11px; font: 500 var(--step--1) var(--font-body); cursor: pointer; }
+.chip i { width: 9px; height: 9px; border-radius: 50%; background: currentColor; box-shadow: 0 0 7px currentColor; }
+.chip[aria-pressed="false"] { opacity: .45; }
+.chip[aria-pressed="false"] i { box-shadow: none; }
+.legend { display: grid; gap: 7px; font-size: var(--step--1); }
+.legend div { display: flex; align-items: center; gap: 9px; }
+.legend i { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.ramp { height: 10px; border-radius: 5px; }
+.ramp-lab { display: flex; justify-content: space-between; color: var(--muted); font: 400 var(--step--1) var(--font-mono); }
+.viewnote { font-size: var(--step--1); color: var(--muted); }
+.stage { position: relative; min-height: 560px; background: radial-gradient(ellipse at 45% 40%, #0A2230 0%, var(--bg) 75%); }
+.stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: grab; touch-action: none; }
+.stage canvas:active { cursor: grabbing; }
+.mapbtns { position: absolute; top: 12px; right: 12px; display: flex; gap: 6px; }
+.mapbtns button { background: color-mix(in srgb, var(--panel) 85%, transparent); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font: 500 var(--step--1) var(--font-mono); cursor: pointer; }
+.mapbtns button:hover { border-color: var(--accent); }
+.count { position: absolute; left: 12px; bottom: 12px; font: 400 var(--step--1) var(--font-mono); color: var(--muted); background: color-mix(in srgb, var(--panel) 85%, transparent); border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; }
+.tip { position: absolute; pointer-events: none; background: color-mix(in srgb, var(--panel) 96%, transparent); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; width: 250px; font-size: var(--step--1); box-shadow: 0 10px 30px rgba(0,0,0,.45); display: grid; gap: 8px; }
+.tip h4 { margin: 0; font: 600 var(--step-0) var(--font-display); display: flex; align-items: center; gap: 8px; }
+.tip h4 i { width: 10px; height: 10px; border-radius: 50%; }
+.tip dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; font-family: var(--font-mono); }
+.tip dt { color: var(--muted); } .tip dd { margin: 0; text-align: right; }
+.pbar { display: grid; grid-template-columns: 52px 1fr 40px; gap: 6px; align-items: center; font-family: var(--font-mono); }
+.pbar div { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.pbar div b { display: block; height: 100%; }
+.verdict { font-weight: 600; }
+
+/* sections */
+section.block { padding-block: 64px; border-top: 1px solid var(--line); }
+.sechead { display: grid; gap: 10px; margin-bottom: 32px; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.card p { color: var(--muted); }
+.question { font: 500 var(--step-2)/1.35 var(--font-display); max-width: 30ch; }
+.question em { color: var(--accent); font-style: normal; }
+.out { display: grid; gap: 8px; }
+.out .dot { width: 14px; height: 14px; border-radius: 50%; box-shadow: 0 0 10px currentColor; background: currentColor; }
+.scope { display: grid; gap: 6px; font-size: var(--step--1); }
+.scope b { font-family: var(--font-mono); letter-spacing: .06em; text-transform: uppercase; font-weight: 500; }
+.note { border-left: 0; background: var(--panel-2); border-radius: 10px; padding: 14px 18px; color: var(--muted); }
+.funnel { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.funnel .card b { font: 600 var(--step-3)/1 var(--font-mono); font-variant-numeric: tabular-nums; }
+.funnel .card:last-child { border-color: var(--accent); }
+.steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; counter-reset: s; }
+.steps li { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 6px; align-content: start; }
+.steps li .n { font: 600 var(--step--1) var(--font-mono); color: var(--accent); }
+.steps li code { font: 400 var(--step--1) var(--font-mono); color: var(--faint); }
+.feat { display: grid; gap: 12px; }
+.feat div { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: baseline; border-bottom: 1px dashed var(--line); padding-bottom: 8px; }
+.feat div:last-child { border-bottom: 0; }
+.feat span { color: var(--muted); font-size: var(--step--1); text-align: right; }
+.leak { background: color-mix(in srgb, var(--wrong) 8%, var(--panel)); border-color: color-mix(in srgb, var(--wrong) 35%, var(--line)); }
+.leak h3 { color: var(--wrong); }
+.big { font: 600 var(--step-4)/1 var(--font-mono); font-variant-numeric: tabular-nums; }
+.chart { width: 100%; overflow-x: auto; }
+.chart svg { display: block; width: 100%; height: auto; min-width: 300px; }
+.chart text { fill: var(--muted); font: 400 12px var(--font-mono); }
+.chart .lab { fill: var(--fg); font-family: var(--font-body); font-size: 13px; }
+.cm { display: grid; grid-template-columns: auto repeat(3, minmax(0, 1fr)); gap: 4px; font-family: var(--font-mono); font-size: var(--step--1); }
+.cm div { padding: 12px 8px; border-radius: 6px; text-align: center; }
+.cm .h { color: var(--muted); background: none; padding: 6px; }
+.cm .rh { text-align: right; }
+.cm .v b { display: block; font-size: var(--step-1); color: var(--fg); }
+.cm .v span { color: var(--fg); opacity: .75; }
+table.tbl { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.tbl th, .tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line); text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tbl th:first-child, .tbl td:first-child { text-align: left; font-family: var(--font-body); }
+.tbl th { color: var(--muted); font-weight: 500; }
+.tbl tr.main td { color: var(--accent); }
+.tblwrap { overflow-x: auto; }
+.idkbar { display: flex; height: 44px; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+.idkbar div { display: grid; place-items: center; font: 600 var(--step--1) var(--font-mono); color: #06121A; min-width: 0; overflow: hidden; white-space: nowrap; }
+.idkleg { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-top: 14px; }
+.idkleg div { display: grid; grid-template-columns: 12px 1fr; gap: 4px 10px; font-size: var(--step--1); }
+.idkleg i { width: 12px; height: 12px; border-radius: 3px; margin-top: 4px; }
+.idkleg span { grid-column: 2; color: var(--muted); font-family: var(--font-mono); }
+.checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.lim { columns: 2 280px; column-gap: 32px; padding-left: 18px; margin: 0; color: var(--muted); }
+.lim li { margin-bottom: 10px; break-inside: avoid; }
+.lim b { color: var(--fg); font-weight: 600; }
+.verdicts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.verdicts .card { border-top: 0; }
+.tag { font: 600 var(--step--1) var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
+footer { border-top: 1px solid var(--line); padding-block: 40px 56px; color: var(--muted); font-size: var(--step--1); }
+footer ol { padding-left: 18px; display: grid; gap: 6px; margin: 12px 0 0; }
+
+@media (max-width: 900px) {
+  .mapgrid { grid-template-columns: minmax(0, 1fr); }
+  .rail { border-right: 0; border-bottom: 1px solid var(--line); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .stage { min-height: 460px; }
+  .grid2 { grid-template-columns: minmax(0, 1fr); }
+  .grid2 .grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid3, .grid4, .funnel, .steps, .verdicts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .grid2, .grid3, .grid4, .funnel, .steps, .checks, .verdicts { grid-template-columns: minmax(0, 1fr); }
+  .stage { min-height: 400px; }
+  .nav nav { display: none; }
+  .tip { width: 220px; }
+}
+</style>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="brand-dots"><i class="k-solar" style="background:var(--solar)"></i><i class="k-wind" style="background:var(--wind)"></i><i class="k-hybrid" style="background:var(--hybrid)"></i></span>Which Renewable Fits Here?</a>
+    <nav aria-label="Sections">
+      <a href="#map">Map</a><a href="#question">Question</a><a href="#method">Method</a><a href="#results">Results</a><a href="#idk">I don't know</a><a href="#checks">Checks</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <p class="eyebrow">Minor project · Machine learning · Geospatial · 2026</p>
+    <h1>Can geography tell a <span>solar farm</span> from a wind farm?</h1>
+    <p class="lead">A Random Forest trained on sunshine, wind, terrain and grid distance at 9,176 European renewable sites, then tested on Spain and Portugal, a region it never saw. It can also answer “I don't know”.</p>
+    <div class="stats" id="stats"></div>
+  </div>
+
+  <section class="mapsec" id="map" aria-label="Interactive map">
+    <div class="wrap">
+      <div class="mapgrid">
+        <aside class="rail">
+          <div>
+            <h3>Show</h3>
+            <div class="seg" id="views"></div>
+          </div>
+          <div>
+            <h3>Installation type</h3>
+            <div class="chips" id="classes"></div>
+          </div>
+          <div>
+            <h3>Region</h3>
+            <div class="chips" id="splits"></div>
+          </div>
+          <div>
+            <h3>Legend</h3>
+            <div class="legend" id="legend"></div>
+          </div>
+          <p class="viewnote" id="viewnote"></p>
+        </aside>
+        <div class="stage" id="stage">
+          <canvas id="cv" aria-label="Map of labelled 5 km cells across Europe"></canvas>
+          <div class="mapbtns">
+            <button type="button" id="zEurope">Europe</button>
+            <button type="button" id="zIberia">Iberia (test)</button>
+          </div>
+          <div class="count" id="count"></div>
+          <div class="tip" id="tip" hidden></div>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:10px;font-size:var(--step--1)">Each dot is a 5 km grid cell holding at least one utility-scale farm (≥ 1 MW). Drag to pan, scroll or pinch to zoom, hover or tap a dot for details.</p>
+    </div>
+  </section>
+
+  <section class="block" id="question">
+    <div class="wrap">
+      <div class="sechead"><p class="eyebrow">Problem statement</p><h2>The question</h2></div>
+      <div class="grid2">
+        <div style="display:grid;gap:22px;align-content:start">
+          <p class="question">Given a place where a renewable installation exists, can a model predict whether it is <em>solar, wind or hybrid</em> from geography alone, even in a region it has never seen, and say <em>“I don't know”</em> when it is unsure?</p>
+          <div class="scope">
+            <p><b class="k-wind">In scope</b><br>Onshore, utility-scale solar and wind farms. Testing on a whole held-out region.</p>
+            <p><b class="k-wrong">Out of scope</b><br>Hydro, offshore wind, rooftop solar, economics, policy, and any claim that a place is “unsuitable”.</p>
+          </div>
+        </div>
+        <div class="grid2" style="gap:14px">
+          <div class="card out"><span class="dot k-solar"></span><h3>Solar</h3><p>Only solar farms in the 5 km cell.</p></div>
+          <div class="card out"><span class="dot k-wind"></span><h3>Wind</h3><p>Only wind farms in the 5 km cell.</p></div>
+          <div class="card out"><span class="dot k-hybrid"></span><h3>Hybrid</h3><p>Both solar and wind farms in the same cell.</p></div>
+          <div class="card out"><span class="dot" style="color:var(--idk)"></span><h3>I don't know</h3><p>Unsure, or the place is unlike anything seen in training.</p></div>
+        </div>
+      </div>
+      <p class="note" style="margin-top:24px">The model answers “if something is built here, which type fits?”. It never says whether anything should be built, because it only ever learned from places where something was built.</p>
+    </div>
+  </section>
+
+  <section class="block" id="method">
+    <div class="wrap">
+      <div class="sechead"><p class="eyebrow">How we did it</p><h2>From OpenStreetMap to a tested model</h2>
+        <p class="lead">Labels come from Dunnett et al. (2020), a peer-reviewed global dataset of wind and solar farms mapped in OpenStreetMap.</p></div>
+      <div class="funnel">
+        <div class="card"><b>68,786</b><p>solar and wind records in the dataset</p></div>
+        <div class="card"><b>24,078</b><p>utility-scale farms: not urban or water, ≥ 1 MW</p></div>
+        <div class="card"><b>18,705</b><p>labelled 5 km cells worldwide</p></div>
+        <div class="card"><b>10,724</b><p>European cells with all five features</p></div>
+      </div>
+
+      <div class="grid2" style="margin-top:20px">
+        <div class="card">
+          <h3>Five features</h3>
+          <div class="feat">
+            <div><b class="k-solar">Sunshine (GHI)</b><span>Global Solar Atlas, 250 m</span></div>
+            <div><b class="k-wind">Wind speed at 100 m</b><span>Global Wind Atlas, 250 m</span></div>
+            <div><b>Elevation</b><span>Copernicus DEM, 90 m</span></div>
+            <div><b>Slope</b><span>from the same DEM</span></div>
+            <div><b class="k-hybrid">Distance to grid</b><span>Gridfinder line network</span></div>
+          </div>
+        </div>
+        <div class="card leak">
+          <h3>Left out on purpose</h3>
+          <div class="feat">
+            <div><b>Land cover</b><span>2020 imagery already shows the farm</span></div>
+            <div><b>Distance to roads</b><span>farms build their own access roads</span></div>
+            <div><b>Plant capacity</b><span>size would give the type away</span></div>
+          </div>
+          <p>Each of these is changed by the farm itself, so using it would leak the answer into the input.</p>
+        </div>
+      </div>
+
+      <h3 style="margin:40px 0 16px">Pipeline</h3>
+      <ol class="steps">
+        <li><span class="n">Step 1</span><b>Labels</b><p class="muted">Filter farms, snap to a 5 km equal-area grid, label each cell, split regions.</p><code>cells.csv</code></li>
+        <li><span class="n">Step 2</span><b>Features</b><p class="muted">Sample the rasters at every farm, average per cell, measure distance to grid.</p><code>features.csv</code></li>
+        <li><span class="n">Step 3</span><b>Train and evaluate</b><p class="muted">Four models, tuned with spatial block CV, scored once on the test region.</p><code>results.csv</code></li>
+        <li><span class="n">Step 3b</span><b>Extra checks</b><p class="muted">Five other classifiers and feature subsets, training region only.</p><code>extra_model_comparison.csv</code></li>
+        <li><span class="n">Step 4</span><b>Explain</b><p class="muted">SHAP values show what drives each class.</p><code>feature_importance.csv</code></li>
+        <li><span class="n">Step 5</span><b>I don't know</b><p class="muted">Abstain on low confidence or unfamiliar locations.</p><code>test_predictions.csv</code></li>
+      </ol>
+
+      <div class="grid3" style="margin-top:20px">
+        <div class="card"><h3 class="k-wrong">No random splits</h3><p>Neighbouring cells are near-copies, so a random split would inflate scores.</p></div>
+        <div class="card"><h3 class="k-wind">Spatial block CV</h3><p>Tuning uses 5 folds made of whole 100 km blocks inside the training region.</p></div>
+        <div class="card"><h3 class="k-solar">Test region used once</h3><p>Spain and Portugal were scored a single time, at the very end.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="results">
+    <div class="wrap">
+      <div class="sechead"><p class="eyebrow">Results on Spain + Portugal</p><h2 id="resHead">Results</h2>
+        <p class="lead" id="resLead"></p></div>
+      <div class="grid2">
+        <div class="card"><h3>Accuracy and macro F1, with 95% bootstrap intervals</h3><div class="chart" id="ciChart"></div>
+          <p>Macro F1 weighs Solar, Wind and Hybrid equally, so it exposes the weak Hybrid class that accuracy hides.</p></div>
+        <div class="card"><h3>Random Forest: what it predicted</h3><div class="cm" id="cm"></div>
+          <p>Rows are the truth, columns the prediction. Solar and Wind are mostly right; 18 of 25 Hybrid cells are called Wind.</p></div>
+      </div>
+      <div class="card" style="margin-top:20px"><h3>All four models</h3><div class="tblwrap"><table class="tbl" id="resTable"></table></div></div>
+
+      <div class="card" style="margin-top:20px">
+        <h3>Beyond Iberia: other regions and other continents</h3>
+        <div class="tblwrap"><table class="tbl" id="beyondTable"></table></div>
+        <p>Each European region was held out in turn (trained on the other seven), and the Europe-trained model was applied unchanged to the USA, China and India. The model works where wind farms stand in much windier places than solar farms (southern Europe, the USA, largely China, where 81% of sites are wind farms) and fails where they do not (the British Isles, India). Across all eight European regions it is right <span id="pooled"></span> of the time, so Iberia was an easier test than average. In India the model answers “I don't know” for 92% of cells.</p>
+        <p>Overfitting check: the Random Forest scores <span id="ovTxt"></span>. A model that memorised its data would score near 100% on the data it has seen.</p>
+      </div>
+
+      <div class="grid2" style="margin-top:20px">
+        <div class="card"><h3>Would another model do better?</h3><div class="chart" id="compChart"></div>
+          <p>Spatial CV macro F1 on the training region only. Tree ensembles tie at the top; the limit is the data, not the algorithm.</p></div>
+        <div class="card"><h3>What each feature group adds</h3><div class="chart" id="ablChart"></div>
+          <p>Wind speed alone does most of the work. Sunshine and terrain add a little; grid distance adds almost nothing.</p></div>
+      </div>
+
+      <div class="grid2" style="margin-top:20px">
+        <div class="card"><h3>What drives the predictions (SHAP)</h3><div class="chart" id="shapChart"></div></div>
+        <div class="card" style="gap:16px">
+          <h3>Reading the SHAP values</h3>
+          <p><b class="k-solar">Solar:</b> low wind speed is the strongest push towards Solar, and high sunshine adds to it.</p>
+          <p><b class="k-wind">Wind:</b> the mirror image, driven mainly by high wind speed.</p>
+          <p><b class="k-hybrid">Hybrid:</b> windy but not very sunny. That pattern comes from northern Germany, home to 213 of the 308 training Hybrids. Iberia is far sunnier (median GHI 4.6 against 3.1 kWh/m²/day), so the pattern does not carry over and Hybrid recall stays near zero.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="idk">
+    <div class="wrap">
+      <div class="sechead"><p class="eyebrow">Knowing when to abstain</p><h2>Saying “I don't know”</h2>
+        <p class="lead">Two rules. Rule A abstains when the top class probability is below 0.5. Rule B abstains when a cell's features are far from every training cell (the area-of-applicability idea of Meyer &amp; Pebesma, 2021).</p></div>
+      <div class="card">
+        <h3 id="idkTitle"></h3>
+        <div class="idkbar" id="idkBar"></div>
+        <div class="idkleg" id="idkLeg"></div>
+      </div>
+      <div class="grid2" style="margin-top:20px">
+        <div class="card"><span class="tag k-wind">Rule A works</span><h3>Low confidence</h3><p id="ruleA"></p></div>
+        <div class="card"><span class="tag k-solar">Rule B is too cautious</span><h3>Unfamiliar location</h3><p id="ruleB"></p></div>
+      </div>
+      <p class="muted" style="margin-top:14px;font-size:var(--step--1)">Switch the map to “I don't know” to see which Iberian cells the model declined to answer.</p>
+    </div>
+  </section>
+
+  <section class="block" id="checks">
+    <div class="wrap">
+      <div class="sechead"><p class="eyebrow">Verification</p><h2>How we checked the results</h2></div>
+      <div class="checks">
+        <div class="card"><h3>Bad wind data caught and replaced</h3><p>The first global wind raster did not match the official Global Wind Atlas (Gujarat coast 4.7 m/s against 6.6 m/s). It was replaced with official per-country files.</p></div>
+        <div class="card"><h3>Island cells without grid data removed</h3><p>Gridfinder has no lines on the Canary Islands and some small Mediterranean islands, so their grid distances (20 to 450 km) were wrong. Those 20 cells were dropped.</p></div>
+        <div class="card"><h3>Fully reproducible</h3><p>Running the whole pipeline again from scratch gave byte-identical outputs, with a fixed random seed of 42.</p></div>
+        <div class="card"><h3>No leakage</h3><p>No cell is in both regions, no land cover, roads or capacity feature is used, and the test region was scored exactly once.</p></div>
+      </div>
+
+      <h3 style="margin:44px 0 16px">What we found</h3>
+      <div class="verdicts">
+        <div class="card"><span class="tag k-wind">Yes, where wind farms are much windier</span><h3>Solar vs Wind</h3><p id="vSW"></p></div>
+        <div class="card"><span class="tag k-wrong">Not yet</span><h3>Hybrid</h3><p>1 of 25 test Hybrid cells correct. Too few training examples, mostly from one country.</p></div>
+        <div class="card"><span class="tag k-solar">Partly</span><h3>“I don't know”</h3><p>The low-confidence rule works; the unfamiliar-location rule is too cautious.</p></div>
+      </div>
+
+      <h3 style="margin:44px 0 16px">Limitations</h3>
+      <ul class="lim">
+        <li><b>Uneven coverage.</b> OpenStreetMap is dominated by Europe, North America and East Asia.</li>
+        <li><b>2020 snapshot.</b> Capacity values are estimates and are used only as a filter.</li>
+        <li><b>Hybrid depends on the 5 km cell.</b> It means co-location, not necessarily one joint project.</li>
+        <li><b>Few Hybrid examples.</b> 308 for training and 25 for testing, mostly from Germany.</li>
+        <li><b>Climate shift.</b> Iberia is sunnier and higher than the training region, which is the point of the test.</li>
+        <li><b>Type, not suitability.</b> The model predicts the type given a farm exists, never whether one should be built.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="eyebrow">References</p>
+    <ol>
+      <li>Dunnett, S., Sorichetta, A., Taylor, G., Eigenbrod, F. (2020). Harmonised global datasets of wind and solar farm locations and power. <i>Scientific Data</i> 7, 130.</li>
+      <li>Sachit, M. S. et al. (2022). <i>ISPRS International Journal of Geo-Information</i> 11(8), 422.</li>
+      <li>Roberts, D. R. et al. (2017). Cross-validation strategies for data with temporal, spatial, hierarchical, or phylogenetic structure. <i>Ecography</i> 40, 913–929.</li>
+      <li>Meyer, H., Pebesma, E. (2021). Predicting into unknown space? Estimating the area of applicability of spatial prediction models. <i>Methods in Ecology and Evolution</i> 12, 1620–1633.</li>
+      <li>Arderne, C. et al. (2020). Predictive mapping of the global power system using open data. <i>Scientific Data</i> 7, 19.</li>
+      <li>Data layers: Global Solar Atlas (Solargis, World Bank), Global Wind Atlas (DTU, World Bank), Copernicus DEM GLO-90 (ESA), country borders from GADM.</li>
+    </ol>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>const DATA = /*__DATA__*/null;</script>
+<script>
+(() => {
+  const D = DATA, C = D.cells, N = C.lon.length;
+  const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  const COL = { S: css("--solar"), W: css("--wind"), H: css("--hybrid") };
+  const NAME = { S: "Solar", W: "Wind", H: "Hybrid" };
+  const fmt = d3.format(","), f3 = d3.format(".3f");
+  const R = Object.fromEntries(D.results.map((r) => [r.model, r]));
+  const rf = R.random_forest;
+  const nTest = C.pred.length;           // test rows come first in the cell arrays
+  const isTest = (i) => C.split[i] === "T";
+  // draw order: Solar and Wind first, rare Hybrid cells last so they stay visible on top
+  const ORDER = d3.range(N).sort((a, b) => (C.lab[a] === "H") - (C.lab[b] === "H"));
+
+  // ---------------- stat strip ----------------
+  const cnt = { S: 0, W: 0, H: 0 };
+  for (let i = 0; i < N; i++) cnt[C.lab[i]]++;
+  const idkPct = D.idk[1].pct_I_dont_know;
+  const stats = [
+    [fmt(cnt.S), "Solar cells", "k-solar"], [fmt(cnt.W), "Wind cells", "k-wind"], [fmt(cnt.H), "Hybrid cells", "k-hybrid"],
+    [f3(rf.accuracy), "test accuracy (Random Forest)", ""], [f3(rf.macro_f1), "test macro F1", ""], [Math.round(idkPct) + "%", "answered “I don't know”", ""],
+  ];
+  document.getElementById("stats").innerHTML = stats.map(([v, l, c]) => `<div class="stat"><b class="${c}">${v}</b><span>${l}</span></div>`).join("");
+
+  // ---------------- map ----------------
+  const stage = document.getElementById("stage"), cv = document.getElementById("cv"), ctx = cv.getContext("2d");
+  const tip = document.getElementById("tip");
+  const state = { view: "built", classes: { S: true, W: true, H: true }, split: "all" };
+  const VIEWS = [
+    ["built", "What was built", "True label of every cell"],
+    ["result", "Model on Iberia", "Right or wrong on the test region"],
+    ["idk", "I don't know", "Where the model abstained"],
+    ["ws", "Wind speed", "100 m mean wind, m/s"],
+    ["ghi", "Sunshine", "GHI, kWh/m²/day"],
+  ];
+  const RAMPS = {
+    ws: { key: "ws", dom: [3, 10], interp: d3.interpolateRgbBasis(["#0d2a45", "#1f6f8b", "#3ccdba", "#d6f5c8"]), unit: "m/s" },
+    ghi: { key: "ghi", dom: [2.4, 5.2], interp: d3.interpolateRgbBasis(["#2a1a3d", "#8a3b5c", "#f08a3c", "#ffe08a"]), unit: "kWh/m²/day" },
+  };
+
+  // projection fitted to Europe
+  const proj = d3.geoConicConformal().parallels([35, 65]).rotate([-10, 0]);
+  const EU = { type: "MultiPoint", coordinates: [[-10.5, 35.5], [31, 35.5], [-10.5, 66], [31, 66], [10, 71]] };
+  let W = 0, H = 0, dpr = 1, transform = d3.zoomIdentity, px = new Float32Array(N), py = new Float32Array(N), land = [], quad = null;
+
+  function project() {
+    proj.fitExtent([[24, 24], [W - 24, H - 24]], EU);
+    for (let i = 0; i < N; i++) { const p = proj([C.lon[i], C.lat[i]]); px[i] = p[0]; py[i] = p[1]; }
+    land = D.countries.map((c) => {
+      const path = new Path2D();
+      for (const r of c.rings) {
+        for (let j = 0; j < r.length; j += 2) { const p = proj([r[j], r[j + 1]]); j ? path.lineTo(p[0], p[1]) : path.moveTo(p[0], p[1]); }
+        path.closePath();
+      }
+      return { iso: c.iso, path };
+    });
+  }
+
+  function visible(i) {
+    if (!state.classes[C.lab[i]]) return false;
+    if (state.split === "train" && isTest(i)) return false;
+    if (state.split === "test" && !isTest(i)) return false;
+    if ((state.view === "result" || state.view === "idk") && !isTest(i)) return "dim";
+    return true;
+  }
+  function colorOf(i) {
+    const v = state.view;
+    if (v === "built") return COL[C.lab[i]];
+    if (v === "result") return C.pred[i] === C.lab[i] ? COL[C.lab[i]] : css("--wrong");
+    if (v === "idk") return C.final[i] !== "?" ? COL[C.pred[i]] : (C.lc[i] === "1" ? css("--lowconf") : css("--idk"));
+    const r = RAMPS[v], t = (C[r.key][i] - r.dom[0]) / (r.dom[1] - r.dom[0]);
+    return r.interp(Math.max(0, Math.min(1, t)));
+  }
+
+  function draw() {
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    const k = transform.k;
+    ctx.save();
+    ctx.translate(transform.x, transform.y); ctx.scale(k, k);
+    ctx.lineWidth = 0.8 / k;
+    for (const c of land) {
+      const test = c.iso === "ESP" || c.iso === "PRT";
+      ctx.fillStyle = test ? "#13303B" : css("--land");
+      ctx.fill(c.path);
+      ctx.strokeStyle = css("--border");
+      ctx.stroke(c.path);
+    }
+    // dashed outline around the test region
+    ctx.setLineDash([5 / k, 4 / k]); ctx.strokeStyle = css("--wrong"); ctx.lineWidth = 1.2 / k;
+    for (const c of land) if (c.iso === "ESP" || c.iso === "PRT") ctx.stroke(c.path);
+    ctx.setLineDash([]);
+
+    const base = Math.max(0.85, Math.min(1.7, W / 560));      // smaller dots on small maps
+    const r = base * Math.pow(k, 0.45) / k;
+    let shown = 0;
+    // dim layer (training cells in the test-only views)
+    ctx.fillStyle = "rgba(142,166,175,0.18)";
+    for (let i = 0; i < N; i++) if (visible(i) === "dim") { ctx.beginPath(); ctx.arc(px[i], py[i], r * 0.7, 0, 6.2832); ctx.fill(); }
+    // soft additive glow first, then solid cores in their true colour (additive cores turn dense areas white)
+    for (let pass = 0; pass < 2; pass++) {
+      ctx.globalCompositeOperation = pass ? "source-over" : "lighter";
+      ctx.globalAlpha = pass ? 0.9 : 0.045;
+      const rr = pass ? r : r * 3.4;
+      for (const i of ORDER) {
+        if (visible(i) !== true) continue;
+        if (pass) shown++;
+        ctx.fillStyle = colorOf(i);
+        ctx.beginPath(); ctx.arc(px[i], py[i], rr, 0, 6.2832); ctx.fill();
+      }
+    }
+    ctx.globalAlpha = 1; ctx.globalCompositeOperation = "source-over";
+    ctx.restore();
+    // labels in screen space
+    // labels in screen space: lines stacked in pixels, kept inside the map
+    const lab = (lines, lon, lat, col, anchor) => {
+      const fs = W < 500 ? 10 : 12, p = transform.apply(proj([lon, lat]));
+      ctx.font = `600 ${fs}px ` + css("--font-mono"); ctx.fillStyle = col; ctx.textAlign = "left";
+      const wMax = Math.max(...lines.map((t) => ctx.measureText(t).width));
+      const x = Math.min(Math.max(8, anchor === "end" ? p[0] - wMax : p[0]), W - wMax - 8);
+      lines.forEach((t, j) => ctx.fillText(t, x, p[1] + j * (fs + 3)));
+    };
+    lab(["HELD-OUT", "TEST REGION"], -10.5, 42.5, css("--wrong"), "end");
+    lab(["TRAINING REGION"], 18, 62.5, css("--muted"));
+    document.getElementById("count").textContent = `${fmt(shown)} cells shown`;
+  }
+
+  function buildQuad() {
+    const idx = [];
+    for (let i = 0; i < N; i++) if (visible(i) === true) idx.push(i);
+    quad = d3.quadtree(idx, (i) => px[i], (i) => py[i]);
+  }
+
+  function resize() {
+    const b = stage.getBoundingClientRect();
+    W = b.width; H = b.height; dpr = window.devicePixelRatio || 1;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    project(); buildQuad(); draw();
+  }
+
+  const zoom = d3.zoom().scaleExtent([0.8, 40]).on("zoom", (e) => { transform = e.transform; tip.hidden = true; draw(); });
+  const sel = d3.select(cv).call(zoom);
+  function fitTo(lon0, lat0, lon1, lat1) {
+    const a = proj([lon0, lat1]), b = proj([lon1, lat0]);
+    const k = Math.min(W / (b[0] - a[0]), H / (b[1] - a[1])) * 0.9;
+    const t = d3.zoomIdentity.translate(W / 2, H / 2).scale(k).translate(-(a[0] + b[0]) / 2, -(a[1] + b[1]) / 2);
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    (reduce ? sel : sel.transition().duration(700)).call(zoom.transform, t);
+  }
+  document.getElementById("zEurope").onclick = () => fitTo(-11, 35, 32, 66);
+  document.getElementById("zIberia").onclick = () => fitTo(-9.8, 36, 3.6, 43.9);
+
+  function pbar(name, v, col) { return `<div class="pbar"><span>${name}</span><div><b style="width:${(v * 100).toFixed(0)}%;background:${col}"></b></div><span>${(v * 100).toFixed(0)}%</span></div>`; }
+  function showTip(i, mx, my) {
+    const L = C.lab[i];
+    let html = `<h4><i style="background:${COL[L]};box-shadow:0 0 8px ${COL[L]}"></i>${NAME[L]} <span class="muted" style="font-weight:400;font-size:12px">· ${C.cty[i]} · ${isTest(i) ? "test" : "train"}</span></h4>
+      <dl><dt>Wind 100 m</dt><dd>${C.ws[i].toFixed(1)} m/s</dd><dt>Sunshine</dt><dd>${C.ghi[i].toFixed(2)} kWh/m²/d</dd>
+      <dt>Elevation</dt><dd>${fmt(C.elev[i])} m</dd><dt>Slope</dt><dd>${C.slope[i].toFixed(1)}°</dd><dt>To grid</dt><dd>${C.grid[i].toFixed(1)} km</dd></dl>`;
+    if (isTest(i)) {
+      const ok = C.pred[i] === L, idk = C.final[i] === "?";
+      const why = C.lc[i] === "1" && C.un[i] === "1" ? "low confidence and unfamiliar" : C.lc[i] === "1" ? "low confidence" : "unfamiliar location";
+      html += `<div>${pbar("Solar", C.ps[i], COL.S)}${pbar("Wind", C.pw[i], COL.W)}${pbar("Hybrid", C.ph[i], COL.H)}</div>
+        <div class="verdict" style="color:${ok ? COL.W : css("--wrong")}">Model says ${NAME[C.pred[i]]}: ${ok ? "correct" : "wrong"}</div>
+        ${idk ? `<div class="muted">Final answer: “I don't know” (${why})</div>` : ""}`;
+    }
+    tip.innerHTML = html; tip.hidden = false;
+    const tw = tip.offsetWidth, th = tip.offsetHeight;
+    tip.style.left = Math.min(Math.max(8, mx + 14), W - tw - 8) + "px";
+    tip.style.top = Math.min(Math.max(8, my + 14), H - th - 8) + "px";
+  }
+  function hover(e) {
+    const b = cv.getBoundingClientRect(), mx = e.clientX - b.left, my = e.clientY - b.top;
+    const [x, y] = transform.invert([mx, my]);
+    const i = quad && quad.find(x, y, 10 / transform.k);
+    if (i === undefined) { tip.hidden = true; return; }
+    showTip(i, mx, my);
+  }
+  cv.addEventListener("mousemove", (e) => { if (e.buttons === 0) hover(e); });
+  cv.addEventListener("click", hover);
+  cv.addEventListener("pointerleave", () => { tip.hidden = true; });
+
+  // controls
+  const vbox = document.getElementById("views");
+  vbox.innerHTML = VIEWS.map(([k, t, s]) => `<button type="button" data-v="${k}" aria-pressed="${k === state.view}">${t}<small>${s}</small></button>`).join("");
+  vbox.onclick = (e) => { const b = e.target.closest("button"); if (!b) return; state.view = b.dataset.v; update(); if (state.view === "result" || state.view === "idk") fitTo(-9.8, 36, 3.6, 43.9); };
+  const cbox = document.getElementById("classes");
+  cbox.innerHTML = ["S", "W", "H"].map((k) => `<button type="button" class="chip" data-c="${k}" aria-pressed="true" style="color:${COL[k]}"><i></i><span style="color:var(--fg)">${NAME[k]}</span></button>`).join("");
+  cbox.onclick = (e) => { const b = e.target.closest("button"); if (!b) return; const k = b.dataset.c; state.classes[k] = !state.classes[k]; update(); };
+  const sbox = document.getElementById("splits");
+  sbox.innerHTML = [["all", "All"], ["train", "Training"], ["test", "Test (Iberia)"]].map(([k, t]) => `<button type="button" class="chip" data-s="${k}" aria-pressed="${k === "all"}">${t}</button>`).join("");
+  sbox.onclick = (e) => { const b = e.target.closest("button"); if (!b) return; state.split = b.dataset.s; update(); };
+
+  function legend() {
+    const L = document.getElementById("legend"), note = document.getElementById("viewnote");
+    const item = (c, t) => `<div><i style="background:${c};box-shadow:0 0 6px ${c}"></i>${t}</div>`;
+    const v = state.view;
+    if (v === "built") { L.innerHTML = item(COL.S, "Solar only") + item(COL.W, "Wind only") + item(COL.H, "Hybrid (both)"); note.textContent = "Training region: Europe without Spain and Portugal. Test region: dashed outline."; }
+    else if (v === "result") { L.innerHTML = item(COL.S, "Solar, predicted right") + item(COL.W, "Wind, predicted right") + item(COL.H, "Hybrid, predicted right") + item(css("--wrong"), "Predicted wrong") + item("rgba(142,166,175,.5)", "Training cell"); note.textContent = `Random Forest on cells it never saw: ${f3(rf.accuracy)} accuracy.`; }
+    else if (v === "idk") { L.innerHTML = item(COL.S, "Answered Solar") + item(COL.W, "Answered Wind") + item(COL.H, "Answered Hybrid") + item(css("--lowconf"), "I don't know: low confidence") + item(css("--idk"), "I don't know: unfamiliar place"); note.textContent = `${Math.round(idkPct)}% of test cells get “I don't know”.`; }
+    else { const r = RAMPS[v]; const stops = d3.range(0, 1.01, 0.1).map((t) => r.interp(t)).join(","); L.innerHTML = `<div class="ramp" style="background:linear-gradient(90deg,${stops})"></div><div class="ramp-lab"><span>${r.dom[0]}</span><span>${r.unit}</span><span>${r.dom[1]}</span></div>`; note.textContent = v === "ws" ? "Wind farms (and the wind-speed rule) sit where this map is bright." : "Sunshine rises steeply towards the south: Iberia is brighter than almost all training cells."; }
+  }
+  function update() {
+    vbox.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.v === state.view));
+    cbox.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", state.classes[b.dataset.c]));
+    sbox.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.s === state.split));
+    legend(); buildQuad(); draw();
+  }
+  new ResizeObserver(() => resize()).observe(stage);
+  legend();
+
+  // ---------------- results ----------------
+  const rule = R.wind_speed_rule, lr = R.logistic_regression;
+  const dRule = D.diffs.find((d) => d.comparison === "random_forest - wind_speed_rule" && d.metric === "accuracy");
+  document.getElementById("resHead").textContent = `${Math.round(rf.accuracy * 100)}% accuracy on a region the model never saw`;
+  document.getElementById("resLead").textContent = `The Random Forest beats the simple “Wind if wind speed ≥ 6.6 m/s” rule by ${(dRule.diff * 100).toFixed(1)} points (95% CI ${(dRule.ci_low * 100).toFixed(1)} to ${(dRule.ci_high * 100).toFixed(1)}): a real gain, but a small one. Most of what the model knows is that windy places get wind farms.`;
+  document.getElementById("vSW").textContent = `${f3(rf.accuracy)} accuracy on Iberia, 90–92% on Italy, the Balkans and the USA, 84% on China, but 35–53% on the British Isles and India, where wind farms are not much windier than solar farms.`;
+
+  const MODELS = [["majority_class", "Majority class"], ["wind_speed_rule", "Wind-speed rule"], ["logistic_regression", "Logistic regression"], ["random_forest", "Random Forest"]];
+  (function ciChart() {
+    // two stacked panels (accuracy, then macro F1), each spanning the full width
+    const w = 480, rowH = 30, left = 150, right = 16, panelH = 26 + MODELS.length * rowH + 26, h = panelH * 2 + 8;
+    const x = d3.scaleLinear([0, 1], [left, w - right]);
+    const svg = d3.select("#ciChart").append("svg").attr("viewBox", `0 0 ${w} ${h}`);
+    [["accuracy", "Accuracy", css("--fg")], ["macro_f1", "Macro F1", css("--solar")]].forEach(([key, title, col], k) => {
+      const y0 = k * (panelH + 8), top = y0 + 26;
+      svg.append("text").attr("x", left).attr("y", y0 + 14).text(title).style("fill", col).style("font-weight", 600);
+      x.ticks(5).forEach((t) => {
+        svg.append("line").attr("x1", x(t)).attr("x2", x(t)).attr("y1", top - 4).attr("y2", top + MODELS.length * rowH).style("stroke", css("--line"));
+        svg.append("text").attr("x", x(t)).attr("y", top + MODELS.length * rowH + 16).attr("text-anchor", "middle").text(t.toFixed(1));
+      });
+      MODELS.forEach(([m, name], i) => {
+        const r = R[m], y = top + i * rowH + rowH / 2, main = m === "random_forest";
+        svg.append("text").attr("class", "lab").attr("x", 0).attr("y", y + 4).text(name).style("font-weight", main ? 600 : 400);
+        svg.append("line").attr("x1", x(r[key + "_ci_low"])).attr("x2", x(r[key + "_ci_high"])).attr("y1", y).attr("y2", y).style("stroke", col).style("stroke-width", 3).style("opacity", .5);
+        svg.append("circle").attr("cx", x(r[key])).attr("cy", y).attr("r", main ? 6 : 4.5).style("fill", col);
+        const flip = r[key] > .8;
+        svg.append("text").attr("x", x(r[flip ? key + "_ci_low" : key + "_ci_high"]) + (flip ? -8 : 8)).attr("y", y + 4)
+          .attr("text-anchor", flip ? "end" : "start").text(r[key].toFixed(3)).style("fill", css("--fg"));
+      });
+    });
+  })();
+
+  (function cm() {
+    const labs = ["Solar", "Wind", "Hybrid"], cols = [COL.S, COL.W, COL.H];
+    let h = `<div class="h"></div>` + labs.map((l) => `<div class="h">pred. ${l}</div>`).join("");
+    D.conf.forEach((row, i) => {
+      const tot = d3.sum(row);
+      h += `<div class="h rh">${labs[i]}</div>` + row.map((v, j) => {
+        const share = v / tot, c = i === j ? cols[i] : css("--wrong");
+        return `<div class="v" style="background:color-mix(in srgb, ${c} ${Math.round(8 + share * 62)}%, var(--panel-2))"><b>${fmt(v)}</b><span>${Math.round(share * 100)}%</span></div>`;
+      }).join("");
+    });
+    document.getElementById("cm").innerHTML = h;
+  })();
+
+  (function table() {
+    const hd = `<tr><th>Model</th><th>Accuracy</th><th>95% CI</th><th>Macro F1</th><th>95% CI</th><th>Recall Solar</th><th>Recall Wind</th><th>Recall Hybrid</th><th>Hybrid precision</th></tr>`;
+    const rows = MODELS.map(([m, name]) => { const r = R[m];
+      return `<tr class="${m === "random_forest" ? "main" : ""}"><td>${name}</td><td>${f3(r.accuracy)}</td><td>${f3(r.accuracy_ci_low)}–${f3(r.accuracy_ci_high)}</td><td>${f3(r.macro_f1)}</td><td>${f3(r.macro_f1_ci_low)}–${f3(r.macro_f1_ci_high)}</td><td>${f3(r.recall_Solar)}</td><td>${f3(r.recall_Wind)}</td><td>${f3(r.recall_Hybrid)}</td><td>${r.precision_Hybrid ? f3(r.precision_Hybrid) : "–"}</td></tr>`; }).join("");
+    document.getElementById("resTable").innerHTML = `<thead>${hd}</thead><tbody>${rows}</tbody>`;
+  })();
+
+  (function beyond() {
+    const pc = (v) => Math.round(v * 100) + "%";
+    const rows = D.region.slice().sort((a, b) => b.rf_accuracy - a.rf_accuracy).map((r) => ["Europe", r.region, r.n_cells, r.rf_accuracy, r.rule_accuracy])
+      .concat(D.cont.map((r) => ["Other continent", r.region, r.n_cells, r.rf_accuracy, r.rule_accuracy]));
+    const body = rows.map(([g, n, c, a, b]) => `<tr${n === "Iberia" ? ' class="main"' : ""}><td>${n} <span class="muted" style="font-size:11px">${g}</span></td><td>${fmt(c)}</td><td style="color:${a < 0.6 ? css("--wrong") : "inherit"}">${pc(a)}</td><td>${pc(b)}</td></tr>`).join("");
+    document.getElementById("beyondTable").innerHTML = `<thead><tr><th>Tested on</th><th>Cells</th><th>Random Forest</th><th>Wind-speed rule</th></tr></thead><tbody>${body}</tbody>`;
+    let ok = 0, n = 0; D.region.forEach((r) => { ok += r.rf_accuracy * r.n_cells; n += r.n_cells; });
+    document.getElementById("pooled").textContent = pc(ok / n);
+    document.getElementById("ovTxt").textContent = `${pc(D.overfit[0].accuracy)} on the data it trained on, ${pc(D.overfit[1].accuracy)} on unseen 100 km blocks and ${pc(D.overfit[2].accuracy)} on Iberia, so there is no serious overfitting`;
+  })();
+
+  function hbars(el, rows, color, maxV, highlight) {
+    const w = 560, rowH = 32, left = 170, h = rows.length * rowH + 30;
+    const x = d3.scaleLinear([0, maxV], [left, w - 56]);
+    const svg = d3.select(el).append("svg").attr("viewBox", `0 0 ${w} ${h}`);
+    x.ticks(5).forEach((t) => { svg.append("line").attr("x1", x(t)).attr("x2", x(t)).attr("y1", 0).attr("y2", h - 22).style("stroke", css("--line"));
+      svg.append("text").attr("x", x(t)).attr("y", h - 6).attr("text-anchor", "middle").text(t.toFixed(1)); });
+    rows.forEach(([name, v], i) => {
+      const y = i * rowH + 4, hi = highlight(name, i);
+      svg.append("rect").attr("x", left).attr("y", y).attr("width", x(v) - left).attr("height", rowH - 12).attr("rx", 4).style("fill", color).style("opacity", hi ? 1 : 0.45);
+      svg.append("text").attr("class", "lab").attr("x", 0).attr("y", y + (rowH - 12) / 2 + 4).text(name).style("font-weight", hi ? 600 : 400);
+      svg.append("text").attr("x", x(v) + 8).attr("y", y + (rowH - 12) / 2 + 4).text(v.toFixed(3)).style("fill", css("--fg"));
+    });
+  }
+  const short = (m) => m.replace(" (main model)", "").replace(" (HistGradientBoosting)", "").replace(" (k=15, scaled)", " (k=15)").replace(" (scaled, balanced)", "");
+  hbars("#compChart", D.comp.map((r) => [short(r.model), r.cv_macro_f1]), css("--wind"), 0.6, (n) => n === "Random Forest");
+  const ablNames = ["Wind speed only", "+ sunshine", "+ elevation, slope", "+ grid distance (all 5)"];
+  hbars("#ablChart", D.abl.map((r, i) => [ablNames[i], r.cv_macro_f1]), css("--solar"), 0.6, (n, i) => i === D.abl.length - 1);
+
+  (function shap() {
+    const feats = D.shap.map((r) => r.feature), names = { wind100: "Wind speed", ghi: "Sunshine (GHI)", elev: "Elevation", slope: "Slope", dist_grid: "Grid distance" };
+    const w = 560, grp = 54, left = 130, h = feats.length * grp + 50, cls = [["Solar", COL.S], ["Wind", COL.W], ["Hybrid", COL.H]];
+    const maxV = d3.max(D.shap, (r) => Math.max(r.Solar, r.Wind, r.Hybrid));
+    const x = d3.scaleLinear([0, maxV * 1.08], [left, w - 50]);
+    const svg = d3.select("#shapChart").append("svg").attr("viewBox", `0 0 ${w} ${h}`);
+    cls.forEach(([n, c], i) => { svg.append("circle").attr("cx", left + i * 90 + 5).attr("cy", 8).attr("r", 5).style("fill", c); svg.append("text").attr("x", left + i * 90 + 15).attr("y", 12).text(n); });
+    x.ticks(4).forEach((t) => { svg.append("line").attr("x1", x(t)).attr("x2", x(t)).attr("y1", 24).attr("y2", h - 22).style("stroke", css("--line"));
+      svg.append("text").attr("x", x(t)).attr("y", h - 6).attr("text-anchor", "middle").text(t.toFixed(2)); });
+    D.shap.forEach((r, i) => {
+      const y0 = 28 + i * grp;
+      svg.append("text").attr("class", "lab").attr("x", 0).attr("y", y0 + 22).text(names[r.feature] || r.feature);
+      cls.forEach(([n, c], j) => svg.append("rect").attr("x", left).attr("y", y0 + j * 14).attr("width", x(r[n]) - left).attr("height", 11).attr("rx", 3).style("fill", c));
+    });
+    svg.append("text").attr("x", w - 50).attr("y", h - 6).attr("text-anchor", "end").text("");
+  })();
+
+  // ---------------- I don't know (computed from the cells) ----------------
+  (function idk() {
+    const g = { conf: [0, 0], low: [0, 0], unf: [0, 0] };       // [cells, correct]
+    for (let i = 0; i < nTest; i++) {
+      const ok = C.pred[i] === C.lab[i] ? 1 : 0;
+      const k = C.final[i] !== "?" ? "conf" : C.lc[i] === "1" ? "low" : "unf";
+      g[k][0]++; g[k][1] += ok;
+    }
+    const parts = [["conf", "Answered", COL.W, "confident answers"], ["low", "Low confidence", css("--lowconf"), "abstained, low confidence"], ["unf", "Unfamiliar", css("--idk"), "abstained, unfamiliar place only"]];
+    document.getElementById("idkTitle").textContent = `${fmt(nTest)} test cells: ${fmt(g.conf[0])} answered, ${fmt(nTest - g.conf[0])} “I don't know”`;
+    document.getElementById("idkBar").innerHTML = parts.map(([k, t, c]) => `<div style="flex:${g[k][0]};background:${c}" title="${t}">${Math.round(g[k][0] / nTest * 100)}%</div>`).join("");
+    document.getElementById("idkLeg").innerHTML = parts.map(([k, t, c, d]) => `<div><i style="background:${c}"></i><b>${t}</b><span>${fmt(g[k][0])} cells · ${Math.round(g[k][1] / g[k][0] * 100)}% would have been right</span></div>`).join("");
+    document.getElementById("ruleA").textContent = `${fmt(g.low[0])} cells had a top probability below 0.5. Only ${Math.round(g.low[1] / g.low[0] * 100)}% of them would have been right, so abstaining there is the correct call.`;
+    document.getElementById("ruleB").textContent = `${fmt(g.unf[0])} more cells were flagged only for looking unfamiliar, yet ${Math.round(g.unf[1] / g.unf[0] * 100)}% of them would have been right. Iberia is sunnier and higher than the training region, but the decision rests on wind speed, which transfers well.`;
+  })();
+})();
+</script>

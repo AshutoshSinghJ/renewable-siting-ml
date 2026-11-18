@@ -1,0 +1,1549 @@
+cell_id,label,p_hybrid,p_solar,p_wind,rf_pred,low_conf,aoa_dist,unfamiliar,final_pred
+C_-160_979,Wind,0.105,0.502,0.393,Solar,False,0.111,False,Solar
+C_-159_976,Solar,0.174,0.34,0.486,Wind,True,0.0699,False,I don't know
+C_-158_976,Wind,0.123,0.148,0.729,Wind,False,0.1305,False,Wind
+C_-158_980,Wind,0.142,0.21,0.648,Wind,False,0.1403,False,Wind
+C_-158_985,Wind,0.176,0.264,0.559,Wind,False,0.1361,False,Wind
+C_-158_986,Wind,0.079,0.328,0.594,Wind,False,0.1342,False,Wind
+C_-157_976,Solar,0.119,0.149,0.732,Wind,False,0.1139,False,Wind
+C_-157_977,Wind,0.088,0.197,0.715,Wind,False,0.1055,False,Wind
+C_-157_979,Wind,0.236,0.11,0.654,Wind,False,0.1161,False,Wind
+C_-157_981,Wind,0.157,0.122,0.721,Wind,False,0.1463,True,I don't know
+C_-156_976,Solar,0.102,0.317,0.582,Wind,False,0.129,False,Wind
+C_-156_978,Wind,0.114,0.059,0.827,Wind,False,0.086,False,Wind
+C_-156_982,Wind,0.067,0.077,0.856,Wind,False,0.1134,False,Wind
+C_-155_980,Wind,0.124,0.188,0.688,Wind,False,0.1472,True,I don't know
+C_-155_993,Wind,0.244,0.353,0.403,Wind,True,0.1001,False,I don't know
+C_-154_936,Wind,0.055,0.492,0.452,Solar,True,0.1751,True,I don't know
+C_-154_986,Wind,0.053,0.158,0.789,Wind,False,0.1301,False,Wind
+C_-154_1071,Wind,0.103,0.223,0.674,Wind,False,0.14,False,Wind
+C_-153_936,Wind,0.121,0.389,0.489,Wind,True,0.1268,False,I don't know
+C_-153_971,Solar,0.173,0.713,0.114,Solar,False,0.0549,False,Solar
+C_-153_979,Wind,0.144,0.732,0.124,Solar,False,0.0471,False,Solar
+C_-153_988,Wind,0.23,0.073,0.697,Wind,False,0.1517,True,I don't know
+C_-153_1066,Wind,0.083,0.095,0.822,Wind,False,0.2142,True,I don't know
+C_-153_1071,Wind,0.11,0.173,0.717,Wind,False,0.1115,False,Wind
+C_-152_937,Wind,0.144,0.333,0.523,Wind,False,0.0994,False,Wind
+C_-152_938,Wind,0.138,0.193,0.669,Wind,False,0.1041,False,Wind
+C_-152_939,Wind,0.285,0.482,0.232,Solar,True,0.1111,False,I don't know
+C_-152_955,Wind,0.129,0.485,0.387,Solar,True,0.0967,False,I don't know
+C_-152_980,Wind,0.087,0.818,0.095,Solar,False,0.0602,False,Solar
+C_-152_989,Wind,0.034,0.241,0.726,Wind,False,0.1245,False,Wind
+C_-152_1065,Wind,0.069,0.091,0.84,Wind,False,0.1791,True,I don't know
+C_-152_1066,Wind,0.04,0.079,0.88,Wind,False,0.2117,True,I don't know
+C_-152_1067,Wind,0.109,0.213,0.678,Wind,False,0.1851,True,I don't know
+C_-152_1068,Wind,0.111,0.093,0.796,Wind,False,0.1336,False,Wind
+C_-152_1070,Wind,0.11,0.13,0.76,Wind,False,0.1824,True,I don't know
+C_-152_1071,Wind,0.074,0.187,0.739,Wind,False,0.0949,False,Wind
+C_-151_939,Wind,0.073,0.24,0.687,Wind,False,0.1208,False,Wind
+C_-151_1060,Wind,0.078,0.115,0.808,Wind,False,0.1294,False,Wind
+C_-151_1061,Wind,0.107,0.143,0.75,Wind,False,0.1772,True,I don't know
+C_-151_1064,Wind,0.107,0.15,0.743,Wind,False,0.1005,False,Wind
+C_-151_1065,Wind,0.054,0.065,0.881,Wind,False,0.2031,True,I don't know
+C_-150_936,Solar,0.194,0.589,0.218,Solar,False,0.0617,False,Solar
+C_-150_953,Wind,0.325,0.436,0.239,Solar,True,0.0867,False,I don't know
+C_-150_1009,Wind,0.171,0.612,0.217,Solar,False,0.0492,False,Solar
+C_-150_1060,Wind,0.101,0.117,0.781,Wind,False,0.1354,False,Wind
+C_-150_1064,Wind,0.065,0.09,0.844,Wind,False,0.2395,True,I don't know
+C_-150_1066,Wind,0.086,0.13,0.785,Wind,False,0.1205,False,Wind
+C_-150_1074,Wind,0.076,0.186,0.738,Wind,False,0.1643,True,I don't know
+C_-149_939,Solar,0.219,0.444,0.337,Solar,True,0.1313,False,I don't know
+C_-149_941,Wind,0.07,0.04,0.89,Wind,False,0.1622,True,I don't know
+C_-149_993,Wind,0.27,0.243,0.487,Wind,True,0.0826,False,I don't know
+C_-149_994,Wind,0.429,0.123,0.448,Wind,True,0.0715,False,I don't know
+C_-149_1040,Wind,0.13,0.143,0.727,Wind,False,0.0476,False,Wind
+C_-149_1041,Wind,0.105,0.186,0.709,Wind,False,0.1299,False,Wind
+C_-149_1066,Wind,0.071,0.116,0.813,Wind,False,0.1492,True,I don't know
+C_-149_1074,Wind,0.057,0.122,0.821,Wind,False,0.1615,True,I don't know
+C_-148_973,Solar,0.2,0.682,0.118,Solar,False,0.0547,False,Solar
+C_-148_991,Wind,0.133,0.362,0.505,Wind,False,0.0822,False,Wind
+C_-148_992,Wind,0.265,0.118,0.617,Wind,False,0.1295,False,Wind
+C_-148_1066,Wind,0.097,0.141,0.762,Wind,False,0.1066,False,Wind
+C_-148_1070,Wind,0.095,0.218,0.687,Wind,False,0.1933,True,I don't know
+C_-148_1072,Wind,0.143,0.121,0.735,Wind,False,0.1733,True,I don't know
+C_-147_973,Solar,0.169,0.697,0.134,Solar,False,0.0521,False,Solar
+C_-147_1042,Wind,0.049,0.089,0.862,Wind,False,0.0662,False,Wind
+C_-147_1062,Wind,0.073,0.1,0.827,Wind,False,0.1573,True,I don't know
+C_-146_966,Solar,0.087,0.816,0.098,Solar,False,0.0484,False,Solar
+C_-146_992,Wind,0.245,0.23,0.525,Wind,False,0.1142,False,Wind
+C_-146_1000,Wind,0.382,0.149,0.469,Wind,True,0.0327,False,I don't know
+C_-146_1021,Solar,0.176,0.741,0.083,Solar,False,0.0413,False,Solar
+C_-146_1060,Wind,0.028,0.07,0.902,Wind,False,0.1873,True,I don't know
+C_-146_1070,Wind,0.115,0.099,0.786,Wind,False,0.1941,True,I don't know
+C_-145_958,Solar,0.223,0.533,0.244,Solar,False,0.0834,False,Solar
+C_-145_970,Solar,0.232,0.59,0.179,Solar,False,0.0699,False,Solar
+C_-145_977,Solar,0.026,0.84,0.134,Solar,False,0.0273,False,Solar
+C_-145_1002,Wind,0.267,0.21,0.523,Wind,False,0.2159,True,I don't know
+C_-144_1045,Wind,0.033,0.085,0.882,Wind,False,0.165,True,I don't know
+C_-143_936,Solar,0.119,0.564,0.317,Solar,False,0.0684,False,Solar
+C_-143_937,Solar,0.142,0.732,0.126,Solar,False,0.0742,False,Solar
+C_-143_998,Wind,0.045,0.1,0.856,Wind,False,0.1935,True,I don't know
+C_-143_1002,Wind,0.181,0.18,0.639,Wind,False,0.0685,False,Wind
+C_-142_1009,Wind,0.198,0.12,0.682,Wind,False,0.0545,False,Wind
+C_-142_1033,Solar,0.005,0.982,0.013,Solar,False,0.091,False,Solar
+C_-142_1045,Wind,0.028,0.068,0.903,Wind,False,0.155,True,I don't know
+C_-142_1046,Wind,0.039,0.094,0.867,Wind,False,0.1263,False,Wind
+C_-141_949,Solar,0.072,0.801,0.127,Solar,False,0.1132,False,Solar
+C_-141_958,Solar,0.027,0.891,0.082,Solar,False,0.0581,False,Solar
+C_-141_1002,Wind,0.016,0.048,0.936,Wind,False,0.1015,False,Wind
+C_-141_1003,Wind,0.023,0.052,0.925,Wind,False,0.1241,False,Wind
+C_-141_1025,Wind,0.057,0.163,0.78,Wind,False,0.2635,True,I don't know
+C_-141_1049,Wind,0.021,0.065,0.913,Wind,False,0.154,True,I don't know
+C_-141_1053,Wind,0.026,0.043,0.931,Wind,False,0.0914,False,Wind
+C_-141_1056,Wind,0.037,0.054,0.909,Wind,False,0.0764,False,Wind
+C_-140_942,Wind,0.366,0.152,0.483,Wind,True,0.0757,False,I don't know
+C_-140_947,Solar,0.083,0.749,0.167,Solar,False,0.1155,False,Solar
+C_-140_957,Solar,0.031,0.855,0.114,Solar,False,0.0804,False,Solar
+C_-140_958,Solar,0.023,0.876,0.1,Solar,False,0.0734,False,Solar
+C_-140_1002,Wind,0.02,0.032,0.948,Wind,False,0.1531,True,I don't know
+C_-140_1003,Wind,0.031,0.068,0.901,Wind,False,0.0762,False,Wind
+C_-140_1013,Wind,0.059,0.193,0.748,Wind,False,0.1077,False,Wind
+C_-140_1014,Wind,0.038,0.058,0.904,Wind,False,0.0976,False,Wind
+C_-140_1021,Wind,0.042,0.08,0.878,Wind,False,0.1037,False,Wind
+C_-140_1046,Wind,0.035,0.063,0.902,Wind,False,0.132,False,Wind
+C_-140_1053,Wind,0.031,0.062,0.907,Wind,False,0.0942,False,Wind
+C_-140_1054,Wind,0.042,0.094,0.864,Wind,False,0.107,False,Wind
+C_-140_1061,Wind,0.059,0.104,0.836,Wind,False,0.1232,False,Wind
+C_-139_946,Solar,0.305,0.459,0.236,Solar,True,0.0944,False,I don't know
+C_-139_1003,Wind,0.006,0.202,0.792,Wind,False,0.1504,True,I don't know
+C_-139_1004,Wind,0.018,0.038,0.944,Wind,False,0.1244,False,Wind
+C_-139_1014,Wind,0.15,0.109,0.741,Wind,False,0.1006,False,Wind
+C_-139_1020,Wind,0.034,0.094,0.872,Wind,False,0.1219,False,Wind
+C_-139_1046,Wind,0.018,0.112,0.87,Wind,False,0.1627,True,I don't know
+C_-139_1052,Wind,0.015,0.043,0.942,Wind,False,0.1356,False,Wind
+C_-139_1059,Wind,0.015,0.044,0.942,Wind,False,0.1472,True,I don't know
+C_-138_937,Solar,0.237,0.567,0.196,Solar,False,0.099,False,Solar
+C_-138_1016,Wind,0.08,0.072,0.848,Wind,False,0.0988,False,Wind
+C_-138_1020,Wind,0.04,0.07,0.89,Wind,False,0.1133,False,Wind
+C_-138_1025,Wind,0.044,0.117,0.839,Wind,False,0.163,True,I don't know
+C_-138_1036,Wind,0.038,0.067,0.896,Wind,False,0.0916,False,Wind
+C_-138_1047,Wind,0.025,0.062,0.913,Wind,False,0.1871,True,I don't know
+C_-138_1058,Wind,0.016,0.036,0.948,Wind,False,0.1982,True,I don't know
+C_-137_969,Solar,0.114,0.701,0.186,Solar,False,0.101,False,Solar
+C_-137_999,Wind,0.041,0.054,0.905,Wind,False,0.0697,False,Wind
+C_-137_1004,Wind,0.004,0.051,0.946,Wind,False,0.1886,True,I don't know
+C_-137_1021,Wind,0.01,0.049,0.941,Wind,False,0.1253,False,Wind
+C_-137_1024,Wind,0.044,0.049,0.907,Wind,False,0.1437,True,I don't know
+C_-137_1035,Wind,0.048,0.401,0.551,Wind,False,0.1151,False,Wind
+C_-137_1036,Wind,0.091,0.205,0.704,Wind,False,0.0632,False,Wind
+C_-137_1062,Wind,0.047,0.114,0.839,Wind,False,0.0591,False,Wind
+C_-136_935,Solar,0.154,0.732,0.114,Solar,False,0.081,False,Solar
+C_-136_940,Wind,0.298,0.117,0.585,Wind,False,0.115,False,Wind
+C_-136_941,Wind,0.129,0.196,0.674,Wind,False,0.1923,True,I don't know
+C_-136_945,Wind,0.137,0.631,0.232,Solar,False,0.1244,False,Solar
+C_-136_968,Solar,0.192,0.574,0.234,Solar,False,0.0938,False,Solar
+C_-136_969,Solar,0.18,0.622,0.197,Solar,False,0.0891,False,Solar
+C_-136_993,Wind,0.116,0.061,0.823,Wind,False,0.1228,False,Wind
+C_-136_996,Wind,0.104,0.077,0.819,Wind,False,0.1216,False,Wind
+C_-136_997,Wind,0.048,0.074,0.878,Wind,False,0.1006,False,Wind
+C_-136_1000,Wind,0.037,0.038,0.926,Wind,False,0.0767,False,Wind
+C_-136_1004,Wind,0.037,0.068,0.895,Wind,False,0.1122,False,Wind
+C_-136_1023,Wind,0.014,0.028,0.958,Wind,False,0.1566,True,I don't know
+C_-136_1033,Wind,0.047,0.26,0.693,Wind,False,0.0848,False,Wind
+C_-136_1038,Wind,0.022,0.052,0.926,Wind,False,0.0947,False,Wind
+C_-136_1057,Wind,0.142,0.156,0.702,Wind,False,0.1212,False,Wind
+C_-136_1080,Wind,0.109,0.132,0.759,Wind,False,0.1951,True,I don't know
+C_-135_941,Wind,0.233,0.182,0.585,Wind,False,0.1098,False,Wind
+C_-135_947,Solar,0.081,0.701,0.218,Solar,False,0.0527,False,Solar
+C_-135_968,Solar,0.388,0.415,0.197,Solar,True,0.0917,False,I don't know
+C_-135_969,Solar,0.081,0.656,0.263,Solar,False,0.0929,False,Solar
+C_-135_997,Wind,0.009,0.06,0.931,Wind,False,0.1274,False,Wind
+C_-135_998,Wind,0.004,0.05,0.946,Wind,False,0.0951,False,Wind
+C_-135_999,Wind,0.056,0.05,0.894,Wind,False,0.17,True,I don't know
+C_-135_1004,Wind,0.049,0.074,0.878,Wind,False,0.2331,True,I don't know
+C_-135_1023,Wind,0.055,0.11,0.835,Wind,False,0.1378,False,Wind
+C_-135_1037,Wind,0.021,0.055,0.924,Wind,False,0.073,False,Wind
+C_-135_1048,Wind,0.108,0.156,0.736,Wind,False,0.0599,False,Wind
+C_-134_944,Solar,0.062,0.803,0.136,Solar,False,0.0695,False,Solar
+C_-134_948,Solar,0.05,0.755,0.195,Solar,False,0.0672,False,Solar
+C_-134_968,Solar,0.056,0.791,0.153,Solar,False,0.0894,False,Solar
+C_-134_999,Wind,0.055,0.205,0.74,Wind,False,0.1874,True,I don't know
+C_-134_1005,Wind,0.082,0.256,0.663,Wind,False,0.1567,True,I don't know
+C_-134_1006,Wind,0.002,0.021,0.977,Wind,False,0.149,True,I don't know
+C_-134_1023,Wind,0.022,0.056,0.922,Wind,False,0.1173,False,Wind
+C_-134_1025,Wind,0.07,0.115,0.814,Wind,False,0.1433,True,I don't know
+C_-134_1028,Wind,0.037,0.081,0.882,Wind,False,0.1757,True,I don't know
+C_-134_1029,Wind,0.009,0.04,0.951,Wind,False,0.2015,True,I don't know
+C_-134_1030,Wind,0.012,0.095,0.893,Wind,False,0.2092,True,I don't know
+C_-134_1040,Wind,0.068,0.164,0.768,Wind,False,0.1119,False,Wind
+C_-134_1041,Wind,0.074,0.064,0.863,Wind,False,0.1302,False,Wind
+C_-134_1067,Wind,0.076,0.125,0.799,Wind,False,0.035,False,Wind
+C_-134_1068,Wind,0.064,0.085,0.851,Wind,False,0.1004,False,Wind
+C_-134_1074,Wind,0.059,0.103,0.837,Wind,False,0.2787,True,I don't know
+C_-134_1078,Wind,0.058,0.083,0.859,Wind,False,0.2179,True,I don't know
+C_-133_1006,Wind,0.002,0.139,0.859,Wind,False,0.1713,True,I don't know
+C_-133_1023,Wind,0.146,0.087,0.766,Wind,False,0.1291,False,Wind
+C_-133_1024,Wind,0.005,0.041,0.954,Wind,False,0.1082,False,Wind
+C_-133_1026,Wind,0.048,0.086,0.865,Wind,False,0.1741,True,I don't know
+C_-133_1031,Wind,0.024,0.032,0.944,Wind,False,0.1547,True,I don't know
+C_-133_1037,Wind,0.042,0.077,0.881,Wind,False,0.1945,True,I don't know
+C_-133_1039,Wind,0.012,0.038,0.95,Wind,False,0.0995,False,Wind
+C_-133_1041,Wind,0.011,0.026,0.963,Wind,False,0.1637,True,I don't know
+C_-133_1059,Wind,0.01,0.096,0.895,Wind,False,0.1678,True,I don't know
+C_-133_1062,Wind,0.035,0.066,0.898,Wind,False,0.0943,False,Wind
+C_-133_1066,Wind,0.063,0.088,0.849,Wind,False,0.0616,False,Wind
+C_-133_1070,Wind,0.063,0.083,0.854,Wind,False,0.1945,True,I don't know
+C_-133_1082,Wind,0.09,0.088,0.821,Wind,False,0.2332,True,I don't know
+C_-133_1083,Wind,0.074,0.097,0.829,Wind,False,0.2432,True,I don't know
+C_-132_1000,Wind,0.008,0.026,0.966,Wind,False,0.1754,True,I don't know
+C_-132_1007,Wind,0.013,0.025,0.962,Wind,False,0.1821,True,I don't know
+C_-132_1022,Wind,0.092,0.084,0.824,Wind,False,0.0691,False,Wind
+C_-132_1023,Wind,0.026,0.056,0.919,Wind,False,0.1023,False,Wind
+C_-132_1033,Wind,0.063,0.101,0.835,Wind,False,0.0891,False,Wind
+C_-132_1039,Wind,0.122,0.084,0.793,Wind,False,0.1225,False,Wind
+C_-132_1043,Wind,0.025,0.094,0.882,Wind,False,0.1885,True,I don't know
+C_-132_1060,Wind,0.011,0.049,0.94,Wind,False,0.2296,True,I don't know
+C_-132_1062,Wind,0.037,0.11,0.853,Wind,False,0.1009,False,Wind
+C_-132_1067,Wind,0.045,0.109,0.846,Wind,False,0.0963,False,Wind
+C_-132_1073,Wind,0.052,0.121,0.826,Wind,False,0.133,False,Wind
+C_-132_1074,Wind,0.06,0.128,0.812,Wind,False,0.1553,True,I don't know
+C_-132_1075,Wind,0.112,0.101,0.787,Wind,False,0.1172,False,Wind
+C_-132_1079,Wind,0.062,0.074,0.865,Wind,False,0.212,True,I don't know
+C_-132_1080,Wind,0.078,0.147,0.775,Wind,False,0.2236,True,I don't know
+C_-132_1083,Wind,0.026,0.066,0.907,Wind,False,0.3192,True,I don't know
+C_-131_957,Solar,0.01,0.939,0.051,Solar,False,0.1128,False,Solar
+C_-131_975,Solar,0.089,0.774,0.137,Solar,False,0.0734,False,Solar
+C_-131_976,Solar,0.278,0.53,0.192,Solar,False,0.0575,False,Solar
+C_-131_1002,Wind,0.013,0.127,0.86,Wind,False,0.1659,True,I don't know
+C_-131_1003,Wind,0.007,0.035,0.958,Wind,False,0.093,False,Wind
+C_-131_1007,Wind,0.006,0.041,0.953,Wind,False,0.1421,True,I don't know
+C_-131_1022,Wind,0.06,0.054,0.886,Wind,False,0.0647,False,Wind
+C_-131_1032,Wind,0.03,0.119,0.851,Wind,False,0.1838,True,I don't know
+C_-131_1033,Wind,0.016,0.05,0.934,Wind,False,0.1192,False,Wind
+C_-131_1034,Wind,0.017,0.063,0.92,Wind,False,0.2323,True,I don't know
+C_-131_1079,Wind,0.035,0.088,0.877,Wind,False,0.2215,True,I don't know
+C_-130_1003,Wind,0.224,0.119,0.658,Wind,False,0.1893,True,I don't know
+C_-130_1004,Wind,0.035,0.05,0.915,Wind,False,0.0934,False,Wind
+C_-130_1022,Wind,0.084,0.073,0.843,Wind,False,0.1164,False,Wind
+C_-130_1023,Wind,0.137,0.115,0.749,Wind,False,0.1251,False,Wind
+C_-130_1025,Wind,0.15,0.321,0.528,Wind,False,0.0683,False,Wind
+C_-130_1026,Wind,0.032,0.041,0.926,Wind,False,0.1062,False,Wind
+C_-130_1036,Wind,0.029,0.059,0.912,Wind,False,0.1126,False,Wind
+C_-130_1073,Wind,0.075,0.085,0.839,Wind,False,0.1592,True,I don't know
+C_-130_1077,Wind,0.149,0.236,0.615,Wind,False,0.1452,True,I don't know
+C_-130_1078,Wind,0.057,0.092,0.852,Wind,False,0.2258,True,I don't know
+C_-130_1079,Wind,0.065,0.103,0.832,Wind,False,0.1754,True,I don't know
+C_-130_1080,Wind,0.057,0.079,0.865,Wind,False,0.2475,True,I don't know
+C_-130_1081,Wind,0.052,0.069,0.879,Wind,False,0.2611,True,I don't know
+C_-129_946,Wind,0.453,0.361,0.186,Hybrid,True,0.1139,False,I don't know
+C_-129_1023,Wind,0.336,0.202,0.462,Wind,True,0.1163,False,I don't know
+C_-129_1034,Wind,0.041,0.173,0.786,Wind,False,0.1516,True,I don't know
+C_-129_1044,Wind,0.015,0.063,0.922,Wind,False,0.1641,True,I don't know
+C_-129_1054,Wind,0.011,0.031,0.958,Wind,False,0.1052,False,Wind
+C_-129_1077,Wind,0.057,0.075,0.868,Wind,False,0.1632,True,I don't know
+C_-129_1078,Wind,0.065,0.106,0.829,Wind,False,0.2216,True,I don't know
+C_-129_1079,Wind,0.053,0.084,0.863,Wind,False,0.2713,True,I don't know
+C_-129_1080,Wind,0.051,0.123,0.826,Wind,False,0.2181,True,I don't know
+C_-129_1081,Wind,0.088,0.131,0.781,Wind,False,0.1506,True,I don't know
+C_-129_1082,Wind,0.084,0.117,0.799,Wind,False,0.3087,True,I don't know
+C_-129_1083,Wind,0.032,0.088,0.88,Wind,False,0.3015,True,I don't know
+C_-128_941,Wind,0.253,0.455,0.292,Solar,True,0.1033,False,I don't know
+C_-128_1025,Wind,0.145,0.199,0.656,Wind,False,0.0905,False,Wind
+C_-128_1035,Wind,0.119,0.111,0.769,Wind,False,0.0976,False,Wind
+C_-128_1036,Wind,0.061,0.086,0.853,Wind,False,0.0769,False,Wind
+C_-128_1053,Wind,0.016,0.035,0.948,Wind,False,0.1735,True,I don't know
+C_-128_1077,Wind,0.014,0.064,0.922,Wind,False,0.188,True,I don't know
+C_-128_1078,Wind,0.025,0.058,0.916,Wind,False,0.2643,True,I don't know
+C_-128_1079,Wind,0.067,0.098,0.835,Wind,False,0.2356,True,I don't know
+C_-128_1080,Wind,0.106,0.152,0.742,Wind,False,0.2788,True,I don't know
+C_-128_1081,Wind,0.082,0.11,0.808,Wind,False,0.1852,True,I don't know
+C_-128_1082,Wind,0.071,0.115,0.814,Wind,False,0.1003,False,Wind
+C_-128_1083,Wind,0.146,0.105,0.75,Wind,False,0.1609,True,I don't know
+C_-127_940,Solar,0.223,0.562,0.215,Solar,False,0.1025,False,Solar
+C_-127_942,Wind,0.275,0.487,0.238,Solar,True,0.0772,False,I don't know
+C_-127_946,Wind,0.192,0.324,0.485,Wind,True,0.0848,False,I don't know
+C_-127_1021,Wind,0.139,0.131,0.73,Wind,False,0.1269,False,Wind
+C_-127_1035,Wind,0.353,0.23,0.417,Wind,True,0.0923,False,I don't know
+C_-127_1036,Wind,0.047,0.055,0.899,Wind,False,0.1125,False,Wind
+C_-127_1077,Wind,0.017,0.062,0.921,Wind,False,0.1884,True,I don't know
+C_-127_1078,Wind,0.051,0.04,0.909,Wind,False,0.2884,True,I don't know
+C_-127_1079,Wind,0.057,0.088,0.855,Wind,False,0.2696,True,I don't know
+C_-126_946,Wind,0.189,0.446,0.365,Solar,True,0.1022,False,I don't know
+C_-126_947,Wind,0.129,0.484,0.388,Solar,True,0.1897,True,I don't know
+C_-126_1014,Wind,0.034,0.042,0.924,Wind,False,0.118,False,Wind
+C_-126_1018,Wind,0.028,0.076,0.896,Wind,False,0.0908,False,Wind
+C_-126_1025,Wind,0.12,0.116,0.764,Wind,False,0.0738,False,Wind
+C_-126_1064,Wind,0.066,0.082,0.852,Wind,False,0.1002,False,Wind
+C_-126_1076,Wind,0.04,0.101,0.859,Wind,False,0.1407,False,Wind
+C_-126_1077,Wind,0.059,0.037,0.904,Wind,False,0.2589,True,I don't know
+C_-126_1078,Wind,0.043,0.109,0.848,Wind,False,0.1589,True,I don't know
+C_-126_1079,Wind,0.03,0.036,0.933,Wind,False,0.3412,True,I don't know
+C_-126_1080,Wind,0.111,0.125,0.764,Wind,False,0.2353,True,I don't know
+C_-126_1082,Wind,0.113,0.112,0.775,Wind,False,0.1076,False,Wind
+C_-125_940,Solar,0.163,0.739,0.098,Solar,False,0.0622,False,Solar
+C_-125_946,Wind,0.166,0.441,0.393,Solar,True,0.0922,False,I don't know
+C_-125_947,Wind,0.199,0.491,0.31,Solar,True,0.1383,False,I don't know
+C_-125_965,Solar,0.024,0.947,0.028,Solar,False,0.0891,False,Solar
+C_-125_1011,Wind,0.061,0.039,0.9,Wind,False,0.0879,False,Wind
+C_-125_1014,Wind,0.051,0.059,0.89,Wind,False,0.094,False,Wind
+C_-125_1020,Wind,0.032,0.084,0.884,Wind,False,0.129,False,Wind
+C_-125_1021,Wind,0.064,0.11,0.826,Wind,False,0.1179,False,Wind
+C_-125_1024,Wind,0.15,0.072,0.778,Wind,False,0.124,False,Wind
+C_-125_1053,Wind,0.156,0.319,0.525,Wind,False,0.1222,False,Wind
+C_-125_1077,Wind,0.074,0.108,0.818,Wind,False,0.1697,True,I don't know
+C_-125_1079,Wind,0.035,0.134,0.831,Wind,False,0.2226,True,I don't know
+C_-125_1080,Wind,0.08,0.12,0.8,Wind,False,0.2041,True,I don't know
+C_-125_1081,Wind,0.092,0.092,0.816,Wind,False,0.1336,False,Wind
+C_-124_961,Solar,0.015,0.961,0.024,Solar,False,0.062,False,Solar
+C_-124_972,Solar,0.023,0.904,0.073,Solar,False,0.0827,False,Solar
+C_-124_1011,Wind,0.098,0.267,0.635,Wind,False,0.1874,True,I don't know
+C_-124_1053,Wind,0.038,0.142,0.82,Wind,False,0.1082,False,Wind
+C_-124_1076,Wind,0.083,0.128,0.79,Wind,False,0.1843,True,I don't know
+C_-124_1078,Wind,0.024,0.068,0.908,Wind,False,0.2754,True,I don't know
+C_-124_1080,Wind,0.081,0.096,0.823,Wind,False,0.1108,False,Wind
+C_-123_940,Solar,0.043,0.821,0.136,Solar,False,0.0851,False,Solar
+C_-123_947,Wind,0.161,0.317,0.523,Wind,False,0.125,False,Wind
+C_-123_951,Solar,0.183,0.632,0.185,Solar,False,0.0562,False,Solar
+C_-123_974,Solar,0.01,0.97,0.02,Solar,False,0.134,False,Solar
+C_-123_989,Solar,0.072,0.792,0.136,Solar,False,0.0707,False,Solar
+C_-123_1006,Wind,0.09,0.21,0.7,Wind,False,0.145,True,I don't know
+C_-123_1009,Wind,0.213,0.077,0.71,Wind,False,0.0772,False,Wind
+C_-123_1011,Wind,0.031,0.036,0.933,Wind,False,0.0837,False,Wind
+C_-123_1076,Wind,0.047,0.103,0.85,Wind,False,0.2151,True,I don't know
+C_-123_1081,Wind,0.125,0.49,0.385,Solar,True,0.3353,True,I don't know
+C_-122_947,Solar,0.078,0.785,0.137,Solar,False,0.0642,False,Solar
+C_-122_962,Solar,0.035,0.876,0.09,Solar,False,0.0681,False,Solar
+C_-122_972,Solar,0.02,0.94,0.04,Solar,False,0.0725,False,Solar
+C_-122_973,Solar,0.004,0.987,0.009,Solar,False,0.0628,False,Solar
+C_-122_1006,Wind,0.077,0.239,0.685,Wind,False,0.1226,False,Wind
+C_-122_1008,Wind,0.065,0.071,0.864,Wind,False,0.0906,False,Wind
+C_-122_1009,Wind,0.069,0.046,0.885,Wind,False,0.0957,False,Wind
+C_-122_1010,Wind,0.177,0.078,0.744,Wind,False,0.0899,False,Wind
+C_-122_1069,Wind,0.014,0.039,0.946,Wind,False,0.1742,True,I don't know
+C_-121_968,Solar,0.062,0.803,0.135,Solar,False,0.0868,False,Solar
+C_-121_973,Solar,0.001,0.994,0.005,Solar,False,0.0502,False,Solar
+C_-121_975,Solar,0.0,0.99,0.01,Solar,False,0.07,False,Solar
+C_-121_1008,Wind,0.085,0.073,0.842,Wind,False,0.0864,False,Wind
+C_-121_1072,Wind,0.024,0.055,0.921,Wind,False,0.1164,False,Wind
+C_-121_1074,Wind,0.06,0.103,0.837,Wind,False,0.1588,True,I don't know
+C_-120_974,Solar,0.0,0.996,0.004,Solar,False,0.0606,False,Solar
+C_-120_975,Solar,0.0,0.982,0.018,Solar,False,0.0628,False,Solar
+C_-120_984,Solar,0.21,0.546,0.245,Solar,False,0.0642,False,Solar
+C_-120_985,Solar,0.26,0.508,0.232,Solar,False,0.0701,False,Solar
+C_-120_1070,Wind,0.032,0.076,0.891,Wind,False,0.0998,False,Wind
+C_-120_1071,Wind,0.016,0.057,0.926,Wind,False,0.1661,True,I don't know
+C_-119_948,Solar,0.032,0.904,0.064,Solar,False,0.0988,False,Solar
+C_-119_972,Solar,0.061,0.829,0.11,Solar,False,0.13,False,Solar
+C_-119_1069,Wind,0.008,0.16,0.831,Wind,False,0.1743,True,I don't know
+C_-118_979,Solar,0.0,0.933,0.067,Solar,False,0.0736,False,Solar
+C_-118_1034,Wind,0.158,0.091,0.751,Wind,False,0.1368,False,Wind
+C_-117_975,Solar,0.004,0.98,0.016,Solar,False,0.0694,False,Solar
+C_-117_999,Solar,0.077,0.818,0.105,Solar,False,0.0618,False,Solar
+C_-117_1009,Wind,0.208,0.113,0.679,Wind,False,0.1223,False,Wind
+C_-117_1034,Wind,0.019,0.04,0.941,Wind,False,0.072,False,Wind
+C_-117_1046,Wind,0.064,0.075,0.861,Wind,False,0.0964,False,Wind
+C_-117_1047,Wind,0.066,0.064,0.87,Wind,False,0.1837,True,I don't know
+C_-117_1048,Wind,0.074,0.085,0.841,Wind,False,0.1644,True,I don't know
+C_-117_1075,Wind,0.041,0.063,0.895,Wind,False,0.1211,False,Wind
+C_-116_941,Solar,0.039,0.892,0.069,Solar,False,0.0464,False,Solar
+C_-116_975,Solar,0.0,0.987,0.013,Solar,False,0.0897,False,Solar
+C_-116_982,Solar,0.195,0.606,0.199,Solar,False,0.0941,False,Solar
+C_-116_1046,Wind,0.052,0.059,0.889,Wind,False,0.2221,True,I don't know
+C_-116_1047,Wind,0.049,0.056,0.894,Wind,False,0.1665,True,I don't know
+C_-116_1071,Wind,0.043,0.093,0.864,Wind,False,0.299,True,I don't know
+C_-116_1075,Wind,0.012,0.053,0.935,Wind,False,0.1727,True,I don't know
+C_-116_1076,Wind,0.029,0.059,0.912,Wind,False,0.1808,True,I don't know
+C_-116_1077,Wind,0.067,0.084,0.848,Wind,False,0.2491,True,I don't know
+C_-115_963,Solar,0.003,0.993,0.003,Solar,False,0.0631,False,Solar
+C_-115_964,Solar,0.0,0.975,0.025,Solar,False,0.0794,False,Solar
+C_-115_975,Solar,0.003,0.991,0.005,Solar,False,0.0687,False,Solar
+C_-115_1047,Wind,0.123,0.137,0.74,Wind,False,0.2106,True,I don't know
+C_-115_1075,Wind,0.025,0.105,0.87,Wind,False,0.1048,False,Wind
+C_-114_976,Solar,0.0,0.994,0.006,Solar,False,0.1122,False,Solar
+C_-114_1045,Wind,0.199,0.258,0.543,Wind,False,0.1527,True,I don't know
+C_-114_1058,Solar,0.013,0.976,0.011,Solar,False,0.0961,False,Solar
+C_-114_1072,Wind,0.008,0.027,0.965,Wind,False,0.0938,False,Wind
+C_-114_1077,Wind,0.107,0.083,0.81,Wind,False,0.0843,False,Wind
+C_-113_942,Solar,0.045,0.806,0.149,Solar,False,0.1068,False,Solar
+C_-112_1073,Wind,0.027,0.026,0.947,Wind,False,0.1173,False,Wind
+C_-112_1075,Wind,0.05,0.092,0.858,Wind,False,0.1459,True,I don't know
+C_-111_940,Solar,0.0,0.981,0.019,Solar,False,0.068,False,Solar
+C_-111_943,Solar,0.034,0.881,0.085,Solar,False,0.0677,False,Solar
+C_-111_965,Solar,0.137,0.645,0.218,Solar,False,0.0837,False,Solar
+C_-111_978,Solar,0.004,0.987,0.009,Solar,False,0.0796,False,Solar
+C_-111_990,Solar,0.081,0.595,0.324,Solar,False,0.1225,False,Solar
+C_-111_1001,Solar,0.003,0.995,0.002,Solar,False,0.0527,False,Solar
+C_-111_1015,Solar,0.004,0.978,0.018,Solar,False,0.0554,False,Solar
+C_-111_1062,Solar,0.04,0.791,0.169,Solar,False,0.3173,True,I don't know
+C_-111_1077,Wind,0.04,0.08,0.88,Wind,False,0.1509,True,I don't know
+C_-110_964,Solar,0.157,0.602,0.24,Solar,False,0.107,False,Solar
+C_-110_976,Solar,0.012,0.97,0.018,Solar,False,0.1046,False,Solar
+C_-110_991,Solar,0.132,0.692,0.177,Solar,False,0.0385,False,Solar
+C_-110_1024,Solar,0.124,0.499,0.377,Solar,True,0.0985,False,I don't know
+C_-110_1059,Solar,0.007,0.984,0.009,Solar,False,0.088,False,Solar
+C_-109_926,Solar,0.105,0.752,0.143,Solar,False,0.0884,False,Solar
+C_-109_927,Solar,0.175,0.712,0.112,Solar,False,0.105,False,Solar
+C_-109_943,Solar,0.0,0.996,0.004,Solar,False,0.0744,False,Solar
+C_-109_974,Solar,0.023,0.901,0.076,Solar,False,0.1012,False,Solar
+C_-109_1022,Solar,0.259,0.378,0.363,Solar,True,0.0835,False,I don't know
+C_-109_1024,Solar,0.208,0.373,0.42,Wind,True,0.0874,False,I don't know
+C_-109_1055,Wind,0.003,0.029,0.968,Wind,False,0.2477,True,I don't know
+C_-108_926,Wind,0.09,0.699,0.211,Solar,False,0.1352,False,Solar
+C_-108_943,Solar,0.003,0.99,0.007,Solar,False,0.0644,False,Solar
+C_-108_944,Solar,0.0,0.995,0.005,Solar,False,0.0935,False,Solar
+C_-108_945,Solar,0.037,0.888,0.074,Solar,False,0.0692,False,Solar
+C_-108_975,Solar,0.001,0.996,0.004,Solar,False,0.0667,False,Solar
+C_-108_976,Solar,0.024,0.921,0.055,Solar,False,0.0836,False,Solar
+C_-108_977,Solar,0.028,0.935,0.037,Solar,False,0.0881,False,Solar
+C_-108_989,Solar,0.069,0.822,0.109,Solar,False,0.0669,False,Solar
+C_-108_1031,Solar,0.167,0.47,0.363,Solar,True,0.0971,False,I don't know
+C_-108_1055,Wind,0.073,0.063,0.865,Wind,False,0.2256,True,I don't know
+C_-108_1058,Wind,0.043,0.064,0.893,Wind,False,0.1634,True,I don't know
+C_-108_1075,Wind,0.019,0.13,0.851,Wind,False,0.1131,False,Wind
+C_-107_937,Solar,0.059,0.916,0.025,Solar,False,0.1049,False,Solar
+C_-107_944,Solar,0.003,0.995,0.002,Solar,False,0.0815,False,Solar
+C_-107_967,Solar,0.132,0.653,0.215,Solar,False,0.0779,False,Solar
+C_-107_969,Solar,0.044,0.896,0.061,Solar,False,0.0681,False,Solar
+C_-107_1001,Solar,0.024,0.856,0.12,Solar,False,0.0779,False,Solar
+C_-107_1058,Wind,0.085,0.055,0.86,Wind,False,0.1642,True,I don't know
+C_-107_1076,Wind,0.042,0.108,0.849,Wind,False,0.132,False,Wind
+C_-106_920,Wind,0.163,0.517,0.319,Solar,False,0.1355,False,Solar
+C_-106_922,Wind,0.057,0.625,0.318,Solar,False,0.1377,False,Solar
+C_-106_923,Wind,0.114,0.523,0.363,Solar,False,0.1193,False,Solar
+C_-106_924,Wind,0.308,0.525,0.167,Solar,False,0.1044,False,Solar
+C_-106_937,Solar,0.007,0.948,0.045,Solar,False,0.1048,False,Solar
+C_-106_944,Solar,0.0,0.989,0.011,Solar,False,0.0993,False,Solar
+C_-106_967,Solar,0.088,0.845,0.067,Solar,False,0.0746,False,Solar
+C_-106_1031,Solar,0.294,0.332,0.373,Wind,True,0.0878,False,I don't know
+C_-106_1057,Wind,0.184,0.255,0.561,Wind,False,0.1514,True,I don't know
+C_-106_1058,Wind,0.028,0.098,0.874,Wind,False,0.1879,True,I don't know
+C_-105_917,Wind,0.214,0.435,0.35,Solar,True,0.0769,False,I don't know
+C_-105_922,Wind,0.121,0.529,0.351,Solar,False,0.1089,False,Solar
+C_-105_930,Solar,0.019,0.903,0.077,Solar,False,0.094,False,Solar
+C_-105_933,Solar,0.0,0.991,0.009,Solar,False,0.1013,False,Solar
+C_-105_934,Solar,0.0,0.998,0.002,Solar,False,0.1072,False,Solar
+C_-105_954,Solar,0.062,0.74,0.198,Solar,False,0.1386,False,Solar
+C_-105_987,Solar,0.148,0.659,0.193,Solar,False,0.0998,False,Solar
+C_-105_1002,Wind,0.069,0.059,0.872,Wind,False,0.1792,True,I don't know
+C_-105_1017,Solar,0.025,0.812,0.164,Solar,False,0.131,False,Solar
+C_-105_1058,Wind,0.045,0.047,0.909,Wind,False,0.1577,True,I don't know
+C_-105_1059,Wind,0.068,0.125,0.808,Wind,False,0.1951,True,I don't know
+C_-105_1060,Wind,0.099,0.208,0.693,Wind,False,0.1285,False,Wind
+C_-105_1074,Wind,0.045,0.107,0.849,Wind,False,0.3301,True,I don't know
+C_-105_1076,Wind,0.059,0.116,0.825,Wind,False,0.0585,False,Wind
+C_-105_1078,Wind,0.004,0.021,0.975,Wind,False,0.2127,True,I don't know
+C_-105_1079,Wind,0.026,0.089,0.885,Wind,False,0.1802,True,I don't know
+C_-104_916,Hybrid,0.147,0.409,0.444,Wind,True,0.1275,False,I don't know
+C_-104_918,Wind,0.156,0.648,0.196,Solar,False,0.1157,False,Solar
+C_-104_922,Wind,0.097,0.283,0.62,Wind,False,0.1593,True,I don't know
+C_-104_924,Wind,0.225,0.507,0.267,Solar,False,0.167,True,I don't know
+C_-104_935,Solar,0.013,0.985,0.001,Solar,False,0.1396,False,Solar
+C_-104_1017,Solar,0.065,0.778,0.156,Solar,False,0.1363,False,Solar
+C_-104_1033,Solar,0.084,0.281,0.635,Wind,False,0.0976,False,Wind
+C_-104_1035,Solar,0.192,0.322,0.486,Wind,True,0.1035,False,I don't know
+C_-104_1060,Wind,0.295,0.189,0.516,Wind,False,0.126,False,Wind
+C_-104_1061,Wind,0.079,0.329,0.592,Wind,False,0.084,False,Wind
+C_-103_918,Wind,0.165,0.493,0.342,Solar,True,0.0966,False,I don't know
+C_-103_922,Wind,0.077,0.456,0.467,Wind,True,0.1483,True,I don't know
+C_-103_939,Solar,0.0,0.989,0.011,Solar,False,0.0921,False,Solar
+C_-103_962,Solar,0.084,0.611,0.304,Solar,False,0.0611,False,Solar
+C_-103_1018,Solar,0.082,0.69,0.228,Solar,False,0.1561,True,I don't know
+C_-103_1037,Solar,0.184,0.292,0.524,Wind,False,0.1086,False,Wind
+C_-103_1041,Wind,0.027,0.091,0.883,Wind,False,0.131,False,Wind
+C_-103_1055,Solar,0.011,0.97,0.02,Solar,False,0.065,False,Solar
+C_-103_1060,Wind,0.045,0.061,0.894,Wind,False,0.1387,False,Wind
+C_-103_1062,Wind,0.135,0.148,0.717,Wind,False,0.2149,True,I don't know
+C_-102_921,Wind,0.153,0.463,0.384,Solar,True,0.1014,False,I don't know
+C_-102_922,Wind,0.052,0.628,0.32,Solar,False,0.1184,False,Solar
+C_-102_923,Wind,0.276,0.452,0.272,Solar,True,0.1233,False,I don't know
+C_-102_924,Wind,0.046,0.643,0.311,Solar,False,0.0933,False,Solar
+C_-102_936,Solar,0.0,0.999,0.001,Solar,False,0.0707,False,Solar
+C_-102_939,Solar,0.0,0.988,0.012,Solar,False,0.0912,False,Solar
+C_-102_978,Solar,0.0,0.992,0.008,Solar,False,0.044,False,Solar
+C_-102_989,Solar,0.029,0.93,0.041,Solar,False,0.0482,False,Solar
+C_-102_1026,Solar,0.148,0.497,0.355,Solar,True,0.099,False,I don't know
+C_-102_1041,Wind,0.185,0.095,0.72,Wind,False,0.1247,False,Wind
+C_-101_914,Wind,0.115,0.354,0.532,Wind,False,0.1888,True,I don't know
+C_-101_926,Solar,0.012,0.781,0.207,Solar,False,0.0733,False,Solar
+C_-101_939,Solar,0.0,0.992,0.008,Solar,False,0.0979,False,Solar
+C_-101_942,Solar,0.001,0.992,0.007,Solar,False,0.0958,False,Solar
+C_-101_943,Solar,0.0,0.991,0.009,Solar,False,0.0977,False,Solar
+C_-101_944,Solar,0.0,0.996,0.004,Solar,False,0.12,False,Solar
+C_-101_977,Solar,0.0,0.992,0.008,Solar,False,0.0739,False,Solar
+C_-101_978,Solar,0.0,0.994,0.006,Solar,False,0.067,False,Solar
+C_-101_1007,Solar,0.001,0.993,0.006,Solar,False,0.0974,False,Solar
+C_-101_1039,Wind,0.125,0.165,0.71,Wind,False,0.0778,False,Wind
+C_-101_1062,Wind,0.029,0.159,0.811,Wind,False,0.1442,True,I don't know
+C_-100_914,Wind,0.179,0.433,0.388,Solar,True,0.1254,False,I don't know
+C_-100_915,Wind,0.073,0.776,0.15,Solar,False,0.1167,False,Solar
+C_-100_920,Wind,0.06,0.356,0.583,Wind,False,0.1532,True,I don't know
+C_-100_1000,Solar,0.003,0.981,0.016,Solar,False,0.0753,False,Solar
+C_-100_1016,Solar,0.261,0.336,0.402,Wind,True,0.1386,False,I don't know
+C_-100_1029,Wind,0.311,0.277,0.412,Wind,True,0.0954,False,I don't know
+C_-100_1038,Wind,0.154,0.291,0.555,Wind,False,0.1193,False,Wind
+C_-100_1043,Wind,0.087,0.21,0.704,Wind,False,0.1932,True,I don't know
+C_-100_1047,Solar,0.003,0.981,0.016,Solar,False,0.0853,False,Solar
+C_-100_1048,Wind,0.032,0.178,0.79,Wind,False,0.1843,True,I don't know
+C_-99_978,Solar,0.001,0.95,0.049,Solar,False,0.0711,False,Solar
+C_-99_984,Solar,0.008,0.964,0.028,Solar,False,0.0888,False,Solar
+C_-99_988,Solar,0.1,0.793,0.106,Solar,False,0.0776,False,Solar
+C_-99_1017,Wind,0.144,0.078,0.778,Wind,False,0.1316,False,Wind
+C_-99_1024,Solar,0.092,0.657,0.252,Solar,False,0.1493,True,I don't know
+C_-99_1027,Wind,0.183,0.474,0.343,Solar,True,0.1012,False,I don't know
+C_-99_1028,Wind,0.396,0.305,0.299,Hybrid,True,0.058,False,I don't know
+C_-99_1029,Wind,0.124,0.389,0.487,Wind,True,0.1841,True,I don't know
+C_-99_1034,Solar,0.161,0.45,0.388,Solar,True,0.1206,False,I don't know
+C_-99_1038,Wind,0.049,0.391,0.56,Wind,False,0.1341,False,Wind
+C_-99_1048,Wind,0.133,0.389,0.478,Wind,True,0.1247,False,I don't know
+C_-99_1052,Solar,0.003,0.976,0.021,Solar,False,0.0612,False,Solar
+C_-99_1056,Solar,0.004,0.977,0.019,Solar,False,0.0821,False,Solar
+C_-98_912,Wind,0.099,0.081,0.82,Wind,False,0.2171,True,I don't know
+C_-98_914,Wind,0.126,0.471,0.403,Solar,True,0.1618,True,I don't know
+C_-98_930,Solar,0.0,0.993,0.006,Solar,False,0.0728,False,Solar
+C_-98_936,Solar,0.003,0.963,0.034,Solar,False,0.0645,False,Solar
+C_-98_945,Solar,0.023,0.953,0.025,Solar,False,0.0662,False,Solar
+C_-98_962,Solar,0.087,0.716,0.197,Solar,False,0.095,False,Solar
+C_-98_977,Solar,0.045,0.899,0.057,Solar,False,0.0813,False,Solar
+C_-98_1001,Solar,0.0,0.997,0.003,Solar,False,0.0719,False,Solar
+C_-98_1017,Wind,0.094,0.037,0.869,Wind,False,0.1221,False,Wind
+C_-98_1025,Solar,0.118,0.664,0.219,Solar,False,0.0838,False,Solar
+C_-98_1057,Solar,0.012,0.945,0.043,Solar,False,0.1234,False,Solar
+C_-97_912,Wind,0.07,0.105,0.825,Wind,False,0.0799,False,Wind
+C_-97_932,Solar,0.007,0.967,0.027,Solar,False,0.145,True,I don't know
+C_-97_935,Solar,0.003,0.988,0.009,Solar,False,0.1082,False,Solar
+C_-97_936,Solar,0.001,0.993,0.006,Solar,False,0.1017,False,Solar
+C_-97_963,Solar,0.099,0.695,0.206,Solar,False,0.0698,False,Solar
+C_-97_992,Solar,0.007,0.921,0.073,Solar,False,0.0796,False,Solar
+C_-97_998,Solar,0.054,0.886,0.06,Solar,False,0.0962,False,Solar
+C_-97_999,Solar,0.026,0.889,0.084,Solar,False,0.0842,False,Solar
+C_-97_1012,Wind,0.024,0.079,0.897,Wind,False,0.27,True,I don't know
+C_-97_1021,Solar,0.112,0.564,0.325,Solar,False,0.113,False,Solar
+C_-97_1027,Solar,0.08,0.724,0.196,Solar,False,0.0746,False,Solar
+C_-97_1034,Solar,0.072,0.856,0.073,Solar,False,0.1191,False,Solar
+C_-97_1036,Solar,0.088,0.752,0.16,Solar,False,0.0637,False,Solar
+C_-97_1058,Solar,0.017,0.931,0.053,Solar,False,0.1839,True,I don't know
+C_-96_912,Wind,0.057,0.107,0.837,Wind,False,0.12,False,Wind
+C_-96_916,Wind,0.259,0.082,0.659,Wind,False,0.0576,False,Wind
+C_-96_936,Solar,0.0,0.994,0.006,Solar,False,0.0988,False,Solar
+C_-96_981,Solar,0.0,0.983,0.017,Solar,False,0.0834,False,Solar
+C_-96_983,Solar,0.0,0.994,0.006,Solar,False,0.0759,False,Solar
+C_-96_998,Solar,0.044,0.824,0.132,Solar,False,0.0623,False,Solar
+C_-96_1022,Solar,0.047,0.746,0.208,Solar,False,0.1342,False,Solar
+C_-96_1036,Solar,0.029,0.945,0.026,Solar,False,0.0855,False,Solar
+C_-96_1047,Solar,0.04,0.884,0.077,Solar,False,0.0369,False,Solar
+C_-95_916,Wind,0.111,0.176,0.713,Wind,False,0.0985,False,Wind
+C_-95_937,Solar,0.0,0.994,0.006,Solar,False,0.1273,False,Solar
+C_-95_973,Solar,0.16,0.686,0.154,Solar,False,0.0674,False,Solar
+C_-95_980,Solar,0.016,0.913,0.071,Solar,False,0.1021,False,Solar
+C_-95_1002,Solar,0.0,0.995,0.005,Solar,False,0.0678,False,Solar
+C_-95_1034,Solar,0.014,0.975,0.011,Solar,False,0.0616,False,Solar
+C_-95_1035,Solar,0.0,0.978,0.022,Solar,False,0.1507,True,I don't know
+C_-95_1045,Solar,0.067,0.872,0.06,Solar,False,0.0717,False,Solar
+C_-95_1056,Solar,0.015,0.956,0.029,Solar,False,0.1021,False,Solar
+C_-94_941,Solar,0.0,0.95,0.05,Solar,False,0.1016,False,Solar
+C_-94_1000,Solar,0.045,0.857,0.099,Solar,False,0.0778,False,Solar
+C_-94_1002,Solar,0.004,0.993,0.003,Solar,False,0.0889,False,Solar
+C_-94_1025,Solar,0.041,0.787,0.172,Solar,False,0.1485,True,I don't know
+C_-94_1034,Wind,0.108,0.4,0.492,Wind,True,0.0875,False,I don't know
+C_-94_1053,Solar,0.003,0.983,0.014,Solar,False,0.0957,False,Solar
+C_-94_1061,Solar,0.015,0.964,0.021,Solar,False,0.1502,True,I don't know
+C_-93_1002,Solar,0.0,0.994,0.006,Solar,False,0.0745,False,Solar
+C_-93_1003,Solar,0.0,0.995,0.005,Solar,False,0.064,False,Solar
+C_-93_1022,Solar,0.016,0.893,0.091,Solar,False,0.1155,False,Solar
+C_-93_1025,Solar,0.115,0.69,0.195,Solar,False,0.1572,True,I don't know
+C_-92_920,Wind,0.089,0.317,0.594,Wind,False,0.1589,True,I don't know
+C_-92_946,Solar,0.019,0.955,0.026,Solar,False,0.0973,False,Solar
+C_-92_984,Solar,0.004,0.988,0.008,Solar,False,0.0987,False,Solar
+C_-92_987,Solar,0.006,0.935,0.059,Solar,False,0.0909,False,Solar
+C_-92_1003,Solar,0.004,0.988,0.008,Solar,False,0.0484,False,Solar
+C_-92_1021,Hybrid,0.162,0.662,0.176,Solar,False,0.1563,True,I don't know
+C_-92_1025,Solar,0.098,0.719,0.183,Solar,False,0.1566,True,I don't know
+C_-92_1043,Solar,0.147,0.702,0.151,Solar,False,0.1372,False,Solar
+C_-91_948,Solar,0.01,0.973,0.017,Solar,False,0.0802,False,Solar
+C_-91_951,Solar,0.0,0.997,0.003,Solar,False,0.0426,False,Solar
+C_-91_963,Solar,0.023,0.923,0.054,Solar,False,0.1222,False,Solar
+C_-91_982,Solar,0.009,0.982,0.01,Solar,False,0.0722,False,Solar
+C_-91_984,Solar,0.01,0.977,0.013,Solar,False,0.1146,False,Solar
+C_-91_999,Solar,0.088,0.786,0.126,Solar,False,0.0766,False,Solar
+C_-91_1056,Solar,0.007,0.971,0.022,Solar,False,0.0831,False,Solar
+C_-90_963,Solar,0.019,0.934,0.047,Solar,False,0.1243,False,Solar
+C_-90_985,Solar,0.004,0.989,0.007,Solar,False,0.0853,False,Solar
+C_-90_1002,Solar,0.025,0.923,0.052,Solar,False,0.0871,False,Solar
+C_-90_1035,Solar,0.005,0.983,0.012,Solar,False,0.1664,True,I don't know
+C_-90_1056,Solar,0.009,0.962,0.03,Solar,False,0.1187,False,Solar
+C_-89_936,Wind,0.124,0.053,0.823,Wind,False,0.204,True,I don't know
+C_-89_937,Wind,0.19,0.18,0.63,Wind,False,0.1671,True,I don't know
+C_-89_938,Solar,0.432,0.393,0.175,Hybrid,True,0.1098,False,I don't know
+C_-89_945,Solar,0.015,0.956,0.029,Solar,False,0.0801,False,Solar
+C_-89_946,Solar,0.0,0.983,0.017,Solar,False,0.1161,False,Solar
+C_-89_947,Solar,0.0,0.986,0.014,Solar,False,0.101,False,Solar
+C_-89_948,Solar,0.003,0.994,0.003,Solar,False,0.0839,False,Solar
+C_-89_980,Solar,0.007,0.976,0.018,Solar,False,0.1051,False,Solar
+C_-89_986,Solar,0.001,0.989,0.01,Solar,False,0.0725,False,Solar
+C_-89_1040,Solar,0.121,0.709,0.17,Solar,False,0.1033,False,Solar
+C_-88_931,Wind,0.007,0.054,0.939,Wind,False,0.2007,True,I don't know
+C_-88_932,Wind,0.02,0.125,0.855,Wind,False,0.2105,True,I don't know
+C_-88_944,Solar,0.041,0.861,0.098,Solar,False,0.1016,False,Solar
+C_-88_946,Solar,0.0,0.978,0.022,Solar,False,0.0885,False,Solar
+C_-88_997,Solar,0.042,0.922,0.036,Solar,False,0.0887,False,Solar
+C_-88_1031,Solar,0.058,0.78,0.162,Solar,False,0.0491,False,Solar
+C_-88_1038,Solar,0.04,0.753,0.207,Solar,False,0.0862,False,Solar
+C_-88_1039,Solar,0.182,0.607,0.21,Solar,False,0.1231,False,Solar
+C_-88_1045,Solar,0.124,0.571,0.306,Solar,False,0.1109,False,Solar
+C_-88_1048,Solar,0.082,0.75,0.168,Solar,False,0.0794,False,Solar
+C_-87_935,Wind,0.106,0.083,0.811,Wind,False,0.1415,True,I don't know
+C_-87_946,Solar,0.0,0.99,0.009,Solar,False,0.0621,False,Solar
+C_-87_951,Solar,0.001,0.988,0.012,Solar,False,0.056,False,Solar
+C_-87_969,Solar,0.015,0.925,0.06,Solar,False,0.0994,False,Solar
+C_-87_979,Solar,0.079,0.83,0.091,Solar,False,0.1166,False,Solar
+C_-87_1029,Solar,0.038,0.88,0.083,Solar,False,0.092,False,Solar
+C_-87_1038,Solar,0.052,0.807,0.141,Solar,False,0.0948,False,Solar
+C_-86_934,Wind,0.182,0.211,0.607,Wind,False,0.1276,False,Wind
+C_-86_935,Wind,0.161,0.098,0.741,Wind,False,0.1148,False,Wind
+C_-86_936,Wind,0.123,0.159,0.719,Wind,False,0.206,True,I don't know
+C_-86_952,Solar,0.0,0.994,0.006,Solar,False,0.0637,False,Solar
+C_-86_953,Solar,0.0,0.968,0.032,Solar,False,0.1153,False,Solar
+C_-86_965,Solar,0.136,0.705,0.16,Solar,False,0.145,True,I don't know
+C_-86_996,Solar,0.137,0.648,0.214,Solar,False,0.0989,False,Solar
+C_-86_1015,Wind,0.036,0.048,0.916,Wind,False,0.2264,True,I don't know
+C_-86_1026,Solar,0.063,0.704,0.233,Solar,False,0.1798,True,I don't know
+C_-86_1036,Solar,0.028,0.838,0.134,Solar,False,0.1024,False,Solar
+C_-86_1039,Solar,0.074,0.76,0.167,Solar,False,0.0921,False,Solar
+C_-85_932,Wind,0.103,0.159,0.738,Wind,False,0.192,True,I don't know
+C_-85_935,Wind,0.262,0.193,0.545,Wind,False,0.1269,False,Wind
+C_-85_936,Wind,0.27,0.311,0.419,Wind,True,0.1119,False,I don't know
+C_-85_967,Solar,0.101,0.77,0.128,Solar,False,0.1322,False,Solar
+C_-85_999,Solar,0.024,0.852,0.123,Solar,False,0.0668,False,Solar
+C_-85_1016,Wind,0.041,0.036,0.922,Wind,False,0.2127,True,I don't know
+C_-85_1022,Solar,0.043,0.883,0.074,Solar,False,0.1063,False,Solar
+C_-85_1029,Solar,0.026,0.893,0.082,Solar,False,0.1333,False,Solar
+C_-85_1035,Solar,0.071,0.878,0.051,Solar,False,0.0984,False,Solar
+C_-85_1040,Wind,0.057,0.588,0.355,Solar,False,0.131,False,Solar
+C_-85_1044,Solar,0.093,0.632,0.274,Solar,False,0.0867,False,Solar
+C_-84_930,Wind,0.046,0.138,0.816,Wind,False,0.107,False,Wind
+C_-84_931,Solar,0.253,0.457,0.289,Solar,True,0.1454,True,I don't know
+C_-84_937,Hybrid,0.204,0.35,0.446,Wind,True,0.1264,False,I don't know
+C_-84_950,Solar,0.0,0.994,0.006,Solar,False,0.0887,False,Solar
+C_-84_965,Solar,0.053,0.732,0.215,Solar,False,0.121,False,Solar
+C_-84_1019,Solar,0.183,0.703,0.114,Solar,False,0.1465,True,I don't know
+C_-84_1022,Solar,0.043,0.86,0.097,Solar,False,0.1204,False,Solar
+C_-84_1033,Solar,0.092,0.74,0.168,Solar,False,0.1068,False,Solar
+C_-84_1034,Solar,0.039,0.899,0.061,Solar,False,0.0975,False,Solar
+C_-84_1040,Wind,0.07,0.592,0.338,Solar,False,0.135,False,Solar
+C_-84_1041,Hybrid,0.066,0.602,0.333,Solar,False,0.1406,False,Solar
+C_-84_1048,Solar,0.079,0.611,0.309,Solar,False,0.0768,False,Solar
+C_-84_1051,Solar,0.148,0.63,0.222,Solar,False,0.1096,False,Solar
+C_-84_1059,Solar,0.032,0.927,0.042,Solar,False,0.1697,True,I don't know
+C_-83_930,Wind,0.023,0.069,0.908,Wind,False,0.1316,False,Wind
+C_-83_964,Solar,0.119,0.612,0.269,Solar,False,0.0792,False,Solar
+C_-83_1022,Solar,0.064,0.84,0.095,Solar,False,0.1203,False,Solar
+C_-83_1024,Solar,0.038,0.867,0.095,Solar,False,0.1013,False,Solar
+C_-83_1025,Solar,0.025,0.871,0.105,Solar,False,0.1688,True,I don't know
+C_-83_1032,Solar,0.114,0.733,0.154,Solar,False,0.1123,False,Solar
+C_-83_1038,Solar,0.073,0.545,0.381,Solar,False,0.1348,False,Solar
+C_-83_1039,Solar,0.075,0.594,0.33,Solar,False,0.1417,True,I don't know
+C_-83_1043,Solar,0.115,0.481,0.404,Solar,True,0.09,False,I don't know
+C_-83_1055,Wind,0.125,0.515,0.36,Solar,False,0.1188,False,Solar
+C_-83_1056,Wind,0.079,0.552,0.369,Solar,False,0.108,False,Solar
+C_-82_934,Solar,0.029,0.796,0.175,Solar,False,0.0875,False,Solar
+C_-82_935,Solar,0.005,0.974,0.021,Solar,False,0.1316,False,Solar
+C_-82_937,Solar,0.001,0.97,0.029,Solar,False,0.132,False,Solar
+C_-82_940,Solar,0.0,0.964,0.036,Solar,False,0.0911,False,Solar
+C_-82_942,Solar,0.0,0.984,0.016,Solar,False,0.0639,False,Solar
+C_-82_1015,Solar,0.079,0.875,0.046,Solar,False,0.1742,True,I don't know
+C_-82_1023,Solar,0.079,0.821,0.1,Solar,False,0.1317,False,Solar
+C_-82_1024,Solar,0.06,0.796,0.144,Solar,False,0.1133,False,Solar
+C_-82_1028,Solar,0.029,0.914,0.057,Solar,False,0.096,False,Solar
+C_-82_1031,Solar,0.066,0.879,0.054,Solar,False,0.1209,False,Solar
+C_-82_1038,Solar,0.08,0.56,0.359,Solar,False,0.1341,False,Solar
+C_-82_1039,Solar,0.083,0.507,0.41,Solar,False,0.1203,False,Solar
+C_-81_955,Solar,0.0,0.992,0.007,Solar,False,0.074,False,Solar
+C_-81_975,Solar,0.017,0.94,0.043,Solar,False,0.0993,False,Solar
+C_-81_1002,Solar,0.084,0.857,0.059,Solar,False,0.0846,False,Solar
+C_-81_1020,Solar,0.119,0.813,0.068,Solar,False,0.1484,True,I don't know
+C_-81_1033,Solar,0.002,0.989,0.009,Solar,False,0.1258,False,Solar
+C_-81_1038,Solar,0.107,0.488,0.405,Solar,True,0.122,False,I don't know
+C_-81_1043,Wind,0.054,0.64,0.307,Solar,False,0.1575,True,I don't know
+C_-81_1044,Wind,0.121,0.514,0.365,Solar,False,0.1173,False,Solar
+C_-80_964,Solar,0.134,0.597,0.27,Solar,False,0.1207,False,Solar
+C_-80_995,Solar,0.146,0.407,0.447,Wind,True,0.1366,False,I don't know
+C_-80_998,Solar,0.146,0.646,0.208,Solar,False,0.0877,False,Solar
+C_-80_1013,Wind,0.041,0.175,0.784,Wind,False,0.2993,True,I don't know
+C_-80_1020,Solar,0.076,0.844,0.08,Solar,False,0.1649,True,I don't know
+C_-80_1021,Solar,0.024,0.963,0.013,Solar,False,0.1122,False,Solar
+C_-80_1024,Solar,0.017,0.896,0.087,Solar,False,0.1691,True,I don't know
+C_-80_1025,Solar,0.005,0.906,0.088,Solar,False,0.1081,False,Solar
+C_-80_1029,Solar,0.008,0.966,0.025,Solar,False,0.173,True,I don't know
+C_-80_1030,Solar,0.003,0.975,0.021,Solar,False,0.1542,True,I don't know
+C_-80_1032,Solar,0.002,0.983,0.015,Solar,False,0.0807,False,Solar
+C_-80_1043,Wind,0.079,0.564,0.357,Solar,False,0.1362,False,Solar
+C_-80_1044,Wind,0.085,0.525,0.391,Solar,False,0.1142,False,Solar
+C_-80_1045,Hybrid,0.159,0.4,0.441,Wind,True,0.1102,False,I don't know
+C_-80_1051,Wind,0.239,0.327,0.434,Wind,True,0.1019,False,I don't know
+C_-79_948,Solar,0.0,0.992,0.008,Solar,False,0.0919,False,Solar
+C_-79_995,Solar,0.066,0.745,0.19,Solar,False,0.0804,False,Solar
+C_-79_997,Solar,0.02,0.931,0.049,Solar,False,0.1138,False,Solar
+C_-79_1025,Solar,0.071,0.863,0.066,Solar,False,0.1396,False,Solar
+C_-79_1029,Solar,0.08,0.779,0.141,Solar,False,0.09,False,Solar
+C_-79_1031,Solar,0.011,0.971,0.018,Solar,False,0.1106,False,Solar
+C_-79_1033,Solar,0.001,0.981,0.018,Solar,False,0.1061,False,Solar
+C_-79_1034,Solar,0.005,0.981,0.015,Solar,False,0.1052,False,Solar
+C_-79_1036,Solar,0.0,0.981,0.019,Solar,False,0.0826,False,Solar
+C_-79_1040,Solar,0.027,0.865,0.107,Solar,False,0.1112,False,Solar
+C_-79_1045,Wind,0.212,0.418,0.37,Solar,True,0.0882,False,I don't know
+C_-78_955,Solar,0.005,0.986,0.009,Solar,False,0.0775,False,Solar
+C_-78_996,Solar,0.028,0.904,0.068,Solar,False,0.0912,False,Solar
+C_-78_1024,Solar,0.023,0.906,0.071,Solar,False,0.1644,True,I don't know
+C_-78_1042,Solar,0.055,0.822,0.123,Solar,False,0.0953,False,Solar
+C_-78_1048,Solar,0.041,0.629,0.33,Solar,False,0.1293,False,Solar
+C_-78_1055,Solar,0.068,0.705,0.227,Solar,False,0.1116,False,Solar
+C_-77_931,Solar,0.127,0.353,0.52,Wind,False,0.1232,False,Wind
+C_-77_936,Solar,0.006,0.955,0.039,Solar,False,0.1411,True,I don't know
+C_-77_937,Wind,0.093,0.245,0.662,Wind,False,0.2471,True,I don't know
+C_-77_955,Solar,0.0,0.992,0.008,Solar,False,0.0751,False,Solar
+C_-77_956,Solar,0.004,0.991,0.005,Solar,False,0.0782,False,Solar
+C_-77_998,Solar,0.018,0.96,0.022,Solar,False,0.0789,False,Solar
+C_-77_1000,Solar,0.07,0.773,0.157,Solar,False,0.0984,False,Solar
+C_-77_1016,Wind,0.055,0.052,0.893,Wind,False,0.2087,True,I don't know
+C_-77_1025,Solar,0.012,0.946,0.042,Solar,False,0.0937,False,Solar
+C_-77_1034,Solar,0.017,0.937,0.046,Solar,False,0.099,False,Solar
+C_-77_1042,Solar,0.072,0.861,0.067,Solar,False,0.108,False,Solar
+C_-77_1045,Solar,0.001,0.974,0.024,Solar,False,0.1227,False,Solar
+C_-77_1047,Wind,0.118,0.539,0.343,Solar,False,0.1487,True,I don't know
+C_-76_948,Solar,0.001,0.975,0.024,Solar,False,0.1125,False,Solar
+C_-76_1017,Wind,0.018,0.028,0.954,Wind,False,0.1901,True,I don't know
+C_-76_1021,Solar,0.089,0.726,0.185,Solar,False,0.1582,True,I don't know
+C_-76_1023,Solar,0.029,0.921,0.05,Solar,False,0.1173,False,Solar
+C_-76_1036,Solar,0.042,0.818,0.14,Solar,False,0.1173,False,Solar
+C_-76_1045,Wind,0.042,0.272,0.686,Wind,False,0.1663,True,I don't know
+C_-76_1046,Wind,0.079,0.59,0.331,Solar,False,0.1441,True,I don't know
+C_-76_1047,Solar,0.135,0.591,0.274,Solar,False,0.1119,False,Solar
+C_-76_1048,Wind,0.089,0.458,0.452,Solar,True,0.1298,False,I don't know
+C_-75_956,Solar,0.0,0.988,0.012,Solar,False,0.0901,False,Solar
+C_-75_974,Solar,0.006,0.951,0.043,Solar,False,0.1292,False,Solar
+C_-75_977,Solar,0.007,0.925,0.068,Solar,False,0.1532,True,I don't know
+C_-75_1016,Wind,0.013,0.024,0.963,Wind,False,0.1842,True,I don't know
+C_-75_1017,Wind,0.022,0.177,0.801,Wind,False,0.2285,True,I don't know
+C_-75_1028,Solar,0.005,0.98,0.016,Solar,False,0.0722,False,Solar
+C_-75_1031,Solar,0.008,0.975,0.017,Solar,False,0.0853,False,Solar
+C_-75_1043,Solar,0.054,0.82,0.126,Solar,False,0.109,False,Solar
+C_-75_1047,Wind,0.129,0.456,0.415,Solar,True,0.1119,False,I don't know
+C_-74_929,Solar,0.129,0.568,0.303,Solar,False,0.3134,True,I don't know
+C_-74_939,Solar,0.003,0.907,0.09,Solar,False,0.1678,True,I don't know
+C_-74_948,Solar,0.021,0.942,0.037,Solar,False,0.1634,True,I don't know
+C_-74_950,Solar,0.001,0.97,0.029,Solar,False,0.1103,False,Solar
+C_-74_994,Solar,0.008,0.904,0.088,Solar,False,0.1297,False,Solar
+C_-74_1004,Solar,0.204,0.632,0.164,Solar,False,0.0933,False,Solar
+C_-74_1025,Solar,0.029,0.924,0.047,Solar,False,0.1775,True,I don't know
+C_-74_1027,Solar,0.009,0.958,0.032,Solar,False,0.1074,False,Solar
+C_-73_971,Solar,0.09,0.719,0.191,Solar,False,0.1201,False,Solar
+C_-73_999,Solar,0.099,0.805,0.095,Solar,False,0.0958,False,Solar
+C_-73_1000,Solar,0.117,0.741,0.142,Solar,False,0.1163,False,Solar
+C_-73_1026,Solar,0.045,0.828,0.127,Solar,False,0.1779,True,I don't know
+C_-73_1027,Solar,0.016,0.927,0.057,Solar,False,0.1007,False,Solar
+C_-72_936,Wind,0.095,0.178,0.727,Wind,False,0.3317,True,I don't know
+C_-72_937,Wind,0.182,0.33,0.488,Wind,True,0.265,True,I don't know
+C_-72_972,Solar,0.008,0.935,0.057,Solar,False,0.1406,False,Solar
+C_-72_994,Solar,0.08,0.806,0.113,Solar,False,0.1056,False,Solar
+C_-72_995,Solar,0.116,0.666,0.218,Solar,False,0.1226,False,Solar
+C_-72_999,Solar,0.022,0.921,0.057,Solar,False,0.1126,False,Solar
+C_-72_1002,Solar,0.079,0.748,0.173,Solar,False,0.084,False,Solar
+C_-72_1045,Wind,0.199,0.28,0.521,Wind,False,0.1014,False,Wind
+C_-72_1046,Wind,0.186,0.172,0.642,Wind,False,0.1048,False,Wind
+C_-72_1050,Hybrid,0.037,0.761,0.202,Solar,False,0.1286,False,Solar
+C_-72_1051,Wind,0.117,0.455,0.428,Solar,True,0.1056,False,I don't know
+C_-72_1065,Solar,0.105,0.709,0.187,Solar,False,0.127,False,Solar
+C_-72_1066,Wind,0.016,0.036,0.948,Wind,False,0.2018,True,I don't know
+C_-71_937,Solar,0.014,0.888,0.099,Solar,False,0.1716,True,I don't know
+C_-71_947,Solar,0.008,0.935,0.057,Solar,False,0.1972,True,I don't know
+C_-71_972,Solar,0.007,0.936,0.057,Solar,False,0.1368,False,Solar
+C_-71_997,Solar,0.048,0.804,0.148,Solar,False,0.1318,False,Solar
+C_-71_1002,Solar,0.103,0.573,0.324,Solar,False,0.1078,False,Solar
+C_-71_1029,Solar,0.006,0.964,0.031,Solar,False,0.1227,False,Solar
+C_-71_1046,Wind,0.21,0.196,0.594,Wind,False,0.1219,False,Wind
+C_-71_1047,Wind,0.081,0.288,0.631,Wind,False,0.0927,False,Wind
+C_-71_1050,Wind,0.078,0.457,0.465,Wind,True,0.0848,False,I don't know
+C_-71_1054,Solar,0.035,0.805,0.16,Solar,False,0.1187,False,Solar
+C_-70_934,Solar,0.04,0.776,0.185,Solar,False,0.3089,True,I don't know
+C_-70_939,Solar,0.014,0.897,0.089,Solar,False,0.2013,True,I don't know
+C_-70_973,Solar,0.023,0.925,0.052,Solar,False,0.0967,False,Solar
+C_-70_985,Hybrid,0.278,0.315,0.407,Wind,True,0.172,True,I don't know
+C_-70_1051,Wind,0.071,0.477,0.452,Solar,True,0.1135,False,I don't know
+C_-69_971,Solar,0.008,0.941,0.052,Solar,False,0.0929,False,Solar
+C_-69_1025,Solar,0.11,0.811,0.079,Solar,False,0.2041,True,I don't know
+C_-69_1050,Wind,0.061,0.494,0.445,Solar,True,0.1162,False,I don't know
+C_-69_1051,Wind,0.061,0.269,0.671,Wind,False,0.0907,False,Wind
+C_-69_1052,Wind,0.048,0.257,0.695,Wind,False,0.0725,False,Wind
+C_-69_1053,Wind,0.065,0.258,0.677,Wind,False,0.0954,False,Wind
+C_-68_937,Solar,0.005,0.892,0.102,Solar,False,0.2198,True,I don't know
+C_-68_970,Solar,0.037,0.827,0.136,Solar,False,0.2236,True,I don't know
+C_-68_971,Solar,0.006,0.957,0.037,Solar,False,0.0895,False,Solar
+C_-68_994,Solar,0.048,0.802,0.15,Solar,False,0.1197,False,Solar
+C_-68_995,Solar,0.08,0.744,0.176,Solar,False,0.1112,False,Solar
+C_-68_1051,Wind,0.382,0.247,0.37,Hybrid,True,0.0786,False,I don't know
+C_-68_1053,Wind,0.063,0.257,0.68,Wind,False,0.0793,False,Wind
+C_-68_1062,Wind,0.031,0.217,0.752,Wind,False,0.1543,True,I don't know
+C_-67_937,Solar,0.017,0.857,0.127,Solar,False,0.265,True,I don't know
+C_-67_989,Solar,0.073,0.844,0.084,Solar,False,0.1379,False,Solar
+C_-67_996,Wind,0.201,0.301,0.498,Wind,True,0.0854,False,I don't know
+C_-67_1049,Solar,0.065,0.63,0.305,Solar,False,0.1096,False,Solar
+C_-67_1051,Solar,0.263,0.354,0.383,Wind,True,0.075,False,I don't know
+C_-66_935,Solar,0.035,0.868,0.097,Solar,False,0.2182,True,I don't know
+C_-66_936,Solar,0.027,0.87,0.104,Solar,False,0.248,True,I don't know
+C_-66_939,Solar,0.001,0.927,0.072,Solar,False,0.2923,True,I don't know
+C_-66_994,Solar,0.087,0.741,0.171,Solar,False,0.119,False,Solar
+C_-66_995,Solar,0.149,0.609,0.242,Solar,False,0.1251,False,Solar
+C_-66_1034,Solar,0.082,0.718,0.2,Solar,False,0.1207,False,Solar
+C_-66_1055,Wind,0.05,0.266,0.684,Wind,False,0.1188,False,Wind
+C_-66_1058,Wind,0.038,0.07,0.892,Wind,False,0.1533,True,I don't know
+C_-66_1063,Wind,0.052,0.125,0.824,Wind,False,0.1292,False,Wind
+C_-65_935,Solar,0.045,0.794,0.161,Solar,False,0.2492,True,I don't know
+C_-65_936,Solar,0.033,0.874,0.092,Solar,False,0.2566,True,I don't know
+C_-65_937,Solar,0.057,0.732,0.211,Solar,False,0.3163,True,I don't know
+C_-65_945,Wind,0.056,0.059,0.885,Wind,False,0.2966,True,I don't know
+C_-65_946,Wind,0.027,0.121,0.852,Wind,False,0.3104,True,I don't know
+C_-65_953,Solar,0.002,0.974,0.024,Solar,False,0.1643,True,I don't know
+C_-65_973,Solar,0.004,0.947,0.05,Solar,False,0.1039,False,Solar
+C_-65_995,Solar,0.084,0.733,0.183,Solar,False,0.0933,False,Solar
+C_-65_1055,Wind,0.05,0.292,0.658,Wind,False,0.1551,True,I don't know
+C_-65_1058,Wind,0.076,0.146,0.777,Wind,False,0.118,False,Wind
+C_-65_1059,Wind,0.034,0.056,0.911,Wind,False,0.0948,False,Wind
+C_-65_1062,Wind,0.043,0.115,0.842,Wind,False,0.1524,True,I don't know
+C_-65_1067,Wind,0.047,0.093,0.86,Wind,False,0.111,False,Wind
+C_-65_1069,Wind,0.024,0.053,0.924,Wind,False,0.1903,True,I don't know
+C_-64_932,Wind,0.124,0.189,0.687,Wind,False,0.217,True,I don't know
+C_-64_933,Wind,0.223,0.262,0.515,Wind,False,0.2292,True,I don't know
+C_-64_934,Wind,0.195,0.26,0.545,Wind,False,0.2436,True,I don't know
+C_-64_937,Solar,0.014,0.863,0.123,Solar,False,0.2213,True,I don't know
+C_-64_958,Solar,0.004,0.977,0.019,Solar,False,0.0814,False,Solar
+C_-64_995,Solar,0.084,0.673,0.242,Solar,False,0.1688,True,I don't know
+C_-64_1000,Solar,0.023,0.925,0.052,Solar,False,0.0967,False,Solar
+C_-64_1034,Wind,0.129,0.11,0.762,Wind,False,0.1401,False,Wind
+C_-64_1039,Solar,0.012,0.944,0.045,Solar,False,0.1488,True,I don't know
+C_-64_1055,Wind,0.085,0.201,0.714,Wind,False,0.111,False,Wind
+C_-64_1057,Wind,0.035,0.231,0.734,Wind,False,0.1048,False,Wind
+C_-64_1058,Wind,0.03,0.083,0.887,Wind,False,0.0779,False,Wind
+C_-64_1068,Wind,0.109,0.117,0.774,Wind,False,0.0966,False,Wind
+C_-64_1069,Wind,0.003,0.027,0.97,Wind,False,0.2318,True,I don't know
+C_-63_945,Solar,0.049,0.833,0.118,Solar,False,0.2157,True,I don't know
+C_-63_948,Solar,0.036,0.859,0.105,Solar,False,0.344,True,I don't know
+C_-63_975,Wind,0.118,0.513,0.37,Solar,False,0.1414,True,I don't know
+C_-63_1048,Solar,0.249,0.444,0.307,Solar,True,0.0967,False,I don't know
+C_-63_1056,Wind,0.095,0.085,0.82,Wind,False,0.115,False,Wind
+C_-63_1057,Wind,0.06,0.078,0.862,Wind,False,0.1219,False,Wind
+C_-63_1059,Wind,0.06,0.114,0.825,Wind,False,0.1231,False,Wind
+C_-63_1060,Wind,0.065,0.153,0.782,Wind,False,0.0709,False,Wind
+C_-62_933,Wind,0.161,0.257,0.582,Wind,False,0.215,True,I don't know
+C_-62_963,Solar,0.017,0.932,0.051,Solar,False,0.1029,False,Solar
+C_-62_975,Wind,0.202,0.399,0.4,Wind,True,0.1781,True,I don't know
+C_-62_999,Solar,0.098,0.714,0.188,Solar,False,0.1089,False,Solar
+C_-62_1050,Wind,0.159,0.153,0.687,Wind,False,0.0679,False,Wind
+C_-62_1059,Wind,0.019,0.141,0.84,Wind,False,0.146,True,I don't know
+C_-62_1063,Wind,0.036,0.051,0.913,Wind,False,0.1276,False,Wind
+C_-62_1064,Wind,0.014,0.054,0.932,Wind,False,0.2513,True,I don't know
+C_-62_1067,Wind,0.062,0.065,0.873,Wind,False,0.1188,False,Wind
+C_-61_931,Wind,0.149,0.573,0.278,Solar,False,0.1134,False,Solar
+C_-61_955,Solar,0.004,0.974,0.022,Solar,False,0.119,False,Solar
+C_-61_979,Solar,0.023,0.868,0.109,Solar,False,0.1471,True,I don't know
+C_-61_1051,Wind,0.061,0.132,0.807,Wind,False,0.0942,False,Wind
+C_-61_1052,Wind,0.078,0.13,0.792,Wind,False,0.0918,False,Wind
+C_-61_1062,Wind,0.028,0.072,0.9,Wind,False,0.1028,False,Wind
+C_-61_1064,Wind,0.015,0.042,0.943,Wind,False,0.2876,True,I don't know
+C_-61_1065,Wind,0.022,0.051,0.928,Wind,False,0.1547,True,I don't know
+C_-61_1066,Wind,0.082,0.132,0.786,Wind,False,0.0879,False,Wind
+C_-61_1070,Wind,0.035,0.032,0.934,Wind,False,0.0978,False,Wind
+C_-60_928,Wind,0.003,0.357,0.641,Wind,False,0.1898,True,I don't know
+C_-60_931,Solar,0.024,0.791,0.185,Solar,False,0.1404,False,Solar
+C_-60_960,Solar,0.01,0.967,0.023,Solar,False,0.1194,False,Solar
+C_-60_984,Solar,0.018,0.943,0.039,Solar,False,0.1357,False,Solar
+C_-60_986,Solar,0.068,0.846,0.086,Solar,False,0.1327,False,Solar
+C_-60_991,Wind,0.074,0.248,0.677,Wind,False,0.2096,True,I don't know
+C_-60_995,Solar,0.025,0.877,0.097,Solar,False,0.1383,False,Solar
+C_-60_1001,Solar,0.077,0.667,0.257,Solar,False,0.0965,False,Solar
+C_-60_1060,Wind,0.125,0.099,0.777,Wind,False,0.1013,False,Wind
+C_-60_1067,Solar,0.001,0.969,0.03,Solar,False,0.1272,False,Solar
+C_-60_1071,Wind,0.02,0.024,0.956,Wind,False,0.215,True,I don't know
+C_-59_927,Wind,0.295,0.156,0.549,Wind,False,0.1514,True,I don't know
+C_-59_1000,Solar,0.083,0.503,0.414,Solar,False,0.0928,False,Solar
+C_-59_1055,Wind,0.091,0.169,0.74,Wind,False,0.1013,False,Wind
+C_-59_1056,Wind,0.045,0.071,0.884,Wind,False,0.1128,False,Wind
+C_-59_1070,Wind,0.006,0.05,0.943,Wind,False,0.1743,True,I don't know
+C_-59_1071,Wind,0.004,0.102,0.895,Wind,False,0.1963,True,I don't know
+C_-58_977,Solar,0.007,0.939,0.054,Solar,False,0.1685,True,I don't know
+C_-58_982,Solar,0.068,0.812,0.12,Solar,False,0.1629,True,I don't know
+C_-58_985,Solar,0.066,0.815,0.119,Solar,False,0.1537,True,I don't know
+C_-58_986,Solar,0.062,0.822,0.116,Solar,False,0.1369,False,Solar
+C_-58_994,Wind,0.144,0.415,0.441,Wind,True,0.1561,True,I don't know
+C_-58_1050,Wind,0.027,0.048,0.924,Wind,False,0.1561,True,I don't know
+C_-58_1056,Wind,0.014,0.18,0.807,Wind,False,0.1504,True,I don't know
+C_-58_1071,Wind,0.035,0.09,0.874,Wind,False,0.5811,True,I don't know
+C_-57_941,Solar,0.024,0.837,0.139,Solar,False,0.2809,True,I don't know
+C_-57_943,Solar,0.093,0.765,0.142,Solar,False,0.2715,True,I don't know
+C_-57_944,Solar,0.076,0.749,0.174,Solar,False,0.2631,True,I don't know
+C_-57_981,Solar,0.07,0.805,0.126,Solar,False,0.1511,True,I don't know
+C_-57_983,Solar,0.057,0.775,0.168,Solar,False,0.1509,True,I don't know
+C_-57_987,Solar,0.059,0.825,0.116,Solar,False,0.1375,False,Solar
+C_-57_1000,Solar,0.075,0.536,0.389,Solar,False,0.0986,False,Solar
+C_-57_1002,Wind,0.18,0.351,0.469,Wind,True,0.1517,True,I don't know
+C_-57_1054,Wind,0.04,0.339,0.621,Wind,False,0.247,True,I don't know
+C_-57_1057,Wind,0.041,0.183,0.776,Wind,False,0.1422,True,I don't know
+C_-56_941,Solar,0.027,0.82,0.154,Solar,False,0.2859,True,I don't know
+C_-56_977,Solar,0.013,0.923,0.064,Solar,False,0.1359,False,Solar
+C_-56_983,Solar,0.063,0.76,0.177,Solar,False,0.1467,True,I don't know
+C_-56_990,Solar,0.079,0.803,0.117,Solar,False,0.1311,False,Solar
+C_-56_1046,Solar,0.013,0.952,0.035,Solar,False,0.1074,False,Solar
+C_-55_973,Solar,0.085,0.798,0.117,Solar,False,0.2013,True,I don't know
+C_-55_986,Solar,0.056,0.779,0.165,Solar,False,0.1422,True,I don't know
+C_-55_993,Solar,0.053,0.773,0.174,Solar,False,0.1135,False,Solar
+C_-55_997,Solar,0.062,0.724,0.214,Solar,False,0.1187,False,Solar
+C_-55_1020,Solar,0.062,0.829,0.109,Solar,False,0.1337,False,Solar
+C_-55_1021,Solar,0.01,0.977,0.012,Solar,False,0.0801,False,Solar
+C_-54_940,Solar,0.047,0.849,0.105,Solar,False,0.2536,True,I don't know
+C_-54_954,Solar,0.017,0.922,0.061,Solar,False,0.2966,True,I don't know
+C_-54_976,Wind,0.13,0.224,0.646,Wind,False,0.1841,True,I don't know
+C_-54_993,Solar,0.07,0.731,0.199,Solar,False,0.1298,False,Solar
+C_-54_1022,Solar,0.048,0.916,0.036,Solar,False,0.1326,False,Solar
+C_-54_1030,Wind,0.06,0.066,0.874,Wind,False,0.1821,True,I don't know
+C_-54_1032,Solar,0.126,0.283,0.591,Wind,False,0.148,True,I don't know
+C_-53_938,Solar,0.166,0.694,0.141,Solar,False,0.2856,True,I don't know
+C_-53_939,Solar,0.075,0.77,0.155,Solar,False,0.2765,True,I don't know
+C_-53_953,Solar,0.002,0.936,0.062,Solar,False,0.2721,True,I don't know
+C_-53_976,Wind,0.219,0.133,0.647,Wind,False,0.1664,True,I don't know
+C_-53_984,Solar,0.051,0.774,0.175,Solar,False,0.1605,True,I don't know
+C_-53_993,Solar,0.07,0.723,0.206,Solar,False,0.1014,False,Solar
+C_-53_1019,Solar,0.003,0.979,0.017,Solar,False,0.0823,False,Solar
+C_-53_1023,Solar,0.008,0.963,0.029,Solar,False,0.0908,False,Solar
+C_-52_938,Wind,0.071,0.603,0.327,Solar,False,0.2468,True,I don't know
+C_-52_939,Wind,0.196,0.436,0.368,Solar,True,0.2514,True,I don't know
+C_-52_960,Solar,0.033,0.871,0.096,Solar,False,0.1985,True,I don't know
+C_-52_964,Solar,0.005,0.937,0.058,Solar,False,0.158,True,I don't know
+C_-52_982,Solar,0.044,0.842,0.114,Solar,False,0.1864,True,I don't know
+C_-52_1030,Wind,0.004,0.037,0.959,Wind,False,0.1179,False,Wind
+C_-52_1076,Wind,0.056,0.626,0.318,Solar,False,0.0994,False,Solar
+C_-51_930,Solar,0.014,0.856,0.129,Solar,False,0.2225,True,I don't know
+C_-51_939,Wind,0.222,0.411,0.367,Solar,True,0.2586,True,I don't know
+C_-51_995,Solar,0.063,0.701,0.237,Solar,False,0.1018,False,Solar
+C_-51_1030,Wind,0.024,0.064,0.912,Wind,False,0.1519,True,I don't know
+C_-51_1057,Solar,0.005,0.982,0.013,Solar,False,0.0867,False,Solar
+C_-51_1058,Solar,0.019,0.963,0.018,Solar,False,0.0846,False,Solar
+C_-50_945,Wind,0.135,0.187,0.678,Wind,False,0.2206,True,I don't know
+C_-50_995,Solar,0.128,0.499,0.373,Solar,True,0.0829,False,I don't know
+C_-50_1000,Solar,0.133,0.589,0.277,Solar,False,0.1145,False,Solar
+C_-50_1018,Solar,0.112,0.709,0.178,Solar,False,0.1278,False,Solar
+C_-50_1030,Wind,0.058,0.056,0.886,Wind,False,0.0925,False,Wind
+C_-49_937,Wind,0.145,0.103,0.751,Wind,False,0.0944,False,Wind
+C_-49_996,Wind,0.08,0.153,0.767,Wind,False,0.1995,True,I don't know
+C_-49_1001,Solar,0.176,0.411,0.413,Wind,True,0.0873,False,I don't know
+C_-49_1010,Solar,0.008,0.986,0.006,Solar,False,0.019,False,Solar
+C_-49_1055,Solar,0.002,0.965,0.033,Solar,False,0.0995,False,Solar
+C_-49_1060,Solar,0.006,0.988,0.006,Solar,False,0.0414,False,Solar
+C_-49_1061,Solar,0.007,0.991,0.003,Solar,False,0.0856,False,Solar
+C_-49_1063,Solar,0.048,0.904,0.048,Solar,False,0.1166,False,Solar
+C_-48_937,Wind,0.116,0.135,0.749,Wind,False,0.1249,False,Wind
+C_-48_938,Wind,0.094,0.142,0.765,Wind,False,0.127,False,Wind
+C_-48_965,Solar,0.024,0.914,0.062,Solar,False,0.1116,False,Solar
+C_-48_985,Solar,0.053,0.708,0.24,Solar,False,0.1152,False,Solar
+C_-48_986,Solar,0.053,0.714,0.233,Solar,False,0.1069,False,Solar
+C_-48_993,Solar,0.134,0.462,0.403,Solar,True,0.1146,False,I don't know
+C_-48_1000,Solar,0.114,0.48,0.406,Solar,True,0.1056,False,I don't know
+C_-48_1054,Solar,0.003,0.991,0.006,Solar,False,0.1336,False,Solar
+C_-48_1063,Solar,0.049,0.93,0.021,Solar,False,0.0404,False,Solar
+C_-48_1064,Wind,0.084,0.109,0.806,Wind,False,0.0832,False,Wind
+C_-47_936,Wind,0.104,0.15,0.746,Wind,False,0.2334,True,I don't know
+C_-47_937,Wind,0.174,0.116,0.71,Wind,False,0.1814,True,I don't know
+C_-47_976,Solar,0.153,0.497,0.35,Solar,True,0.1242,False,I don't know
+C_-47_990,Solar,0.063,0.706,0.231,Solar,False,0.0929,False,Solar
+C_-47_1002,Wind,0.424,0.14,0.436,Wind,True,0.0638,False,I don't know
+C_-47_1033,Wind,0.102,0.196,0.702,Wind,False,0.1524,True,I don't know
+C_-46_931,Wind,0.146,0.289,0.565,Wind,False,0.2457,True,I don't know
+C_-46_936,Wind,0.045,0.27,0.686,Wind,False,0.1557,True,I don't know
+C_-46_978,Wind,0.152,0.245,0.603,Wind,False,0.1618,True,I don't know
+C_-46_979,Wind,0.159,0.391,0.45,Wind,True,0.2736,True,I don't know
+C_-46_980,Wind,0.065,0.05,0.885,Wind,False,0.1263,False,Wind
+C_-46_981,Wind,0.228,0.116,0.656,Wind,False,0.1168,False,Wind
+C_-46_984,Solar,0.05,0.726,0.224,Solar,False,0.1061,False,Solar
+C_-46_985,Solar,0.099,0.6,0.301,Solar,False,0.1179,False,Solar
+C_-46_1033,Wind,0.053,0.192,0.756,Wind,False,0.1945,True,I don't know
+C_-46_1056,Solar,0.0,0.995,0.005,Solar,False,0.0684,False,Solar
+C_-45_934,Solar,0.017,0.87,0.113,Solar,False,0.1552,True,I don't know
+C_-45_979,Wind,0.13,0.088,0.782,Wind,False,0.1993,True,I don't know
+C_-45_984,Solar,0.077,0.547,0.376,Solar,False,0.083,False,Solar
+C_-45_986,Solar,0.076,0.575,0.348,Solar,False,0.1248,False,Solar
+C_-45_989,Solar,0.155,0.486,0.359,Solar,True,0.1606,True,I don't know
+C_-45_1010,Wind,0.202,0.232,0.566,Wind,False,0.1804,True,I don't know
+C_-45_1025,Solar,0.315,0.229,0.456,Wind,True,0.1699,True,I don't know
+C_-45_1032,Wind,0.038,0.237,0.725,Wind,False,0.1365,False,Wind
+C_-45_1033,Wind,0.114,0.173,0.713,Wind,False,0.1032,False,Wind
+C_-44_943,Wind,0.064,0.135,0.801,Wind,False,0.1334,False,Wind
+C_-44_951,Solar,0.034,0.852,0.115,Solar,False,0.2041,True,I don't know
+C_-44_977,Solar,0.207,0.377,0.416,Wind,True,0.1241,False,I don't know
+C_-44_979,Wind,0.189,0.258,0.553,Wind,False,0.1127,False,Wind
+C_-44_986,Solar,0.076,0.659,0.265,Solar,False,0.1141,False,Solar
+C_-44_987,Solar,0.069,0.7,0.231,Solar,False,0.0832,False,Solar
+C_-44_996,Solar,0.119,0.677,0.204,Solar,False,0.1217,False,Solar
+C_-44_998,Solar,0.112,0.645,0.243,Solar,False,0.1111,False,Solar
+C_-44_1009,Wind,0.242,0.399,0.36,Solar,True,0.1221,False,I don't know
+C_-44_1026,Solar,0.068,0.719,0.212,Solar,False,0.1428,True,I don't know
+C_-44_1028,Wind,0.03,0.054,0.916,Wind,False,0.095,False,Wind
+C_-44_1031,Solar,0.077,0.249,0.674,Wind,False,0.201,True,I don't know
+C_-44_1040,Wind,0.243,0.258,0.499,Wind,True,0.1481,True,I don't know
+C_-44_1056,Solar,0.019,0.965,0.016,Solar,False,0.0583,False,Solar
+C_-44_1073,Wind,0.058,0.089,0.853,Wind,False,0.1597,True,I don't know
+C_-43_932,Solar,0.001,0.953,0.046,Solar,False,0.1107,False,Solar
+C_-43_972,Wind,0.272,0.29,0.438,Wind,True,0.1522,True,I don't know
+C_-43_978,Wind,0.125,0.126,0.75,Wind,False,0.1917,True,I don't know
+C_-43_979,Wind,0.165,0.188,0.647,Wind,False,0.16,True,I don't know
+C_-43_980,Solar,0.147,0.265,0.588,Wind,False,0.1293,False,Wind
+C_-43_987,Solar,0.048,0.775,0.177,Solar,False,0.1273,False,Solar
+C_-43_998,Solar,0.148,0.521,0.33,Solar,False,0.1562,True,I don't know
+C_-43_1024,Wind,0.164,0.203,0.632,Wind,False,0.1344,False,Wind
+C_-43_1028,Wind,0.059,0.143,0.798,Wind,False,0.121,False,Wind
+C_-43_1031,Wind,0.103,0.105,0.791,Wind,False,0.1408,True,I don't know
+C_-43_1032,Wind,0.029,0.046,0.925,Wind,False,0.1498,True,I don't know
+C_-43_1033,Solar,0.102,0.485,0.413,Solar,True,0.1186,False,I don't know
+C_-43_1072,Wind,0.014,0.048,0.938,Wind,False,0.2214,True,I don't know
+C_-42_932,Solar,0.0,0.964,0.036,Solar,False,0.1207,False,Solar
+C_-42_973,Wind,0.365,0.22,0.416,Wind,True,0.1548,True,I don't know
+C_-42_977,Wind,0.092,0.216,0.692,Wind,False,0.184,True,I don't know
+C_-42_978,Wind,0.105,0.298,0.598,Wind,False,0.2488,True,I don't know
+C_-42_981,Wind,0.132,0.282,0.586,Wind,False,0.2561,True,I don't know
+C_-42_989,Solar,0.15,0.48,0.37,Solar,True,0.1655,True,I don't know
+C_-42_997,Solar,0.139,0.387,0.474,Wind,True,0.119,False,I don't know
+C_-42_1026,Wind,0.064,0.069,0.867,Wind,False,0.1551,True,I don't know
+C_-42_1028,Wind,0.063,0.211,0.727,Wind,False,0.1717,True,I don't know
+C_-42_1030,Wind,0.121,0.064,0.814,Wind,False,0.038,False,Wind
+C_-42_1033,Wind,0.208,0.338,0.454,Wind,True,0.1156,False,I don't know
+C_-42_1046,Wind,0.023,0.043,0.934,Wind,False,0.3417,True,I don't know
+C_-42_1067,Wind,0.027,0.059,0.914,Wind,False,0.4047,True,I don't know
+C_-41_936,Solar,0.01,0.907,0.083,Solar,False,0.1551,True,I don't know
+C_-41_972,Wind,0.253,0.24,0.506,Wind,False,0.2019,True,I don't know
+C_-41_973,Wind,0.175,0.216,0.609,Wind,False,0.1555,True,I don't know
+C_-41_977,Hybrid,0.101,0.108,0.791,Wind,False,0.1504,True,I don't know
+C_-41_978,Wind,0.098,0.082,0.82,Wind,False,0.1216,False,Wind
+C_-41_983,Solar,0.221,0.357,0.422,Wind,True,0.0759,False,I don't know
+C_-41_989,Solar,0.076,0.651,0.273,Solar,False,0.1082,False,Solar
+C_-41_1026,Wind,0.053,0.051,0.897,Wind,False,0.1267,False,Wind
+C_-41_1030,Wind,0.082,0.27,0.648,Wind,False,0.2337,True,I don't know
+C_-41_1032,Wind,0.08,0.183,0.736,Wind,False,0.1389,False,Wind
+C_-41_1041,Solar,0.079,0.747,0.174,Solar,False,0.1681,True,I don't know
+C_-41_1043,Wind,0.026,0.031,0.943,Wind,False,0.0907,False,Wind
+C_-40_931,Solar,0.233,0.557,0.21,Solar,False,0.0361,False,Solar
+C_-40_941,Solar,0.149,0.569,0.282,Solar,False,0.1952,True,I don't know
+C_-40_972,Wind,0.201,0.173,0.626,Wind,False,0.2226,True,I don't know
+C_-40_978,Wind,0.204,0.085,0.711,Wind,False,0.0993,False,Wind
+C_-40_985,Solar,0.092,0.566,0.343,Solar,False,0.0742,False,Solar
+C_-40_989,Solar,0.183,0.38,0.437,Wind,True,0.0682,False,I don't know
+C_-40_1029,Wind,0.032,0.237,0.731,Wind,False,0.1742,True,I don't know
+C_-40_1033,Wind,0.103,0.07,0.826,Wind,False,0.052,False,Wind
+C_-40_1045,Wind,0.006,0.025,0.969,Wind,False,0.2652,True,I don't know
+C_-40_1046,Wind,0.021,0.033,0.946,Wind,False,0.2132,True,I don't know
+C_-40_1050,Wind,0.022,0.063,0.915,Wind,False,0.1576,True,I don't know
+C_-40_1058,Wind,0.069,0.092,0.839,Wind,False,0.1047,False,Wind
+C_-40_1059,Wind,0.029,0.087,0.884,Wind,False,0.1223,False,Wind
+C_-40_1065,Solar,0.04,0.892,0.067,Solar,False,0.0992,False,Solar
+C_-39_934,Wind,0.233,0.207,0.561,Wind,False,0.2059,True,I don't know
+C_-39_973,Wind,0.069,0.065,0.866,Wind,False,0.1251,False,Wind
+C_-39_982,Solar,0.082,0.525,0.393,Solar,False,0.0978,False,Solar
+C_-39_984,Solar,0.08,0.542,0.378,Solar,False,0.1233,False,Solar
+C_-39_989,Wind,0.17,0.36,0.471,Wind,True,0.0787,False,I don't know
+C_-39_990,Wind,0.158,0.332,0.51,Wind,False,0.1065,False,Wind
+C_-39_1015,Solar,0.06,0.763,0.177,Solar,False,0.2037,True,I don't know
+C_-39_1025,Wind,0.076,0.15,0.774,Wind,False,0.1323,False,Wind
+C_-39_1026,Wind,0.119,0.08,0.8,Wind,False,0.0865,False,Wind
+C_-39_1036,Wind,0.129,0.077,0.793,Wind,False,0.0764,False,Wind
+C_-39_1040,Solar,0.123,0.349,0.528,Wind,False,0.1318,False,Wind
+C_-39_1044,Wind,0.019,0.031,0.951,Wind,False,0.2143,True,I don't know
+C_-39_1057,Solar,0.076,0.592,0.332,Solar,False,0.1191,False,Solar
+C_-39_1063,Solar,0.125,0.43,0.445,Wind,True,0.0343,False,I don't know
+C_-38_934,Solar,0.17,0.349,0.481,Wind,True,0.1449,True,I don't know
+C_-38_944,Solar,0.135,0.508,0.357,Solar,False,0.1269,False,Solar
+C_-38_955,Solar,0.096,0.58,0.324,Solar,False,0.3367,True,I don't know
+C_-38_972,Wind,0.092,0.036,0.872,Wind,False,0.1905,True,I don't know
+C_-38_973,Wind,0.033,0.029,0.938,Wind,False,0.1906,True,I don't know
+C_-38_975,Solar,0.177,0.491,0.332,Solar,True,0.0762,False,I don't know
+C_-38_980,Solar,0.13,0.494,0.376,Solar,True,0.1085,False,I don't know
+C_-38_982,Wind,0.092,0.526,0.383,Solar,False,0.1139,False,Solar
+C_-38_983,Hybrid,0.092,0.421,0.487,Wind,True,0.1499,True,I don't know
+C_-38_984,Solar,0.066,0.614,0.32,Solar,False,0.0947,False,Solar
+C_-38_985,Solar,0.048,0.632,0.319,Solar,False,0.121,False,Solar
+C_-38_989,Wind,0.182,0.328,0.49,Wind,True,0.1107,False,I don't know
+C_-38_990,Hybrid,0.132,0.526,0.342,Solar,False,0.1047,False,Solar
+C_-38_1004,Solar,0.04,0.93,0.03,Solar,False,0.1188,False,Solar
+C_-38_1024,Wind,0.054,0.141,0.805,Wind,False,0.1675,True,I don't know
+C_-38_1025,Wind,0.049,0.112,0.839,Wind,False,0.1634,True,I don't know
+C_-38_1036,Wind,0.073,0.28,0.648,Wind,False,0.1603,True,I don't know
+C_-38_1042,Wind,0.015,0.04,0.946,Wind,False,0.1565,True,I don't know
+C_-38_1045,Wind,0.09,0.05,0.86,Wind,False,0.2761,True,I don't know
+C_-38_1051,Wind,0.022,0.118,0.86,Wind,False,0.109,False,Wind
+C_-38_1052,Wind,0.028,0.045,0.927,Wind,False,0.0849,False,Wind
+C_-37_972,Wind,0.128,0.047,0.825,Wind,False,0.1754,True,I don't know
+C_-37_977,Solar,0.146,0.468,0.385,Solar,True,0.1088,False,I don't know
+C_-37_979,Solar,0.066,0.705,0.23,Solar,False,0.0884,False,Solar
+C_-37_990,Wind,0.22,0.233,0.546,Wind,False,0.0834,False,Wind
+C_-37_1002,Solar,0.161,0.729,0.11,Solar,False,0.1618,True,I don't know
+C_-37_1015,Solar,0.166,0.644,0.19,Solar,False,0.225,True,I don't know
+C_-37_1023,Wind,0.151,0.11,0.739,Wind,False,0.2159,True,I don't know
+C_-37_1024,Wind,0.038,0.038,0.924,Wind,False,0.1629,True,I don't know
+C_-37_1025,Wind,0.112,0.054,0.834,Wind,False,0.1299,False,Wind
+C_-37_1040,Wind,0.04,0.125,0.834,Wind,False,0.1911,True,I don't know
+C_-37_1042,Wind,0.021,0.03,0.948,Wind,False,0.1657,True,I don't know
+C_-37_1043,Wind,0.012,0.056,0.932,Wind,False,0.2019,True,I don't know
+C_-37_1049,Wind,0.016,0.064,0.92,Wind,False,0.1631,True,I don't know
+C_-37_1058,Solar,0.019,0.947,0.034,Solar,False,0.0326,False,Solar
+C_-36_967,Solar,0.007,0.939,0.053,Solar,False,0.1652,True,I don't know
+C_-36_972,Wind,0.064,0.048,0.888,Wind,False,0.1162,False,Wind
+C_-36_974,Wind,0.015,0.082,0.903,Wind,False,0.1111,False,Wind
+C_-36_977,Solar,0.046,0.637,0.317,Solar,False,0.0935,False,Solar
+C_-36_978,Solar,0.06,0.714,0.226,Solar,False,0.1001,False,Solar
+C_-36_980,Solar,0.058,0.701,0.242,Solar,False,0.1117,False,Solar
+C_-36_981,Solar,0.048,0.736,0.216,Solar,False,0.0981,False,Solar
+C_-36_982,Solar,0.052,0.531,0.417,Solar,False,0.0851,False,Solar
+C_-36_993,Solar,0.138,0.619,0.243,Solar,False,0.1664,True,I don't know
+C_-36_994,Wind,0.144,0.43,0.426,Solar,True,0.1244,False,I don't know
+C_-36_996,Wind,0.23,0.379,0.392,Wind,True,0.1582,True,I don't know
+C_-36_1002,Solar,0.208,0.713,0.079,Solar,False,0.1372,False,Solar
+C_-36_1007,Solar,0.028,0.909,0.063,Solar,False,0.1634,True,I don't know
+C_-36_1024,Wind,0.071,0.128,0.801,Wind,False,0.1881,True,I don't know
+C_-36_1042,Wind,0.012,0.059,0.929,Wind,False,0.1684,True,I don't know
+C_-36_1043,Wind,0.057,0.133,0.81,Wind,False,0.164,True,I don't know
+C_-36_1046,Wind,0.037,0.066,0.897,Wind,False,0.2511,True,I don't know
+C_-36_1055,Solar,0.22,0.314,0.467,Wind,True,0.0742,False,I don't know
+C_-35_958,Solar,0.031,0.907,0.062,Solar,False,0.1229,False,Solar
+C_-35_967,Solar,0.019,0.937,0.045,Solar,False,0.1004,False,Solar
+C_-35_972,Wind,0.116,0.062,0.823,Wind,False,0.1351,False,Wind
+C_-35_973,Hybrid,0.052,0.073,0.875,Wind,False,0.1258,False,Wind
+C_-35_974,Wind,0.042,0.076,0.882,Wind,False,0.0784,False,Wind
+C_-35_976,Solar,0.059,0.612,0.329,Solar,False,0.0844,False,Solar
+C_-35_978,Solar,0.058,0.707,0.235,Solar,False,0.122,False,Solar
+C_-35_981,Solar,0.046,0.687,0.267,Solar,False,0.0813,False,Solar
+C_-35_982,Solar,0.052,0.71,0.238,Solar,False,0.0857,False,Solar
+C_-35_996,Wind,0.26,0.331,0.409,Wind,True,0.183,True,I don't know
+C_-35_1046,Wind,0.064,0.08,0.856,Wind,False,0.1222,False,Wind
+C_-35_1049,Wind,0.017,0.05,0.933,Wind,False,0.2061,True,I don't know
+C_-35_1052,Solar,0.35,0.334,0.316,Hybrid,True,0.0853,False,I don't know
+C_-35_1053,Solar,0.264,0.288,0.448,Wind,True,0.0651,False,I don't know
+C_-35_1054,Solar,0.122,0.276,0.602,Wind,False,0.0762,False,Wind
+C_-34_975,Wind,0.131,0.119,0.75,Wind,False,0.0785,False,Wind
+C_-34_977,Solar,0.062,0.669,0.269,Solar,False,0.0947,False,Solar
+C_-34_978,Solar,0.057,0.713,0.23,Solar,False,0.0967,False,Solar
+C_-34_979,Solar,0.084,0.685,0.231,Solar,False,0.1135,False,Solar
+C_-34_980,Solar,0.069,0.695,0.237,Solar,False,0.0801,False,Solar
+C_-34_981,Solar,0.086,0.725,0.189,Solar,False,0.0979,False,Solar
+C_-34_982,Solar,0.07,0.668,0.262,Solar,False,0.1217,False,Solar
+C_-34_990,Solar,0.138,0.556,0.306,Solar,False,0.1125,False,Solar
+C_-34_1031,Solar,0.004,0.93,0.065,Solar,False,0.089,False,Solar
+C_-34_1040,Wind,0.001,0.095,0.904,Wind,False,0.4044,True,I don't know
+C_-34_1041,Wind,0.033,0.057,0.91,Wind,False,0.1136,False,Wind
+C_-34_1043,Wind,0.009,0.04,0.951,Wind,False,0.1368,False,Wind
+C_-34_1047,Solar,0.1,0.808,0.093,Solar,False,0.0444,False,Solar
+C_-34_1051,Solar,0.206,0.516,0.278,Solar,False,0.0728,False,Solar
+C_-34_1052,Hybrid,0.223,0.249,0.529,Wind,False,0.0351,False,Wind
+C_-33_971,Wind,0.228,0.079,0.693,Wind,False,0.096,False,Wind
+C_-33_973,Hybrid,0.122,0.161,0.717,Wind,False,0.1544,True,I don't know
+C_-33_974,Solar,0.095,0.314,0.59,Wind,False,0.1296,False,Wind
+C_-33_989,Solar,0.079,0.566,0.355,Solar,False,0.0799,False,Solar
+C_-33_1024,Wind,0.164,0.315,0.522,Wind,False,0.1775,True,I don't know
+C_-33_1040,Wind,0.006,0.034,0.961,Wind,False,0.2667,True,I don't know
+C_-33_1043,Wind,0.006,0.037,0.957,Wind,False,0.1519,True,I don't know
+C_-33_1049,Wind,0.02,0.092,0.888,Wind,False,0.0652,False,Wind
+C_-32_972,Solar,0.225,0.421,0.354,Solar,True,0.1121,False,I don't know
+C_-32_977,Solar,0.068,0.688,0.245,Solar,False,0.0923,False,Solar
+C_-32_978,Solar,0.057,0.708,0.235,Solar,False,0.1015,False,Solar
+C_-32_985,Solar,0.074,0.665,0.261,Solar,False,0.0834,False,Solar
+C_-32_993,Wind,0.131,0.234,0.635,Wind,False,0.2543,True,I don't know
+C_-32_1024,Wind,0.089,0.399,0.512,Wind,False,0.2275,True,I don't know
+C_-32_1025,Wind,0.028,0.041,0.931,Wind,False,0.1667,True,I don't know
+C_-32_1047,Solar,0.306,0.447,0.247,Solar,True,0.055,False,I don't know
+C_-32_1051,Solar,0.318,0.411,0.271,Solar,True,0.0268,False,I don't know
+C_-32_1055,Wind,0.087,0.322,0.591,Wind,False,0.263,True,I don't know
+C_-32_1069,Wind,0.021,0.034,0.945,Wind,False,0.257,True,I don't know
+C_-31_942,Solar,0.027,0.901,0.072,Solar,False,0.0831,False,Solar
+C_-31_944,Solar,0.002,0.975,0.023,Solar,False,0.0669,False,Solar
+C_-31_947,Solar,0.013,0.964,0.023,Solar,False,0.0713,False,Solar
+C_-31_963,Solar,0.023,0.927,0.049,Solar,False,0.1355,False,Solar
+C_-31_970,Solar,0.1,0.582,0.319,Solar,False,0.1126,False,Solar
+C_-31_974,Solar,0.164,0.355,0.481,Wind,True,0.1009,False,I don't know
+C_-31_977,Wind,0.157,0.375,0.468,Wind,True,0.1563,True,I don't know
+C_-31_980,Solar,0.082,0.79,0.127,Solar,False,0.1364,False,Solar
+C_-31_983,Solar,0.141,0.711,0.148,Solar,False,0.0948,False,Solar
+C_-31_984,Solar,0.054,0.787,0.159,Solar,False,0.1145,False,Solar
+C_-31_985,Solar,0.052,0.749,0.198,Solar,False,0.1105,False,Solar
+C_-31_994,Wind,0.282,0.209,0.509,Wind,False,0.1245,False,Wind
+C_-31_1039,Wind,0.056,0.045,0.899,Wind,False,0.44,True,I don't know
+C_-31_1047,Solar,0.296,0.147,0.557,Wind,False,0.0655,False,Wind
+C_-31_1053,Wind,0.3,0.127,0.572,Wind,False,0.0858,False,Wind
+C_-31_1054,Hybrid,0.334,0.192,0.474,Wind,True,0.0977,False,I don't know
+C_-31_1057,Solar,0.04,0.796,0.163,Solar,False,0.0699,False,Solar
+C_-31_1062,Wind,0.016,0.033,0.951,Wind,False,0.1997,True,I don't know
+C_-31_1069,Wind,0.026,0.075,0.899,Wind,False,0.2463,True,I don't know
+C_-30_951,Solar,0.01,0.938,0.051,Solar,False,0.1125,False,Solar
+C_-30_974,Wind,0.032,0.053,0.916,Wind,False,0.106,False,Wind
+C_-30_975,Hybrid,0.262,0.302,0.436,Wind,True,0.0758,False,I don't know
+C_-30_978,Solar,0.091,0.647,0.262,Solar,False,0.1021,False,Solar
+C_-30_981,Solar,0.025,0.907,0.068,Solar,False,0.1853,True,I don't know
+C_-30_983,Solar,0.08,0.786,0.135,Solar,False,0.1379,False,Solar
+C_-30_985,Solar,0.086,0.718,0.196,Solar,False,0.121,False,Solar
+C_-30_987,Solar,0.086,0.617,0.298,Solar,False,0.0832,False,Solar
+C_-30_989,Solar,0.082,0.591,0.327,Solar,False,0.1042,False,Solar
+C_-30_992,Solar,0.202,0.484,0.314,Solar,True,0.077,False,I don't know
+C_-30_993,Wind,0.13,0.227,0.643,Wind,False,0.2456,True,I don't know
+C_-30_1043,Wind,0.046,0.121,0.833,Wind,False,0.0731,False,Wind
+C_-30_1047,Hybrid,0.22,0.145,0.634,Wind,False,0.1505,True,I don't know
+C_-30_1048,Wind,0.207,0.099,0.694,Wind,False,0.1535,True,I don't know
+C_-30_1052,Solar,0.147,0.425,0.429,Wind,True,0.1008,False,I don't know
+C_-30_1055,Wind,0.26,0.114,0.626,Wind,False,0.1331,False,Wind
+C_-30_1056,Wind,0.186,0.291,0.523,Wind,False,0.1057,False,Wind
+C_-30_1062,Wind,0.023,0.069,0.908,Wind,False,0.114,False,Wind
+C_-29_953,Solar,0.06,0.8,0.14,Solar,False,0.1621,True,I don't know
+C_-29_958,Solar,0.017,0.939,0.043,Solar,False,0.118,False,Solar
+C_-29_962,Solar,0.0,0.961,0.039,Solar,False,0.071,False,Solar
+C_-29_967,Solar,0.019,0.936,0.045,Solar,False,0.113,False,Solar
+C_-29_973,Solar,0.128,0.324,0.549,Wind,False,0.1172,False,Wind
+C_-29_975,Wind,0.142,0.084,0.774,Wind,False,0.1038,False,Wind
+C_-29_1046,Solar,0.162,0.482,0.356,Solar,True,0.0346,False,I don't know
+C_-29_1047,Solar,0.044,0.593,0.363,Solar,False,0.1156,False,Solar
+C_-29_1048,Hybrid,0.13,0.361,0.51,Wind,False,0.0995,False,Wind
+C_-29_1052,Solar,0.083,0.509,0.408,Solar,False,0.0854,False,Solar
+C_-29_1059,Wind,0.102,0.079,0.819,Wind,False,0.113,False,Wind
+C_-29_1060,Wind,0.069,0.116,0.815,Wind,False,0.1391,False,Wind
+C_-29_1062,Wind,0.003,0.018,0.979,Wind,False,0.2057,True,I don't know
+C_-28_948,Solar,0.0,0.989,0.011,Solar,False,0.1206,False,Solar
+C_-28_963,Solar,0.0,0.982,0.017,Solar,False,0.0407,False,Solar
+C_-28_973,Wind,0.166,0.119,0.715,Wind,False,0.1263,False,Wind
+C_-28_978,Wind,0.05,0.064,0.886,Wind,False,0.1245,False,Wind
+C_-28_982,Solar,0.011,0.941,0.049,Solar,False,0.1735,True,I don't know
+C_-28_999,Wind,0.129,0.132,0.739,Wind,False,0.171,True,I don't know
+C_-28_1020,Wind,0.067,0.168,0.765,Wind,False,0.2891,True,I don't know
+C_-28_1034,Wind,0.004,0.02,0.977,Wind,False,0.1314,False,Wind
+C_-28_1043,Wind,0.095,0.085,0.82,Wind,False,0.0713,False,Wind
+C_-28_1045,Solar,0.356,0.178,0.466,Wind,True,0.065,False,I don't know
+C_-28_1048,Solar,0.266,0.262,0.472,Wind,True,0.0997,False,I don't know
+C_-28_1052,Hybrid,0.145,0.451,0.404,Solar,True,0.1211,False,I don't know
+C_-28_1057,Wind,0.115,0.085,0.801,Wind,False,0.0889,False,Wind
+C_-27_949,Solar,0.003,0.978,0.019,Solar,False,0.0589,False,Solar
+C_-27_969,Solar,0.085,0.761,0.154,Solar,False,0.1665,True,I don't know
+C_-27_972,Solar,0.154,0.343,0.504,Wind,False,0.1221,False,Wind
+C_-27_973,Wind,0.052,0.068,0.88,Wind,False,0.1233,False,Wind
+C_-27_979,Wind,0.124,0.204,0.671,Wind,False,0.1771,True,I don't know
+C_-27_982,Solar,0.022,0.907,0.071,Solar,False,0.1958,True,I don't know
+C_-27_985,Solar,0.081,0.713,0.206,Solar,False,0.1014,False,Solar
+C_-27_998,Wind,0.039,0.087,0.874,Wind,False,0.261,True,I don't know
+C_-27_999,Wind,0.175,0.059,0.767,Wind,False,0.1752,True,I don't know
+C_-27_1017,Wind,0.015,0.025,0.96,Wind,False,0.151,True,I don't know
+C_-27_1018,Wind,0.013,0.041,0.946,Wind,False,0.2542,True,I don't know
+C_-27_1020,Wind,0.089,0.143,0.768,Wind,False,0.2447,True,I don't know
+C_-27_1043,Wind,0.058,0.074,0.868,Wind,False,0.1746,True,I don't know
+C_-27_1046,Solar,0.174,0.344,0.482,Wind,True,0.1118,False,I don't know
+C_-27_1050,Solar,0.334,0.158,0.508,Wind,False,0.0957,False,Wind
+C_-27_1058,Wind,0.036,0.044,0.919,Wind,False,0.1173,False,Wind
+C_-27_1061,Wind,0.014,0.068,0.918,Wind,False,0.188,True,I don't know
+C_-26_958,Solar,0.077,0.784,0.139,Solar,False,0.097,False,Solar
+C_-26_969,Solar,0.072,0.791,0.137,Solar,False,0.1516,True,I don't know
+C_-26_974,Wind,0.034,0.042,0.924,Wind,False,0.136,False,Wind
+C_-26_975,Wind,0.085,0.121,0.793,Wind,False,0.144,True,I don't know
+C_-26_977,Solar,0.118,0.182,0.7,Wind,False,0.1393,False,Wind
+C_-26_979,Wind,0.067,0.212,0.721,Wind,False,0.2085,True,I don't know
+C_-26_980,Wind,0.205,0.253,0.542,Wind,False,0.1748,True,I don't know
+C_-26_981,Hybrid,0.139,0.609,0.252,Solar,False,0.1052,False,Solar
+C_-26_984,Solar,0.125,0.716,0.159,Solar,False,0.14,False,Solar
+C_-26_985,Solar,0.114,0.666,0.22,Solar,False,0.1107,False,Solar
+C_-26_998,Wind,0.118,0.084,0.798,Wind,False,0.2177,True,I don't know
+C_-26_1002,Wind,0.118,0.175,0.707,Wind,False,0.1808,True,I don't know
+C_-26_1041,Wind,0.174,0.096,0.73,Wind,False,0.1636,True,I don't know
+C_-26_1045,Solar,0.203,0.222,0.575,Wind,False,0.0662,False,Wind
+C_-26_1047,Wind,0.274,0.153,0.573,Wind,False,0.0957,False,Wind
+C_-26_1058,Wind,0.048,0.115,0.836,Wind,False,0.2078,True,I don't know
+C_-26_1059,Wind,0.007,0.056,0.937,Wind,False,0.1776,True,I don't know
+C_-26_1061,Wind,0.01,0.06,0.929,Wind,False,0.1176,False,Wind
+C_-25_951,Solar,0.0,0.985,0.015,Solar,False,0.0629,False,Solar
+C_-25_955,Solar,0.0,0.983,0.017,Solar,False,0.0923,False,Solar
+C_-25_956,Solar,0.015,0.944,0.041,Solar,False,0.0828,False,Solar
+C_-25_967,Solar,0.123,0.643,0.233,Solar,False,0.0802,False,Solar
+C_-25_968,Wind,0.075,0.099,0.826,Wind,False,0.1442,True,I don't know
+C_-25_972,Wind,0.059,0.138,0.803,Wind,False,0.0866,False,Wind
+C_-25_979,Wind,0.124,0.058,0.817,Wind,False,0.1394,False,Wind
+C_-25_992,Solar,0.131,0.664,0.205,Solar,False,0.1232,False,Solar
+C_-25_1002,Wind,0.134,0.078,0.787,Wind,False,0.2245,True,I don't know
+C_-25_1041,Wind,0.245,0.09,0.665,Wind,False,0.1406,False,Wind
+C_-25_1047,Hybrid,0.094,0.085,0.82,Wind,False,0.112,False,Wind
+C_-25_1054,Solar,0.102,0.732,0.166,Solar,False,0.0508,False,Solar
+C_-25_1060,Wind,0.011,0.039,0.95,Wind,False,0.1509,True,I don't know
+C_-24_948,Solar,0.003,0.976,0.02,Solar,False,0.1202,False,Solar
+C_-24_949,Solar,0.003,0.983,0.013,Solar,False,0.0505,False,Solar
+C_-24_952,Solar,0.0,0.995,0.005,Solar,False,0.0646,False,Solar
+C_-24_953,Solar,0.0,0.994,0.006,Solar,False,0.053,False,Solar
+C_-24_954,Solar,0.001,0.996,0.004,Solar,False,0.0638,False,Solar
+C_-24_955,Solar,0.036,0.875,0.088,Solar,False,0.0876,False,Solar
+C_-24_956,Solar,0.0,0.989,0.01,Solar,False,0.0851,False,Solar
+C_-24_962,Solar,0.0,0.989,0.011,Solar,False,0.0904,False,Solar
+C_-24_968,Wind,0.132,0.111,0.757,Wind,False,0.1296,False,Wind
+C_-24_969,Solar,0.07,0.644,0.287,Solar,False,0.0689,False,Solar
+C_-24_970,Wind,0.122,0.128,0.749,Wind,False,0.156,True,I don't know
+C_-24_977,Solar,0.141,0.393,0.466,Wind,True,0.1131,False,I don't know
+C_-24_979,Wind,0.028,0.036,0.936,Wind,False,0.0807,False,Wind
+C_-24_980,Wind,0.165,0.108,0.728,Wind,False,0.1505,True,I don't know
+C_-24_994,Wind,0.124,0.051,0.825,Wind,False,0.1645,True,I don't know
+C_-24_995,Wind,0.045,0.065,0.89,Wind,False,0.148,True,I don't know
+C_-24_996,Wind,0.013,0.034,0.953,Wind,False,0.1155,False,Wind
+C_-24_1039,Wind,0.219,0.129,0.652,Wind,False,0.1378,False,Wind
+C_-24_1041,Wind,0.156,0.071,0.773,Wind,False,0.1677,True,I don't know
+C_-24_1043,Hybrid,0.077,0.427,0.496,Wind,True,0.113,False,I don't know
+C_-24_1060,Wind,0.044,0.066,0.89,Wind,False,0.166,True,I don't know
+C_-23_951,Solar,0.051,0.892,0.057,Solar,False,0.0885,False,Solar
+C_-23_961,Solar,0.031,0.799,0.17,Solar,False,0.0524,False,Solar
+C_-23_967,Solar,0.175,0.567,0.259,Solar,False,0.0884,False,Solar
+C_-23_968,Solar,0.124,0.527,0.348,Solar,False,0.0583,False,Solar
+C_-23_970,Wind,0.148,0.319,0.534,Wind,False,0.0969,False,Wind
+C_-23_976,Hybrid,0.243,0.213,0.545,Wind,False,0.1224,False,Wind
+C_-23_977,Wind,0.237,0.234,0.529,Wind,False,0.1332,False,Wind
+C_-23_979,Wind,0.07,0.11,0.82,Wind,False,0.1527,True,I don't know
+C_-23_980,Wind,0.146,0.124,0.73,Wind,False,0.1626,True,I don't know
+C_-23_981,Wind,0.055,0.161,0.784,Wind,False,0.1589,True,I don't know
+C_-23_991,Solar,0.126,0.656,0.218,Solar,False,0.1234,False,Solar
+C_-23_996,Wind,0.198,0.131,0.672,Wind,False,0.1339,False,Wind
+C_-23_1019,Solar,0.123,0.73,0.147,Solar,False,0.1475,True,I don't know
+C_-23_1027,Solar,0.087,0.599,0.314,Solar,False,0.1584,True,I don't know
+C_-23_1035,Solar,0.004,0.972,0.024,Solar,False,0.0754,False,Solar
+C_-23_1036,Solar,0.073,0.768,0.159,Solar,False,0.0976,False,Solar
+C_-23_1039,Wind,0.267,0.11,0.623,Wind,False,0.1498,True,I don't know
+C_-23_1041,Wind,0.132,0.211,0.656,Wind,False,0.1464,True,I don't know
+C_-23_1043,Solar,0.077,0.462,0.461,Solar,True,0.1115,False,I don't know
+C_-23_1047,Wind,0.062,0.259,0.679,Wind,False,0.269,True,I don't know
+C_-22_965,Solar,0.067,0.713,0.219,Solar,False,0.1007,False,Solar
+C_-22_968,Wind,0.007,0.026,0.967,Wind,False,0.1544,True,I don't know
+C_-22_970,Wind,0.091,0.16,0.749,Wind,False,0.1586,True,I don't know
+C_-22_979,Wind,0.022,0.045,0.933,Wind,False,0.1003,False,Wind
+C_-22_980,Wind,0.054,0.081,0.865,Wind,False,0.1811,True,I don't know
+C_-22_981,Wind,0.045,0.191,0.764,Wind,False,0.2148,True,I don't know
+C_-22_985,Solar,0.055,0.683,0.262,Solar,False,0.0778,False,Solar
+C_-22_995,Solar,0.262,0.639,0.1,Solar,False,0.1129,False,Solar
+C_-22_999,Wind,0.057,0.044,0.898,Wind,False,0.1808,True,I don't know
+C_-22_1012,Solar,0.066,0.81,0.124,Solar,False,0.1287,False,Solar
+C_-22_1033,Solar,0.127,0.824,0.05,Solar,False,0.0865,False,Solar
+C_-22_1039,Hybrid,0.169,0.167,0.664,Wind,False,0.1509,True,I don't know
+C_-22_1040,Wind,0.11,0.247,0.643,Wind,False,0.1573,True,I don't know
+C_-22_1041,Wind,0.144,0.315,0.541,Wind,False,0.1503,True,I don't know
+C_-22_1057,Wind,0.002,0.043,0.955,Wind,False,0.1444,True,I don't know
+C_-22_1059,Wind,0.033,0.085,0.882,Wind,False,0.1192,False,Wind
+C_-21_949,Solar,0.017,0.956,0.027,Solar,False,0.0455,False,Solar
+C_-21_959,Solar,0.027,0.893,0.08,Solar,False,0.0913,False,Solar
+C_-21_966,Solar,0.023,0.911,0.066,Solar,False,0.1278,False,Solar
+C_-21_968,Solar,0.101,0.702,0.197,Solar,False,0.1354,False,Solar
+C_-21_973,Wind,0.064,0.09,0.846,Wind,False,0.1235,False,Wind
+C_-21_983,Wind,0.062,0.049,0.889,Wind,False,0.1391,False,Wind
+C_-21_998,Wind,0.059,0.211,0.73,Wind,False,0.1744,True,I don't know
+C_-21_1034,Solar,0.059,0.829,0.111,Solar,False,0.1065,False,Solar
+C_-21_1036,Solar,0.363,0.274,0.363,Wind,True,0.0845,False,I don't know
+C_-21_1040,Solar,0.161,0.357,0.482,Wind,True,0.1424,True,I don't know
+C_-21_1043,Solar,0.114,0.411,0.474,Wind,True,0.1001,False,I don't know
+C_-21_1044,Solar,0.065,0.622,0.313,Solar,False,0.0606,False,Solar
+C_-21_1056,Wind,0.014,0.059,0.926,Wind,False,0.1333,False,Wind
+C_-20_949,Solar,0.025,0.941,0.034,Solar,False,0.0732,False,Solar
+C_-20_952,Solar,0.16,0.654,0.187,Solar,False,0.0725,False,Solar
+C_-20_953,Solar,0.055,0.806,0.139,Solar,False,0.07,False,Solar
+C_-20_965,Solar,0.131,0.65,0.219,Solar,False,0.1123,False,Solar
+C_-20_968,Solar,0.004,0.946,0.05,Solar,False,0.1364,False,Solar
+C_-20_971,Solar,0.125,0.379,0.497,Wind,True,0.1543,True,I don't know
+C_-20_973,Wind,0.144,0.102,0.754,Wind,False,0.1499,True,I don't know
+C_-20_975,Wind,0.181,0.377,0.442,Wind,True,0.2263,True,I don't know
+C_-20_976,Solar,0.001,0.949,0.05,Solar,False,0.1486,True,I don't know
+C_-20_980,Wind,0.118,0.18,0.703,Wind,False,0.2235,True,I don't know
+C_-20_983,Wind,0.197,0.137,0.667,Wind,False,0.1417,True,I don't know
+C_-20_1034,Wind,0.153,0.098,0.749,Wind,False,0.1514,True,I don't know
+C_-20_1035,Wind,0.027,0.253,0.72,Wind,False,0.1393,False,Wind
+C_-20_1038,Wind,0.305,0.087,0.608,Wind,False,0.1517,True,I don't know
+C_-20_1040,Solar,0.095,0.42,0.484,Wind,True,0.147,True,I don't know
+C_-20_1043,Wind,0.037,0.098,0.865,Wind,False,0.3643,True,I don't know
+C_-20_1047,Solar,0.08,0.724,0.196,Solar,False,0.0585,False,Solar
+C_-20_1048,Solar,0.438,0.096,0.466,Wind,True,0.1093,False,I don't know
+C_-20_1056,Wind,0.032,0.069,0.898,Wind,False,0.1298,False,Wind
+C_-19_950,Solar,0.024,0.861,0.116,Solar,False,0.0808,False,Solar
+C_-19_952,Solar,0.041,0.825,0.134,Solar,False,0.0789,False,Solar
+C_-19_960,Solar,0.001,0.992,0.006,Solar,False,0.0478,False,Solar
+C_-19_966,Solar,0.193,0.441,0.365,Solar,True,0.1163,False,I don't know
+C_-19_970,Solar,0.052,0.781,0.166,Solar,False,0.1128,False,Solar
+C_-19_973,Wind,0.031,0.092,0.878,Wind,False,0.2689,True,I don't know
+C_-19_982,Solar,0.286,0.624,0.089,Solar,False,0.1311,False,Solar
+C_-19_1000,Wind,0.217,0.255,0.529,Wind,False,0.1944,True,I don't know
+C_-19_1036,Wind,0.051,0.248,0.7,Wind,False,0.1504,True,I don't know
+C_-19_1037,Wind,0.111,0.143,0.745,Wind,False,0.105,False,Wind
+C_-19_1043,Wind,0.014,0.044,0.942,Wind,False,0.154,True,I don't know
+C_-19_1055,Wind,0.03,0.058,0.912,Wind,False,0.2714,True,I don't know
+C_-18_958,Solar,0.006,0.975,0.019,Solar,False,0.0591,False,Solar
+C_-18_960,Solar,0.003,0.995,0.003,Solar,False,0.0507,False,Solar
+C_-18_961,Solar,0.03,0.889,0.081,Solar,False,0.1196,False,Solar
+C_-18_966,Solar,0.159,0.422,0.419,Solar,True,0.0219,False,I don't know
+C_-18_973,Wind,0.019,0.056,0.925,Wind,False,0.1623,True,I don't know
+C_-18_974,Wind,0.189,0.126,0.685,Wind,False,0.1713,True,I don't know
+C_-18_976,Solar,0.094,0.682,0.224,Solar,False,0.0897,False,Solar
+C_-18_978,Wind,0.209,0.243,0.549,Wind,False,0.2,True,I don't know
+C_-18_1000,Wind,0.011,0.023,0.966,Wind,False,0.2253,True,I don't know
+C_-18_1039,Solar,0.193,0.343,0.464,Wind,True,0.0982,False,I don't know
+C_-17_957,Solar,0.0,0.964,0.036,Solar,False,0.0806,False,Solar
+C_-17_966,Solar,0.171,0.438,0.391,Solar,True,0.0723,False,I don't know
+C_-17_970,Solar,0.03,0.872,0.098,Solar,False,0.1157,False,Solar
+C_-17_972,Solar,0.128,0.637,0.235,Solar,False,0.1061,False,Solar
+C_-17_973,Solar,0.202,0.429,0.369,Solar,True,0.0923,False,I don't know
+C_-17_975,Wind,0.067,0.077,0.856,Wind,False,0.1034,False,Wind
+C_-17_979,Wind,0.14,0.229,0.63,Wind,False,0.1557,True,I don't know
+C_-17_980,Wind,0.194,0.252,0.554,Wind,False,0.1371,False,Wind
+C_-17_1019,Wind,0.004,0.021,0.974,Wind,False,0.1278,False,Wind
+C_-17_1021,Solar,0.357,0.189,0.454,Wind,True,0.1539,True,I don't know
+C_-17_1031,Wind,0.106,0.056,0.838,Wind,False,0.1041,False,Wind
+C_-17_1032,Wind,0.057,0.143,0.799,Wind,False,0.1534,True,I don't know
+C_-16_949,Solar,0.054,0.805,0.141,Solar,False,0.0764,False,Solar
+C_-16_952,Solar,0.054,0.859,0.087,Solar,False,0.0692,False,Solar
+C_-16_971,Solar,0.004,0.952,0.044,Solar,False,0.1404,False,Solar
+C_-16_972,Solar,0.016,0.938,0.046,Solar,False,0.0624,False,Solar
+C_-16_973,Solar,0.087,0.676,0.237,Solar,False,0.1171,False,Solar
+C_-16_978,Wind,0.05,0.059,0.891,Wind,False,0.0801,False,Wind
+C_-16_979,Wind,0.065,0.105,0.83,Wind,False,0.1711,True,I don't know
+C_-16_997,Wind,0.176,0.081,0.743,Wind,False,0.1241,False,Wind
+C_-16_1000,Wind,0.136,0.093,0.771,Wind,False,0.2572,True,I don't know
+C_-16_1017,Wind,0.053,0.165,0.781,Wind,False,0.2556,True,I don't know
+C_-16_1031,Wind,0.049,0.051,0.9,Wind,False,0.127,False,Wind
+C_-16_1035,Wind,0.102,0.221,0.677,Wind,False,0.1724,True,I don't know
+C_-16_1039,Solar,0.253,0.151,0.597,Wind,False,0.1297,False,Wind
+C_-15_958,Solar,0.0,0.997,0.003,Solar,False,0.0454,False,Solar
+C_-15_978,Wind,0.104,0.253,0.643,Wind,False,0.1379,False,Wind
+C_-15_989,Wind,0.068,0.242,0.691,Wind,False,0.1787,True,I don't know
+C_-15_995,Solar,0.134,0.82,0.046,Solar,False,0.102,False,Solar
+C_-15_997,Wind,0.12,0.228,0.652,Wind,False,0.1104,False,Wind
+C_-15_1017,Wind,0.068,0.08,0.852,Wind,False,0.1135,False,Wind
+C_-15_1019,Wind,0.043,0.049,0.908,Wind,False,0.1427,True,I don't know
+C_-15_1035,Wind,0.11,0.046,0.844,Wind,False,0.1348,False,Wind
+C_-15_1049,Solar,0.403,0.209,0.387,Hybrid,True,0.068,False,I don't know
+C_-14_961,Solar,0.0,0.998,0.002,Solar,False,0.0423,False,Solar
+C_-14_1044,Solar,0.197,0.518,0.286,Solar,False,0.0747,False,Solar
+C_-13_965,Solar,0.032,0.861,0.108,Solar,False,0.1011,False,Solar
+C_-13_966,Solar,0.06,0.806,0.134,Solar,False,0.084,False,Solar
+C_-13_973,Solar,0.053,0.923,0.024,Solar,False,0.0774,False,Solar
+C_-13_1001,Wind,0.117,0.057,0.826,Wind,False,0.0691,False,Wind
+C_-13_1018,Wind,0.005,0.028,0.967,Wind,False,0.1849,True,I don't know
+C_-12_997,Solar,0.226,0.44,0.334,Solar,True,0.0993,False,I don't know
+C_-12_1001,Wind,0.133,0.12,0.747,Wind,False,0.1139,False,Wind
+C_-12_1002,Wind,0.116,0.06,0.824,Wind,False,0.115,False,Wind
+C_-12_1031,Wind,0.141,0.483,0.376,Solar,True,0.0651,False,I don't know
+C_-12_1035,Wind,0.089,0.067,0.844,Wind,False,0.1255,False,Wind
+C_-12_1036,Solar,0.173,0.291,0.536,Wind,False,0.1193,False,Wind
+C_-12_1039,Wind,0.352,0.157,0.491,Wind,True,0.0967,False,I don't know
+C_-12_1046,Wind,0.111,0.292,0.598,Wind,False,0.1592,True,I don't know
+C_-12_1047,Hybrid,0.255,0.158,0.586,Wind,False,0.1418,True,I don't know
+C_-12_1048,Wind,0.18,0.074,0.746,Wind,False,0.1101,False,Wind
+C_-11_1001,Solar,0.255,0.467,0.278,Solar,True,0.1425,True,I don't know
+C_-11_1002,Wind,0.153,0.228,0.619,Wind,False,0.1234,False,Wind
+C_-11_1031,Solar,0.136,0.482,0.382,Solar,True,0.081,False,I don't know
+C_-11_1044,Wind,0.143,0.049,0.808,Wind,False,0.1416,True,I don't know
+C_-11_1045,Wind,0.316,0.11,0.573,Wind,False,0.1001,False,Wind
+C_-10_961,Solar,0.023,0.944,0.033,Solar,False,0.0548,False,Solar
+C_-10_1044,Wind,0.163,0.056,0.782,Wind,False,0.1431,True,I don't know
+C_-10_1049,Wind,0.265,0.07,0.665,Wind,False,0.1585,True,I don't know
+C_-10_1050,Solar,0.064,0.706,0.23,Solar,False,0.0937,False,Solar
+C_-9_976,Solar,0.0,0.99,0.009,Solar,False,0.0646,False,Solar
+C_-9_977,Solar,0.004,0.993,0.004,Solar,False,0.0573,False,Solar
+C_-9_1030,Solar,0.166,0.403,0.43,Wind,True,0.0939,False,I don't know
+C_-9_1035,Solar,0.175,0.339,0.486,Wind,True,0.0648,False,I don't know
+C_-9_1043,Wind,0.202,0.112,0.686,Wind,False,0.0848,False,Wind
+C_-9_1045,Solar,0.115,0.377,0.508,Wind,False,0.1004,False,Wind
+C_-8_976,Solar,0.0,0.994,0.006,Solar,False,0.0369,False,Solar
+C_-8_1021,Solar,0.244,0.334,0.422,Wind,True,0.0922,False,I don't know
+C_-8_1033,Solar,0.278,0.433,0.289,Solar,True,0.095,False,I don't know
+C_-7_1015,Wind,0.006,0.055,0.939,Wind,False,0.1896,True,I don't know
+C_-7_1051,Solar,0.157,0.533,0.309,Solar,False,0.085,False,Solar
+C_-7_1058,Solar,0.011,0.949,0.04,Solar,False,0.1684,True,I don't know
+C_-6_976,Solar,0.0,0.994,0.006,Solar,False,0.1017,False,Solar
+C_-6_998,Solar,0.0,0.988,0.012,Solar,False,0.0757,False,Solar
+C_-6_1016,Wind,0.033,0.082,0.884,Wind,False,0.0759,False,Wind
+C_-6_1029,Solar,0.046,0.832,0.123,Solar,False,0.079,False,Solar
+C_-6_1049,Solar,0.151,0.514,0.336,Solar,False,0.1036,False,Solar
+C_-5_1002,Solar,0.002,0.991,0.008,Solar,False,0.0737,False,Solar
+C_-5_1013,Wind,0.131,0.057,0.812,Wind,False,0.1538,True,I don't know
+C_-5_1014,Wind,0.016,0.026,0.958,Wind,False,0.1985,True,I don't know
+C_-5_1017,Wind,0.086,0.058,0.855,Wind,False,0.1578,True,I don't know
+C_-4_1001,Solar,0.0,0.996,0.004,Solar,False,0.0581,False,Solar
+C_-4_1006,Solar,0.015,0.966,0.019,Solar,False,0.1013,False,Solar
+C_-4_1007,Solar,0.005,0.971,0.025,Solar,False,0.0859,False,Solar
+C_-4_1011,Solar,0.139,0.168,0.693,Wind,False,0.1086,False,Wind
+C_-4_1012,Wind,0.021,0.025,0.953,Wind,False,0.2089,True,I don't know
+C_-3_1000,Solar,0.0,0.99,0.01,Solar,False,0.036,False,Solar
+C_-3_1001,Solar,0.0,0.996,0.004,Solar,False,0.0509,False,Solar
+C_-3_1002,Solar,0.001,0.991,0.008,Solar,False,0.0623,False,Solar
+C_-3_1007,Solar,0.002,0.961,0.037,Solar,False,0.1053,False,Solar
+C_-3_1010,Solar,0.05,0.054,0.896,Wind,False,0.0914,False,Wind
+C_-3_1021,Solar,0.009,0.986,0.006,Solar,False,0.0802,False,Solar
+C_-2_1009,Solar,0.091,0.298,0.611,Wind,False,0.0844,False,Wind
+C_-2_1014,Solar,0.032,0.248,0.72,Wind,False,0.1266,False,Wind
+C_-2_1017,Wind,0.011,0.042,0.946,Wind,False,0.0957,False,Wind
+C_-2_1046,Solar,0.075,0.862,0.063,Solar,False,0.0555,False,Solar
+C_-1_975,Solar,0.0,0.974,0.026,Solar,False,0.0383,False,Solar
+C_-1_1008,Solar,0.17,0.49,0.341,Solar,True,0.0947,False,I don't know
+C_1_1006,Solar,0.0,0.959,0.041,Solar,False,0.0465,False,Solar
+C_2_1009,Solar,0.033,0.803,0.164,Solar,False,0.083,False,Solar
+C_4_1025,Wind,0.086,0.087,0.828,Wind,False,0.1167,False,Wind
+C_4_1047,Solar,0.001,0.986,0.013,Solar,False,0.0736,False,Solar
+C_5_1025,Wind,0.394,0.125,0.481,Wind,True,0.1096,False,I don't know
+C_5_1030,Solar,0.32,0.292,0.389,Wind,True,0.1172,False,I don't know
+C_6_1015,Solar,0.051,0.838,0.112,Solar,False,0.0234,False,Solar
+C_6_1025,Wind,0.143,0.137,0.72,Wind,False,0.1309,False,Wind
+C_6_1031,Wind,0.157,0.227,0.616,Wind,False,0.1275,False,Wind
+C_7_1026,Wind,0.131,0.08,0.789,Wind,False,0.1719,True,I don't know
+C_7_1027,Wind,0.058,0.057,0.885,Wind,False,0.078,False,Wind
+C_7_1030,Wind,0.175,0.52,0.305,Solar,False,0.082,False,Solar
+C_7_1050,Solar,0.005,0.958,0.038,Solar,False,0.1388,False,Solar
+C_8_1027,Wind,0.129,0.093,0.777,Wind,False,0.1235,False,Wind
+C_8_1028,Wind,0.099,0.102,0.799,Wind,False,0.0928,False,Wind
+C_8_1029,Solar,0.271,0.452,0.277,Solar,True,0.0952,False,I don't know
+C_9_1020,Wind,0.211,0.088,0.701,Wind,False,0.155,True,I don't know
+C_9_1027,Wind,0.189,0.079,0.731,Wind,False,0.1621,True,I don't know
+C_9_1029,Solar,0.219,0.566,0.215,Solar,False,0.0568,False,Solar
+C_10_1020,Wind,0.058,0.068,0.874,Wind,False,0.2228,True,I don't know
+C_10_1021,Wind,0.053,0.088,0.858,Wind,False,0.1999,True,I don't know
+C_10_1032,Hybrid,0.466,0.228,0.306,Hybrid,True,0.0947,False,I don't know
+C_11_1021,Wind,0.068,0.094,0.839,Wind,False,0.1279,False,Wind
+C_11_1022,Wind,0.049,0.088,0.863,Wind,False,0.1183,False,Wind
+C_11_1026,Solar,0.0,0.995,0.005,Solar,False,0.0487,False,Solar
+C_11_1032,Wind,0.254,0.43,0.317,Solar,True,0.0998,False,I don't know
+C_11_1040,Solar,0.0,0.997,0.003,Solar,False,0.0463,False,Solar
+C_12_1031,Wind,0.194,0.472,0.333,Solar,True,0.1016,False,I don't know
+C_13_1035,Solar,0.0,0.997,0.003,Solar,False,0.0938,False,Solar
+C_14_1036,Solar,0.0,0.989,0.011,Solar,False,0.0714,False,Solar
+C_14_1039,Solar,0.005,0.991,0.005,Solar,False,0.0748,False,Solar
+C_15_1027,Wind,0.013,0.068,0.919,Wind,False,0.1909,True,I don't know
+C_15_1028,Wind,0.071,0.086,0.843,Wind,False,0.1575,True,I don't know
+C_15_1038,Solar,0.0,0.997,0.003,Solar,False,0.0465,False,Solar
+C_15_1040,Solar,0.004,0.993,0.003,Solar,False,0.0517,False,Solar
+C_17_1034,Wind,0.072,0.203,0.725,Wind,False,0.1552,True,I don't know
+C_18_1034,Wind,0.131,0.078,0.791,Wind,False,0.0799,False,Wind
+C_18_1047,Solar,0.014,0.95,0.037,Solar,False,0.1525,True,I don't know
+C_20_1035,Wind,0.197,0.091,0.713,Wind,False,0.0881,False,Wind
+C_20_1036,Wind,0.127,0.239,0.633,Wind,False,0.2237,True,I don't know
+C_21_1033,Wind,0.068,0.068,0.865,Wind,False,0.1671,True,I don't know
+C_21_1035,Wind,0.202,0.192,0.606,Wind,False,0.0843,False,Wind
+C_21_1036,Wind,0.163,0.148,0.689,Wind,False,0.0927,False,Wind
+C_21_1039,Solar,0.125,0.763,0.112,Solar,False,0.0609,False,Solar
+C_22_1036,Wind,0.164,0.13,0.706,Wind,False,0.066,False,Wind
+C_22_1050,Solar,0.012,0.984,0.005,Solar,False,0.0993,False,Solar
+C_23_1036,Wind,0.209,0.153,0.638,Wind,False,0.1017,False,Wind
+C_24_972,Solar,0.097,0.801,0.102,Solar,False,0.0402,False,Solar
+C_24_1038,Wind,0.128,0.174,0.698,Wind,False,0.083,False,Wind
+C_24_1039,Wind,0.203,0.481,0.316,Solar,True,0.0956,False,I don't know
+C_26_1038,Wind,0.247,0.475,0.278,Solar,True,0.111,False,I don't know
+C_27_1039,Wind,0.129,0.365,0.505,Wind,False,0.1715,True,I don't know
+C_27_1040,Solar,0.005,0.989,0.006,Solar,False,0.0862,False,Solar
+C_28_1045,Solar,0.004,0.989,0.007,Solar,False,0.0674,False,Solar
+C_33_1046,Solar,0.001,0.986,0.013,Solar,False,0.1209,False,Solar
+C_38_1044,Solar,0.003,0.98,0.017,Solar,False,0.0747,False,Solar
+C_43_1040,Solar,0.001,0.997,0.002,Solar,False,0.0659,False,Solar
+C_45_1042,Solar,0.0,0.998,0.002,Solar,False,0.0568,False,Solar
+C_45_1044,Solar,0.0,0.997,0.003,Solar,False,0.0742,False,Solar
+C_47_1043,Solar,0.0,0.999,0.001,Solar,False,0.0586,False,Solar
+C_48_988,Solar,0.017,0.843,0.14,Solar,False,0.0257,False,Solar
+C_48_990,Solar,0.015,0.882,0.103,Solar,False,0.0526,False,Solar
+C_48_1051,Solar,0.06,0.87,0.07,Solar,False,0.0429,False,Solar
+C_49_989,Solar,0.049,0.82,0.131,Solar,False,0.1441,True,I don't know
+C_49_1050,Solar,0.012,0.906,0.082,Solar,False,0.0323,False,Solar
+C_51_988,Solar,0.03,0.916,0.054,Solar,False,0.0892,False,Solar
+C_52_996,Solar,0.048,0.92,0.032,Solar,False,0.0463,False,Solar
+C_53_987,Solar,0.048,0.838,0.114,Solar,False,0.0407,False,Solar
+C_53_992,Solar,0.03,0.923,0.046,Solar,False,0.0384,False,Solar
+C_53_995,Solar,0.02,0.926,0.055,Solar,False,0.1023,False,Solar
+C_53_996,Solar,0.021,0.953,0.026,Solar,False,0.0366,False,Solar
+C_54_992,Solar,0.03,0.932,0.038,Solar,False,0.0407,False,Solar
+C_54_993,Solar,0.054,0.787,0.16,Solar,False,0.1099,False,Solar
+C_54_995,Solar,0.045,0.879,0.075,Solar,False,0.0272,False,Solar
+C_56_991,Solar,0.037,0.895,0.068,Solar,False,0.0509,False,Solar
+C_56_994,Solar,0.018,0.893,0.09,Solar,False,0.0447,False,Solar
+C_57_992,Solar,0.065,0.821,0.113,Solar,False,0.01,False,Solar
+C_57_994,Solar,0.0,0.958,0.042,Solar,False,0.0464,False,Solar
+C_64_1002,Solar,0.106,0.62,0.274,Solar,False,0.05,False,Solar
+C_71_998,Solar,0.18,0.673,0.148,Solar,False,0.0465,False,Solar

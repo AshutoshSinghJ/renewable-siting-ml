@@ -1,0 +1,6 @@
+{
+  "name": "renewable-siting-tools",
+  "private": true,
+  "description": "Helper: convert outputs/REPORT_NOTES.md to Word (node tools/md2docx.js outputs/REPORT_NOTES.md outputs/REPORT_NOTES.docx)",
+  "dependencies": { "docx": "9.5.1" }
+}

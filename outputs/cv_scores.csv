@@ -1,0 +1,5 @@
+model,cv_macro_f1_mean,cv_macro_f1_std,fold1,fold2,fold3,fold4,fold5
+majority_class,0.244,0.015,0.256,0.219,0.24,0.264,0.24
+wind_speed_rule,0.498,0.017,0.496,0.466,0.505,0.51,0.514
+logistic_regression,0.477,0.036,0.468,0.415,0.485,0.52,0.498
+random_forest,0.543,0.023,0.567,0.508,0.527,0.541,0.57

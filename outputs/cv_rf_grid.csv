@@ -1,0 +1,7 @@
+params,mean_test_score,std_test_score
+"{'max_depth': None, 'min_samples_leaf': 1}",0.523,0.008
+"{'max_depth': None, 'min_samples_leaf': 5}",0.532,0.016
+"{'max_depth': 10, 'min_samples_leaf': 1}",0.543,0.023
+"{'max_depth': 10, 'min_samples_leaf': 5}",0.541,0.027
+"{'max_depth': 20, 'min_samples_leaf': 1}",0.522,0.008
+"{'max_depth': 20, 'min_samples_leaf': 5}",0.532,0.016

@@ -69,6 +69,7 @@ renewable-siting-ml/
 │   ├── JOURNEY.md         what we did, what happened, what we learnt
 │   ├── VIVA_GUIDE.md      viva preparation and likely questions
 │   ├── MINDMAP.md         one-page mind map of the project
+│   ├── DATA_AND_METHOD.md every dataset, map step and model step, with justification
 │   └── PROJECT_BRIEF.md   original brief and design decisions
 └── tools/                 helpers: report → Word, split map figure
 ```

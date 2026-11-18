@@ -60,6 +60,11 @@ const body = [];
 for (let i = 0; i < lines.length; i++) {
   const l = lines[i];
   if (!l.trim()) continue;
+  if (/^-{3,}\s*$/.test(l)) {
+    // horizontal rule
+    body.push(new Paragraph({ border: { bottom: { style: BorderStyle.SINGLE, size: 6, color: "BFBFBF", space: 1 } }, spacing: { after: 160 }, children: [] }));
+    continue;
+  }
   if (l.startsWith("```")) {                       // code block
     const code = [];
     for (i++; i < lines.length && !lines[i].startsWith("```"); i++) code.push(lines[i]);

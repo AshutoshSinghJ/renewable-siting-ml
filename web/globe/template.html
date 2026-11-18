@@ -147,6 +147,11 @@ ul.plain { margin: 0; padding-left: 18px; color: var(--muted); display: grid; ga
 ul.plain b { color: var(--fg); font-weight: 600; }
 .refs { font-size: 13px; color: var(--muted); display: grid; gap: 4px; padding-left: 18px; margin: 0; }
 section + section { margin-top: 44px; }
+.reftbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+.reftbl table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 520px; }
+.reftbl th { text-align: left; font: 500 11px var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 10px 14px; background: var(--panel-solid); }
+.reftbl td { padding: 9px 14px; border-top: 1px solid var(--line); vertical-align: top; color: var(--muted); }
+.reftbl td:last-child { color: var(--fg); width: 38%; }
 
 @media (max-width: 860px) {
   .cards, .bigs { grid-template-columns: minmax(0, 1fr); }
@@ -278,6 +283,19 @@ section + section { margin-top: 44px; }
       </div>
     </section>
 
+    <section>
+      <p class="eyebrow">Using the model on a new location</p>
+      <div class="card" style="margin-top:12px;border-color:rgba(54,208,188,.45)">
+        <span class="tag k-wind" style="font:600 12px var(--font-mono);letter-spacing:.1em">ASSUMPTION</span>
+        <p style="color:var(--fg);font:500 17px/1.5 var(--font-display)">If existing farms reflect well-informed siting decisions, the model recommends which type (Solar, Wind or Hybrid) fits a location if it is developed, and says “I don't know” when it is out of its depth.</p>
+      </div>
+      <div class="cards" style="margin-top:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+        <div class="card"><h3 class="k-wind">Why it is reasonable</h3><p>Developers study wind, sun, terrain and grid access before building, so real farms carry expert judgement. Sachit et al. (2022) uses the same idea.</p></div>
+        <div class="card"><h3 class="k-solar">Why it is only partly true</h3><p>Land prices, subsidies and permits matter too: UK solar farms stand in windy places. Accuracy ranges from 35% (British Isles) to 92% (Italy).</p></div>
+        <div class="card"><h3 class="k-wrong">How to use it</h3><p>Read it as “which type fits if something is built”, never “build here”: the model never saw unsuitable land. Respect “I don't know”.</p></div>
+      </div>
+    </section>
+
     <section class="cards">
       <div class="card">
         <h3>Limitations</h3>
@@ -300,13 +318,24 @@ section + section { margin-top: 44px; }
     </section>
 
     <section>
-      <p class="eyebrow">Data and references</p>
-      <ol class="refs" style="margin-top:12px">
-        <li>Dunnett et al. (2020). Harmonised global datasets of wind and solar farm locations and power. Scientific Data 7, 130.</li>
-        <li>Roberts et al. (2017). Cross-validation strategies for data with spatial structure. Ecography 40, 913–929.</li>
-        <li>Meyer &amp; Pebesma (2021). Area of applicability of spatial prediction models. Methods in Ecology and Evolution 12, 1620–1633.</li>
-        <li>Global Solar Atlas, Global Wind Atlas, Copernicus DEM GLO-90, Gridfinder (Arderne et al. 2020), GADM borders.</li>
-      </ol>
+      <p class="eyebrow">References and what we used them for</p>
+      <div class="reftbl" style="margin-top:12px">
+        <table>
+          <thead><tr><th>Reference</th><th>What we used it for</th></tr></thead>
+          <tbody>
+            <tr><td>Dunnett et al. (2020). Harmonised global datasets of wind and solar farm locations and power. <i>Scientific Data</i> 7, 130.</td><td>All labels: farm locations and the “real farm” filter</td></tr>
+            <tr><td>Breiman (2001). Random Forests. <i>Machine Learning</i> 45, 5–32.</td><td>The main model</td></tr>
+            <tr><td>Sachit et al. (2022). Global spatial suitability mapping of wind and solar systems using an explainable AI-based approach. <i>ISPRS IJGI</i> 11(8), 422.</td><td>RF + SHAP on real plants; feature choice; existing plants as evidence of good sites</td></tr>
+            <tr><td>Roberts et al. (2017). Cross-validation strategies for data with temporal, spatial, hierarchical, or phylogenetic structure. <i>Ecography</i> 40, 913–929.</td><td>Spatial block cross-validation; held-out test region</td></tr>
+            <tr><td>Meyer &amp; Pebesma (2021). Predicting into unknown space? <i>Methods in Ecology and Evolution</i> 12, 1620–1633.</td><td>“I don't know” rule for unfamiliar places</td></tr>
+            <tr><td>Lundberg &amp; Lee (2017), NeurIPS; Lundberg et al. (2020), <i>Nature Machine Intelligence</i> 2, 56–67.</td><td>SHAP explanations (TreeExplainer)</td></tr>
+            <tr><td>Arderne et al. (2020). Predictive mapping of the global power system using open data. <i>Scientific Data</i> 7, 19.</td><td>Gridfinder power lines: distance to grid</td></tr>
+            <tr><td>Horn (1981). Hill shading and the reflectance map. <i>Proceedings of the IEEE</i> 69, 14–47.</td><td>Slope from elevation</td></tr>
+            <tr><td>Efron &amp; Tibshirani (1993); Pedregosa et al. (2011), scikit-learn, <i>JMLR</i> 12.</td><td>Bootstrap confidence intervals; ML software</td></tr>
+            <tr><td>Global Solar Atlas 2.0 (Solargis, World Bank) · Global Wind Atlas (DTU, World Bank; Davis et al. 2023) · Copernicus DEM GLO-90 (ESA) · GADM</td><td>Sunshine, wind speed, elevation and slope, map borders</td></tr>
+          </tbody>
+        </table>
+      </div>
     </section>
   </div>
 </div>

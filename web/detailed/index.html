@@ -155,6 +155,9 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
 .tbl th { color: var(--muted); font-weight: 500; }
 .tbl tr.main td { color: var(--accent); }
 .tblwrap { overflow-x: auto; }
+.reftbl th, .reftbl td { white-space: normal; text-align: left; font-family: var(--font-body); vertical-align: top; }
+.reftbl td { color: var(--muted); min-width: 220px; }
+.reftbl td:last-child { color: var(--fg); width: 38%; }
 .idkbar { display: flex; height: 44px; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
 .idkbar div { display: grid; place-items: center; font: 600 var(--step--1) var(--font-mono); color: #06121A; min-width: 0; overflow: hidden; white-space: nowrap; }
 .idkleg { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-top: 14px; }
@@ -388,6 +391,17 @@ footer ol { padding-left: 18px; display: grid; gap: 6px; margin: 12px 0 0; }
         <div class="card"><span class="tag k-solar">Partly</span><h3>“I don't know”</h3><p>The low-confidence rule works; the unfamiliar-location rule is too cautious.</p></div>
       </div>
 
+      <h3 style="margin:44px 0 16px">Using the model on a new location</h3>
+      <div class="card" style="border-color:color-mix(in srgb, var(--wind) 45%, var(--line))">
+        <span class="tag k-wind" style="font:600 var(--step--1) var(--font-mono);letter-spacing:.06em">ASSUMPTION</span>
+        <p style="color:var(--fg);font:500 var(--step-1)/1.45 var(--font-display)">If existing farms reflect well-informed siting decisions, the model recommends which type (Solar, Wind or Hybrid) fits a location if it is developed, and says “I don't know” when it is out of its depth.</p>
+      </div>
+      <div class="grid3" style="margin-top:16px">
+        <div class="card"><h3 class="k-wind">Why it is reasonable</h3><p>Developers study wind, sun, terrain and grid access before building, so real farms carry expert judgement. Sachit et al. (2022) uses the same idea.</p></div>
+        <div class="card"><h3 class="k-solar">Why it is only partly true</h3><p>Land prices, subsidies and permits matter too: UK solar farms stand in windy places. Accuracy ranges from 35% (British Isles) to 92% (Italy).</p></div>
+        <div class="card"><h3 class="k-wrong">How to use it</h3><p>Read it as “which type fits if something is built”, never “build here”: the model never saw unsuitable land. Respect “I don't know”.</p></div>
+      </div>
+
       <h3 style="margin:44px 0 16px">Limitations</h3>
       <ul class="lim">
         <li><b>Uneven coverage.</b> OpenStreetMap is dominated by Europe, North America and East Asia.</li>
@@ -403,15 +417,24 @@ footer ol { padding-left: 18px; display: grid; gap: 6px; margin: 12px 0 0; }
 
 <footer>
   <div class="wrap">
-    <p class="eyebrow">References</p>
-    <ol>
-      <li>Dunnett, S., Sorichetta, A., Taylor, G., Eigenbrod, F. (2020). Harmonised global datasets of wind and solar farm locations and power. <i>Scientific Data</i> 7, 130.</li>
-      <li>Sachit, M. S. et al. (2022). <i>ISPRS International Journal of Geo-Information</i> 11(8), 422.</li>
-      <li>Roberts, D. R. et al. (2017). Cross-validation strategies for data with temporal, spatial, hierarchical, or phylogenetic structure. <i>Ecography</i> 40, 913–929.</li>
-      <li>Meyer, H., Pebesma, E. (2021). Predicting into unknown space? Estimating the area of applicability of spatial prediction models. <i>Methods in Ecology and Evolution</i> 12, 1620–1633.</li>
-      <li>Arderne, C. et al. (2020). Predictive mapping of the global power system using open data. <i>Scientific Data</i> 7, 19.</li>
-      <li>Data layers: Global Solar Atlas (Solargis, World Bank), Global Wind Atlas (DTU, World Bank), Copernicus DEM GLO-90 (ESA), country borders from GADM.</li>
-    </ol>
+    <p class="eyebrow">References and what we used them for</p>
+    <div class="tblwrap" style="margin-top:12px">
+      <table class="tbl reftbl">
+        <thead><tr><th>Reference</th><th>What we used it for</th></tr></thead>
+        <tbody>
+          <tr><td>Dunnett, S., Sorichetta, A., Taylor, G., Eigenbrod, F. (2020). Harmonised global datasets of wind and solar farm locations and power. <i>Scientific Data</i> 7, 130.</td><td>All labels: farm locations and the “real farm” filter</td></tr>
+          <tr><td>Breiman, L. (2001). Random Forests. <i>Machine Learning</i> 45, 5–32.</td><td>The main model</td></tr>
+          <tr><td>Sachit, M. S. et al. (2022). Global spatial suitability mapping of wind and solar systems using an explainable AI-based approach. <i>ISPRS IJGI</i> 11(8), 422.</td><td>RF + SHAP on real plants; feature choice; existing plants as evidence of good sites</td></tr>
+          <tr><td>Roberts, D. R. et al. (2017). Cross-validation strategies for data with temporal, spatial, hierarchical, or phylogenetic structure. <i>Ecography</i> 40, 913–929.</td><td>Spatial block cross-validation; held-out test region</td></tr>
+          <tr><td>Meyer, H., Pebesma, E. (2021). Predicting into unknown space? <i>Methods in Ecology and Evolution</i> 12, 1620–1633.</td><td>“I don't know” rule for unfamiliar places</td></tr>
+          <tr><td>Lundberg, S. M., Lee, S.-I. (2017), NeurIPS; Lundberg, S. M. et al. (2020), <i>Nature Machine Intelligence</i> 2, 56–67.</td><td>SHAP explanations (TreeExplainer)</td></tr>
+          <tr><td>Arderne, C. et al. (2020). Predictive mapping of the global power system using open data. <i>Scientific Data</i> 7, 19.</td><td>Gridfinder power lines: distance to grid</td></tr>
+          <tr><td>Horn, B. K. P. (1981). Hill shading and the reflectance map. <i>Proceedings of the IEEE</i> 69, 14–47.</td><td>Slope from elevation</td></tr>
+          <tr><td>Efron, B., Tibshirani, R. J. (1993). <i>An Introduction to the Bootstrap</i>; Pedregosa, F. et al. (2011). Scikit-learn. <i>JMLR</i> 12.</td><td>Bootstrap confidence intervals; ML software</td></tr>
+          <tr><td>Global Solar Atlas 2.0 (Solargis, World Bank) · Global Wind Atlas (DTU, World Bank; Davis et al. 2023) · Copernicus DEM GLO-90 (ESA) · GADM</td><td>Sunshine, wind speed, elevation and slope, map borders</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </footer>
 

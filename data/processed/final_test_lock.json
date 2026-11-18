@@ -1,0 +1,20 @@
+{
+  "purpose": "Untouched final test set for the improvement round. Chosen before any new experiment; scored exactly once, at the end, with the final model.",
+  "locked_on": "2026-11-18",
+  "countries": {
+    "JPN": "Japan",
+    "TUR": "Turkey",
+    "CHL": "Chile",
+    "AUS": "Australia",
+    "ZAF": "South Africa"
+  },
+  "cells": {
+    "Hybrid": 7,
+    "Solar": 684,
+    "Wind": 381
+  },
+  "rules": [
+    "No feature, model or threshold choice may use these countries.",
+    "Selection uses only the leave-one-region-out score on Europe, USA, China and India."
+  ]
+}

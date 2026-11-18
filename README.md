@@ -51,7 +51,7 @@ The model answers *"if something is built here, which type fits?"*. It never jud
 - Neural networks (MLP and a patch network on raw maps) did not beat the tree models.
 
 Full details: [report (PDF)](outputs/REPORT_NOTES.pdf) · [slides](outputs/Project_Presentation.pptx) ·
-[project journey](docs/JOURNEY.md) · [mind map](docs/MINDMAP.md) · [viva guide](docs/VIVA_GUIDE.md)
+[complete guide](docs/COMPLETE_GUIDE.md) · [project journey](docs/JOURNEY.md) · [mind map](docs/MINDMAP.md) · [viva guide](docs/VIVA_GUIDE.md)
 
 ## How it works
 

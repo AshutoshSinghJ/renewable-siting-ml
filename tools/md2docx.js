@@ -95,10 +95,23 @@ for (let i = 0; i < lines.length; i++) {
     let t = l.replace(/^- /, "").trim();
     while (i + 1 < lines.length && lines[i + 1].startsWith("  ") && !lines[i + 1].trim().startsWith("- ")) t += " " + lines[++i].trim();
     body.push(new Paragraph({ numbering: { reference: "bullets", level: 0 }, children: runs(t) }));
+  } else if (/^\d+\. /.test(l)) {
+    // numbered item: keep its number, hanging indent; indented continuation lines are joined
+    let t = l.trim();
+    while (i + 1 < lines.length && /^ {2,}\S/.test(lines[i + 1]) && !/^\s*(- |\d+\. )/.test(lines[i + 1])) t += " " + lines[++i].trim();
+    body.push(new Paragraph({ indent: { left: 360, hanging: 360 }, children: runs(t) }));
+  } else if (l.startsWith(">")) {
+    // block quote: join the quote's lines into one indented paragraph
+    let t = l.replace(/^>\s?/, "").trim();
+    while (i + 1 < lines.length && lines[i + 1].startsWith(">")) {
+      const n = lines[++i].replace(/^>\s?/, "").trim();
+      if (n) t += " " + n;
+    }
+    body.push(new Paragraph({ indent: { left: 567 }, shading: { type: ShadingType.CLEAR, fill: "EEF3F8" }, children: runs(t) }));
   } else {
     // plain paragraph: join following non-special lines
     let t = l.trim();
-    while (i + 1 < lines.length && lines[i + 1].trim() && !/^(#|\||!\[|- |```)/.test(lines[i + 1])) t += " " + lines[++i].trim();
+    while (i + 1 < lines.length && lines[i + 1].trim() && !/^(#|\||!\[|- |```|>|\d+\. )/.test(lines[i + 1])) t += " " + lines[++i].trim();
     body.push(new Paragraph({ children: runs(t) }));
   }
 }

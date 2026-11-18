@@ -287,6 +287,9 @@ Mean |SHAP|, averaged over classes: **wind100 0.166** > ghi 0.070 > elev 0.035 >
 
 ## 6. "I don't know" (`outputs/dont_know_summary.csv`, `outputs/test_predictions.csv`)
 
+*Original study. In the improvement round (Section 8.8) both rules were replaced by conformal
+prediction sets, and Rule B was dropped.*
+
 - Rule A: max class probability < 0.5.
 - Rule B: weighted (RF importance) standardised feature distance to the nearest training cell is
   above 0.141, the 95th percentile of the same distance for training cells measured against other
@@ -324,10 +327,11 @@ Mean |SHAP|, averaged over classes: **wind100 0.166** > ghi 0.070 > elev 0.035 >
 - **The model does not transfer to windy northern regions** (35% on the British Isles, 40% on the
   Nordic and Baltic countries) or to India (53%), because it relies on absolute wind speed. It
   does transfer to the USA (90%) and partly to China (84%, close to always guessing Wind).
+  The improvement round (Section 8) partly fixes this: British Isles 54%, Nordic & Baltic 64%.
 - The unfamiliar-location rule is a rough safety net: it caught India, but in China the cells it
   answered were less accurate than average.
 - The Rule B threshold (95th percentile) is a convention, not tuned; it flagged many cells the
-  model got right.
+  model got right (Rule B was dropped in Section 8).
 
 ## 7.1 Conclusion
 
@@ -344,7 +348,7 @@ Mean |SHAP|, averaged over classes: **wind100 0.166** > ghi 0.070 > elev 0.035 >
 - Improvement round: local-context features raised held-out accuracy from 0.736 to 0.794 (British
   Isles +18 points); conformal sets kept 94% coverage on five locked countries, where all models tie.
 - Next steps: a convolutional network on terrain and wind maps, harder untouched test regions, more Hybrid examples from other continents,
-  a calibrated unfamiliar-location threshold, and a label cross-check with Global Energy Monitor.
+  and a label cross-check with Global Energy Monitor.
 
 ## 7.2 Using the model on new locations: an explicit assumption
 
@@ -364,7 +368,8 @@ existing plants as evidence of suitable sites, underlies Sachit et al. (2022).
 **Why it is only partly true (evidence from this project):**
 - Siting also follows land prices, subsidies, permits and existing grid connections. UK solar
   farms stand in windy places (median 7.7 m/s) for those reasons, not because windy land suits solar.
-- Accuracy depends strongly on the region (35% British Isles to 92% Italy), so the recommendation
+- Accuracy depends strongly on the region (35% British Isles to 92% Italy; 54% to 93% after the
+  improvement round), so the recommendation
   is only trustworthy where the model was shown to work.
 - OpenStreetMap covers some countries much better than others, so "expert decisions" are mostly
   European, American and Chinese ones.
@@ -372,8 +377,10 @@ existing plants as evidence of suitable sites, underlies Sachit et al. (2022).
 **How to use it correctly:**
 1. Read the output as "which type fits *if* something is built here", never "build here". The
    model never saw unsuitable land, so it cannot flag a protected forest, a city or a lake.
-2. Respect "I don't know": if either rule fires, do not use the prediction.
-3. Trust it most in regions resembling those where it scored well (southern Europe, the USA).
+2. Respect "I don't know": if the answer set holds more than one type (Section 8.8), do not use
+   the prediction.
+3. Trust it most in regions resembling those where it scored well (southern Europe, the USA, and
+   the five locked countries).
 
 ## 8. Improvement round: better generalisation
 

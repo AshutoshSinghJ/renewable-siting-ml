@@ -282,12 +282,12 @@ with the surrounding 50 km of land), which is future work."
 
 | Member | Role | Owns | Should be able to explain |
 |---|---|---|---|
-| **Ashutosh Singh** | Start, design and **dataset** | `src/01`, `02`, `06`: filtering, grid, split, features, data fixes, local-context features | Why Dunnett, filters, Hybrid definition, why Iberia, features, leakage, new features |
-| **Astitva Tripathi** | Models and training | `src/03`, `03b`, `07`, `10`: baselines, RF, tuning, model comparison, Extra Trees, neural networks | Baselines, metrics, Iberia result, why Extra Trees, why not deep learning |
+| **Ashutosh Singh** | Start, design and **dataset** | `src/01`, `02`, `06` | Why Dunnett, filters, Hybrid definition, why Iberia, features, leakage, new features |
+| **Astitva Tripathi** | Models and training | `src/03`, `03b`, `07`, `10` | Baselines, metrics, Iberia result, why Extra Trees, why not deep learning |
 | **Divyanshu Puri** | Validation, testing, GitHub | `src/03c`, `03d`, `03e`, `11`; repository and GitHub Pages | Overfitting, regions, continents, the locked-test tie, hosting, reproducibility |
-| **Keshav Sudarshan** | Explainability and presentation | `src/04`, `09`; 25-slide PPT, viva guide | SHAP, Hybrid failure, archetypes, slide messages |
-| **Aryan Singh** | "I don't know" and report | `src/05`, `08`; report and references | Rule A/B, conformal sets, limitations, references |
-| **Madhusudan** | Websites (UI / UX) | `web/globe`, `web/detailed`, `build_site.py` | How the map is drawn, what each view shows |
+| **Keshav Sudarshan** | Explainability and presentation | `src/04`, SHAP part of `09`; 25-slide PPT | SHAP, why Hybrid fails, slide messages |
+| **Aryan Singh** | "I don't know", result checks, report | `src/05`, `08`; report and references | Rule A/B, conformal sets, how results were checked, limitations, references |
+| **Madhusudan** | Visualisation and website | Archetype part of `09`, figures and maps, `web/globe` | Archetypes, how the map is drawn, what each view shows |
 
 Full split: `docs/CONTRIBUTIONS.md`. Everyone should know section 1 (the story) and section 2 (the numbers).
 

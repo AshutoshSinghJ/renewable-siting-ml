@@ -5,19 +5,18 @@
 **Guide:** Dr. N Sangita Acharya, School of Computer Science and Engineering, KIIT
 
 **How the work is divided.** Ashutosh Singh started the project and owns its design and the whole
-dataset. The rest of the work is split evenly: each of the other five members owns **one technical
-part of the pipeline** (with its scripts and results) **and one deliverable** (website, slides,
-report or repository). Every script and file belongs to exactly one person, so each member can
-explain their own part in full in the viva.
+dataset. The rest is split evenly: each of the other five members owns **one technical part of the
+pipeline** (scripts and results) **and one deliverable** (repository, presentation, report or website),
+and presents a similar number of slides. Every script and file belongs to exactly one person.
 
-| # | Member | Technical part (scripts) | Deliverable | Presents |
+| # | Member | Technical part | Deliverable | Slides |
 |---|---|---|---|---|
-| 1 | **Ashutosh Singh** | Project start and design; **dataset**: labels, features, local-context features (`src/01`, `02`, `06`) | `docs/PROJECT_BRIEF.md`, `docs/DATA_AND_METHOD.md` | Slides 1–5, 16 |
-| 2 | **Astitva Tripathi** | **Models and training**: baselines, Random Forest, tuning, model comparison, Extra Trees, neural networks (`src/03`, `03b`, `07`, `10`) | Model results tables and charts | Slides 6–10, 18 |
-| 3 | **Divyanshu Puri** | **Validation and testing**: overfitting, every region held out, other continents, relative features, locked final test (`src/03c`, `03d`, `03e`, `11`) | **GitHub repository and GitHub Pages** | Slides 11–13, 17, 20, 22 |
-| 4 | **Keshav Sudarshan** | **Explainability and patterns**: SHAP, SHAP by region, siting archetypes (`src/04`, `09`) | **Presentation** (25 slides, speaker notes), viva guide | Slides 14, 24 + opening and closing |
-| 5 | **Aryan Singh** | **Uncertainty ("I don't know")**: confidence and unfamiliar-place rules, conformal prediction (`src/05`, `08`) | **Project report** (both formats) and references | Slides 15, 19, 23, 25 |
-| 6 | **Madhusudan** | **Visualisation**: website data packing and map views (`web/*/build_site.py`, `template.html`) | **Websites** (globe and detailed), screenshots | Slide 21 + live website demo |
+| 1 | **Ashutosh Singh** | Project start and design; **dataset**: labels, features, local-context features (`src/01`, `02`, `06`) | Project brief, data and method guide | 2–5, 16 |
+| 2 | **Astitva Tripathi** | **Models and training**: baselines, Random Forest, tuning, model comparison, Extra Trees, neural networks (`src/03`, `03b`, `07`, `10`) | Model results tables | 7, 8, 10, 18 |
+| 3 | **Divyanshu Puri** | **Validation and testing**: overfitting, every region held out, other continents, relative features, locked final test (`src/03c`, `03d`, `03e`, `11`) | **GitHub repository and GitHub Pages** | 11–13, 20 + GitHub demo |
+| 4 | **Keshav Sudarshan** | **Explainability**: SHAP for the original model and SHAP by region for the final model (`src/04`, SHAP part of `09`) | **Presentation** (25 slides, speaker notes), project journey, mind map | 1, 6, 14, 24 |
+| 5 | **Aryan Singh** | **"I don't know"**: confidence and unfamiliar-place rules, conformal prediction (`src/05`, `08`); **checking the results** against the output files | **Project report** (both formats), references, limitations | 15, 19, 22, 23, 25 |
+| 6 | **Madhusudan** | **Visualisation**: siting archetypes (k-means, archetype part of `09`), all figures and maps (`tools/make_map.py`, charts), website build (`web/globe/build_site.py`, `template.html`) | **The globe website** and its screenshots | 9, 17, 21 + live website demo |
 
 ---
 
@@ -60,7 +59,7 @@ and its source, coordinate systems, leakage, the two data problems, what the new
   patches** (0.738); covariate-shift reweighting (no gain).
 
 **Must know:** how RF and Extra Trees work, why baselines, spatial CV, the metrics (accuracy, macro F1,
-recall, CIs), the Iberia results and confusion matrix, why Extra Trees, why not deep learning.
+recall, CIs), the Iberia results, why Extra Trees, why not deep learning.
 
 ---
 
@@ -72,7 +71,6 @@ recall, CIs), the Iberia results and confusion matrix, why Extra Trees, why not 
   Nordic 40%; explained why (UK solar farms are windier than most European wind farms).
 - **Other continents (`src/03d`):** Europe model unchanged on USA / China / India: **90 / 84 / 53%**.
 - **Relative features (`src/03e`):** tested and rejected (no consistent gain).
-- **Before/after of the improvement round** on 11 regions: 0.736 → **0.794**; British Isles 0.354 → 0.536.
 - **Locked final test (`src/11`):** five countries scored once: final 0.892, wind rule 0.905, old RF
   0.896 (a tie, explained); overfitting of the final model (0.995 / 0.794 / 0.892).
 - **GitHub:** repository structure, `.gitignore` (25 GB raw data and 183 MB model kept out), README,
@@ -83,23 +81,21 @@ a tie, how the site is hosted, how to reproduce the results.
 
 ---
 
-## 4. Keshav Sudarshan: explainability, patterns and presentation
+## 4. Keshav Sudarshan: explainability and presentation
 
 **Work done**
 - **SHAP (`src/04`):** wind speed 0.166, sunshine 0.070, elevation 0.035, slope 0.030, grid 0.023;
   Hybrid learned as "windy, not sunny" (213 of 308 training Hybrids in Germany).
-- **SHAP by region and archetypes (`src/09`):** wind's share of the final model fell from ~51% to **23%**;
-  local wind percentile most important in the British Isles; **four siting archetypes** (k-means,
-  k = 4); the hard one is the windy, cloudy lowland (64%).
+- **SHAP by region (`src/09`):** in the final model wind's share fell from ~51% to **23%**; the local
+  wind percentile is the most important feature in the British Isles.
 - **Presentation:** the 25-slide deck with one message per slide, native charts and speaker notes;
-  speaking order and timing; **viva guide**, project journey and mind map.
+  speaking order and timing; the 20-step project journey and the mind map.
 
-**Must know:** how SHAP works, what drives each class, why Hybrid fails, the four archetypes, the flow
-of the whole presentation.
+**Must know:** how SHAP works, what drives each class, why Hybrid fails, the flow of the whole presentation.
 
 ---
 
-## 5. Aryan Singh: "I don't know", report and references
+## 5. Aryan Singh: "I don't know", result checks and report
 
 **Work done**
 - **First "I don't know" (`src/05`):** Rule A (confidence < 0.5) and Rule B (unfamiliar place, area of
@@ -107,39 +103,46 @@ of the whole presentation.
 - **Conformal prediction (`src/08`):** answer sets with a 90% target; overall variant chosen (coverage
   0.895, 73% single answers); **Rule B dropped** (flagged cells were more accurate, 0.93 vs 0.79);
   94.3% coverage on the locked countries.
+- **Checking the results:** every number in the report, slides and website checked against the output
+  files; the "How we checked the results" summary (fake wind data, islands, reproducibility, no leakage).
 - **Report:** the project report (`REPORT_NOTES`, 20 pages) and the KIIT-format report (43 pages);
   **references** and why each is used; **limitations**; the **assumption** for using the model on new
-  locations; checking every number against the result files.
+  locations.
 
-**Must know:** how confidence, Rule A, Rule B and conformal sets work, the main finding in one sentence,
-the limitations and the assumption, why each reference.
+**Must know:** how confidence, Rule A, Rule B and conformal sets work, how the results were checked, the
+main finding in one sentence, the limitations and the assumption, why each reference.
 
 ---
 
-## 6. Madhusudan: visualisation and websites
+## 6. Madhusudan: visualisation and the website
 
 **Work done**
-- Designed both websites: the main **globe site** (Map · Results · About) and the detailed single page.
-- Visual system: dark theme; one colour per class everywhere (Solar amber, Wind teal, Hybrid purple,
-  wrong red, "I don't know" grey); fonts; floating number panels; plain-language labels.
-- Map views: What was built, Iberia test, Every region tested, Other continents, **Improved model**,
-  **Archetypes**, **Final test**, Wind speed; hover tooltips with prediction and conformal answer.
-- `build_site.py`: packs the result files as JSON into one self-contained page (D3.js 7.9.0 on an
-  HTML canvas, ~17,000 dots, orthographic globe, fly animations).
-- Phone layout, keyboard focus, reduced-motion support; website screenshots for the report.
+- **Siting archetypes (`src/09`):** k-means on geography only, k = 4 by silhouette; calm sunny lowland
+  (82% solar), windy very sunny upland (71% wind), very windy sunny mountain (94% wind), and the hard
+  **windy, cloudy lowland** (44% solar / 52% wind, model accuracy 64%).
+- **Figures and maps:** the train/test map (`tools/make_map.py`), confusion matrix, region charts,
+  before/after chart and archetype map used in the report and slides.
+- **The globe website** (Map · Results · About): dark theme; one colour per class everywhere (Solar
+  amber, Wind teal, Hybrid purple, wrong red, "I don't know" grey); eight map views (What was built,
+  Iberia test, Every region tested, Other continents, **Improved model**, **Archetypes**, **Final
+  test**, Wind speed); hover tooltips with prediction and conformal answer.
+- Technical: `build_site.py` packs the result files as JSON into one self-contained page; D3.js 7.9.0
+  on an HTML canvas (~17,000 dots), orthographic globe, fly animations; phone layout, keyboard focus,
+  reduced-motion support; screenshots for the report.
 
-**Must know:** why two sites, why these colours, how the globe draws so many points, what each view
-shows, how the data gets into the page.
+**Must know:** the four archetypes and why the windy, cloudy lowland is hard, what each figure shows,
+why these colours, how the globe draws so many points, what each view shows, how the data gets into
+the page.
 
 ---
 
-## Viva: who answers what
+## Who answers what
 
 | If asked about… | Answered by |
 |---|---|
 | Why this problem, design decisions, dataset, filters, grid, features, leakage, data errors, local-context features | Ashutosh Singh |
 | Baselines, Random Forest, tuning, metrics, Iberia result, model comparison, Extra Trees, neural networks | Astitva Tripathi |
-| Overfitting, regions, other continents, before/after, locked final test, GitHub, reproducibility | Divyanshu Puri |
-| SHAP, what drives the model, Hybrid failure, archetypes, presentation flow | Keshav Sudarshan |
-| "I don't know", Rule A/B, conformal prediction, report, limitations, references | Aryan Singh |
-| Websites, map, views, colours, interactions | Madhusudan |
+| Overfitting, regions, other continents, locked final test, GitHub, reproducibility | Divyanshu Puri |
+| SHAP, what drives the model, why Hybrid fails, presentation flow | Keshav Sudarshan |
+| "I don't know", Rule A/B, conformal prediction, how results were checked, limitations, references | Aryan Singh |
+| Archetypes, figures and maps, the globe website | Madhusudan |

@@ -4,16 +4,16 @@
 
 **Guide:** Dr. N Sangita Acharya
 
-| Member | Role |
-|---|---|
-| **Ashutosh Singh** | Project start, design and **dataset** (labels, features, local-context features) |
-| **Astitva Tripathi** | Models and training (baselines, Random Forest, model comparison, Extra Trees, neural networks) |
-| **Divyanshu Puri** | Validation and testing (regions, continents, locked final test) and GitHub deployment |
-| **Keshav Sudarshan** | Explainability and patterns (SHAP, archetypes) and the presentation |
-| **Aryan Singh** | "I don't know" (confidence rules, conformal prediction) and the project report |
-| **Madhusudan** | Visualisation: UI / UX of both websites |
+| Member | Role | Presents slides |
+|---|---|---|
+| **Ashutosh Singh** | Project start, design and **dataset** (labels, features, local-context features) | 2–5, 16 |
+| **Astitva Tripathi** | Models and training (baselines, Random Forest, model comparison, Extra Trees, neural networks) | 7, 8, 10, 18 |
+| **Divyanshu Puri** | Validation and testing (regions, continents, locked final test) and GitHub deployment | 11–13, 20 |
+| **Keshav Sudarshan** | Explainability (SHAP) and the presentation | 1, 6, 14, 24 |
+| **Aryan Singh** | "I don't know" (confidence rules, conformal prediction), result checks, the project report and references | 15, 19, 22, 23, 25 |
+| **Madhusudan** | Visualisation: siting archetypes, all figures and maps, the globe website | 9, 17, 21 + live demo |
 
-Each of the five members after Ashutosh owns one technical part and one deliverable. The parts
+Ashutosh owns the start, design and dataset; each of the other five owns one technical part and one deliverable, with a similar share of slides. The parts
 below explain each topic in depth; the owner of each topic is in the table above. The exact split of every script and file is in [CONTRIBUTIONS.md](CONTRIBUTIONS.md).
 
 Everyone reads **Part 0** first. Then read your own part carefully, and skim the others so you can
@@ -76,15 +76,14 @@ says "build here".
 |---|---|
 | Why this problem, design decisions, dataset, filters, grid, features, leakage, data errors, local-context features | Ashutosh Singh |
 | Baselines, Random Forest, tuning, metrics, Iberia result, model comparison, Extra Trees, neural networks | Astitva Tripathi |
-| Overfitting, regions, other continents, before/after, locked final test, GitHub, reproducibility | Divyanshu Puri |
-| SHAP, what drives the model, Hybrid failure, archetypes, presentation flow | Keshav Sudarshan |
-| "I don't know", Rule A/B, conformal prediction, report, limitations, references | Aryan Singh |
-| Websites, map, views, colours, interactions | Madhusudan |
+| Overfitting, regions, other continents, locked final test, GitHub, reproducibility | Divyanshu Puri |
+| SHAP, what drives the model, why Hybrid fails, presentation flow | Keshav Sudarshan |
+| "I don't know", Rule A/B, conformal prediction, how the results were checked, limitations, references | Aryan Singh |
+| Archetypes, figures and maps, the globe website, before/after map | Madhusudan |
 
 ### Links
 - Repository: https://github.com/AshutoshSinghJ/renewable-siting-ml
-- Live globe site: https://ashutoshsinghj.github.io/renewable-siting-ml/
-- Live detailed site: https://ashutoshsinghj.github.io/renewable-siting-ml/detailed/
+- Live website: https://ashutoshsinghj.github.io/renewable-siting-ml/
 
 ---
 
@@ -290,13 +289,12 @@ Confusion matrix (RF, Iberia): Solar 696 right / 59 → Wind; Wind 697 right / 6
 #### Repository structure
 ```
 renewable-siting-ml/
-├── src/              pipeline 01 → 05 (+ 03b–03e checks)
+├── src/              pipeline 01 → 11 (+ 03b–03e checks)
 ├── data/processed/   cells and features (steps 3–5 run without downloads)
 ├── data/raw/         not in git (~25 GB); README lists every download
 ├── outputs/          results, figures, model, report, slides
-├── web/globe/        globe site: template.html, build_site.py, world.json, index.html
-├── web/detailed/     detailed site: same files, borders.json
-├── docs/             JOURNEY, MINDMAP, VIVA_GUIDE, TEAM_GUIDE, PROJECT_BRIEF
+├── web/globe/        website: template.html, build_site.py, world.json, index.html
+├── docs/             guides, contributions, journey, mind map, project brief
 ├── tools/            md2docx.js (report → Word), make_map.py
 └── README.md · requirements.txt · .gitignore · LICENSE (MIT)
 ```
@@ -304,32 +302,29 @@ renewable-siting-ml/
 #### What was removed or kept out, and why
 - Raw rasters and Dunnett files (~25 GB): too large; `.gitignore` excludes `data/raw/*`, `*.tif`, `*.gpkg`.
 - Temporary preview copies, caches, and old stage folders: not needed.
-- Website border caches (`world.json`, `borders.json`) are **kept**, so the sites rebuild without
-  the 500 MB GADM file.
+- The website border cache (`world.json`) is **kept**, so the site rebuilds without the 500 MB GADM file.
 
 #### Branches and how GitHub Pages works
 - **`main`:** code, data, results, documents.
-- **`gh-pages`:** only `index.html` (globe), `detailed/index.html` and `.nojekyll`.
+- **`gh-pages`:** the published website (`index.html`) and `.nojekyll`.
 - GitHub Pages serves `gh-pages` automatically (Settings → Pages → Deploy from branch → gh-pages /
   root). Each push to `gh-pages` updates the live site within ~30 seconds.
 
 #### How to update the live site
 ```bash
-python web/globe/build_site.py          # rebuild after changing a template or results
-python web/detailed/build_site.py
-git add -A && git commit -m "Update websites" && git push origin main
+python web/globe/build_site.py          # rebuild after changing the template or results
+git add -A && git commit -m "Update website" && git push origin main
 
 git worktree add ../pages gh-pages      # publish to GitHub Pages
 cp web/globe/index.html ../pages/index.html
-cp web/detailed/index.html ../pages/detailed/index.html
-cd ../pages && git add -A && git commit -m "Publish websites" && git push origin gh-pages
+cd ../pages && git add -A && git commit -m "Publish website" && git push origin gh-pages
 cd - && git worktree remove ../pages
 ```
 
 #### Reproducibility
 - `pip install -r requirements.txt` (pandas, geopandas, pyogrio, shapely, rasterio, numpy,
   scikit-learn, shap, matplotlib, joblib; Python 3.11).
-- Steps 3–5 run straight from `data/processed/`. Steps 1, 2, 3d, 3e need `data/raw/` (see its README).
+- Steps 3–5 and 7–9 run straight from `data/processed/`. Steps 1, 2, 3d, 3e, 6, 10 and 11 need `data/raw/` (see its README).
 - A full re-run from scratch reproduced every output byte-for-byte (seed 42).
 
 #### Viva questions for Divyanshu Puri
@@ -338,36 +333,38 @@ cd - && git worktree remove ../pages
 - How can someone reproduce the results? (requirements, processed data, scripts in order.)
 - What happens when you push? (Pages rebuilds and the live site updates in ~30 s.)
 
-#### Improvement round (Astitva and Divyanshu)
+#### Improvement round scripts
 | Script | What it does | Output |
 |---|---|---|
-| `06_features_v2.py` | 8 local-context features + base features for the locked countries | `features_v2.csv` |
-| `07_global_experiments.py` | Feature sets A–E and 7 models, leave-one-region-out over 11 regions | `v2_feature_sets.csv`, `v2_models.csv`, `v2_loro_predictions.csv` |
-| `08_conformal.py` | Conformal answer sets ("I don't know") | `v2_conformal_*.csv/json` |
-| `09_patterns.py` | Archetypes (k-means) and SHAP by region | `v2_archetypes*.csv/png`, `v2_shap_*.csv/png` |
-| `10_patch_nn.py` | Neural network on raw 11 × 11 map patches | `v2_patch_nn.csv` |
-| `11_final_test.py` | Locked test, scored once | `v2_final_test*.csv`, `v2_overfit_check.csv` |
+| `06_features_v2.py` | 8 local-context features + base features for the locked countries (Ashutosh) | `features_v2.csv` |
+| `07_global_experiments.py` | Feature sets A–E and 7 models, leave-one-region-out over 11 regions (Astitva) | `v2_feature_sets.csv`, `v2_models.csv`, `v2_loro_predictions.csv` |
+| `08_conformal.py` | Conformal answer sets, "I don't know" (Aryan) | `v2_conformal_*.csv/json` |
+| `09_patterns.py` | Archetypes (Madhusudan) and SHAP by region (Keshav) | `v2_archetypes*.csv/png`, `v2_shap_*.csv/png` |
+| `10_patch_nn.py` | Neural network on raw 11 × 11 map patches (Astitva) | `v2_patch_nn.csv` |
+| `11_final_test.py` | Locked test, scored once (Divyanshu) | `v2_final_test*.csv`, `v2_overfit_check.csv` |
 
 Key results: 11 held-out regions 0.736 → 0.794 (Extra Trees, final); locked test final 0.892 vs
 wind rule 0.905 (a tie); conformal coverage 0.943. The 183 MB trained model and the patch cache are
-not in git (`.gitignore`): rerun `src/11` and `src/10` to rebuild them. The globe site (main site) has
-three new views (Improved model, Archetypes, Final test); the detailed site was left as it was.
+not in git (`.gitignore`): rerun `src/11` and `src/10` to rebuild them. The website has three views
+for this round (Improved model, Archetypes, Final test).
 
 ---
 
-## Part 3 — Madhusudan: UI and UX
+## Part 3 — Madhusudan: visualisation and the website
 
-### 3.1 The two websites
+### 3.1 The website
 
-| | Globe site (map-first) | Detailed site (single page) |
-|---|---|---|
-| Live link | `/renewable-siting-ml/` | `/renewable-siting-ml/detailed/` |
-| Inspiration | Kaspersky Cybermap: dark, glowing points | Odisha DSS dashboard style |
-| Structure | Top bar with **3 tabs** (Map · Results · About) | One long page: hero, map, question, method, results, "I don't know", checks |
-| Map | 3D **globe** (orthographic projection) | Flat Europe map (conic conformal projection) |
+| | Globe website |
+|---|---|
+| Live link | https://ashutoshsinghj.github.io/renewable-siting-ml/ |
+| Inspiration | Kaspersky Cybermap: dark, glowing points |
+| Structure | Top bar with **3 tabs** (Map · Results · About) |
+| Map | 3D **globe** (orthographic projection) |
 
-**Why two:** the detailed site has everything; the user found it too dense, so the globe site puts
-the map first and moves the detail into short Results and About tabs.
+The map comes first; the detail lives in short Results and About tabs.
+
+Madhusudan also owns the **siting archetypes** (k-means on geography, `src/09`) and **all figures and maps**
+used in the report and slides (train/test map, confusion matrix, region charts, archetype map).
 
 ### 3.2 Design decisions
 
@@ -377,25 +374,27 @@ the map first and moves the detail into short Results and About tabs.
 | One colour per class everywhere: **Solar amber, Wind teal, Hybrid purple, wrong red, "I don't know" grey** | The same colour means the same thing on every chart, map and slide |
 | Fonts: Chakra Petch / Space Grotesk (headings), Inter (text), JetBrains Mono (numbers) | Technical feel; monospaced digits line up in stats |
 | Numbers in floating corner panels that change per view | Like a dashboard: the key number for each view is always visible |
-| Hybrid dots drawn last | They're rare (333) and would otherwise be hidden under Solar and Wind |
+| Hybrid dots drawn last | They're rare and would otherwise be hidden under Solar and Wind |
 | Plain-language labels ("What was built", "Model on Iberia") | Non-experts understand them without reading the report |
 
-### 3.3 Globe site views (Map tab)
+### 3.3 Map views
 1. **What was built:** every cell in its true class colour.
 2. **Iberia test:** flies to Spain/Portugal; right = class colour, wrong = red.
 3. **Every region tested:** each cell predicted by a model that never saw its region; a clickable
    region list flies the globe there (the British Isles show red).
 4. **Other continents:** USA, China, India; grey = "I don't know".
-5. **I don't know:** pink = low confidence, grey = unfamiliar place.
-6. **Wind speed:** colour ramp from calm to windy.
+5. **Improved model:** right/wrong of the final model on all 11 held-out regions, with the change per region.
+6. **Archetypes:** the four types of place.
+7. **Final test:** the five locked countries, outlined, with their conformal answers.
+8. **Wind speed:** colour ramp from calm to windy.
 
 Interactions: drag to rotate, scroll/pinch to zoom, +/−/EU buttons, hover or tap a dot for a
-tooltip (features, class probabilities, right/wrong, "I don't know" reason).
+tooltip (features, class probabilities, right/wrong, the improved model's answer and its conformal set).
 
 ### 3.4 How it works technically
 - **Data flow:** `build_site.py` reads the project CSVs → packs cells, predictions, results and
   borders into JSON → injects it into `template.html` → writes a single self-contained `index.html`.
-- **Drawing:** HTML `<canvas>` (fast enough for ~14,000 dots), D3.js 7.9.0 for projections.
+- **Drawing:** HTML `<canvas>` (fast enough for ~17,000 dots), D3.js 7.9.0 for projections.
 - **Globe:** `d3.geoOrthographic`; dots on the far side are hidden with a hemisphere test; each dot is
   drawn twice: a soft additive glow, then a solid core (pure additive glow turned dense areas white).
 - **Camera:** smooth "fly" animations between views; jumps instantly if the user prefers reduced
@@ -413,8 +412,8 @@ tooltip (features, class probabilities, right/wrong, "I don't know" reason).
 - Tested in the browser at desktop and phone sizes with no console errors.
 
 ### 3.6 Viva questions for Madhusudan
-- Why a dark theme and glowing dots? · Why these colours? · Why two websites? · How does the globe
-  draw 14,000 points smoothly? (canvas, not SVG) · What happens when I hover a dot? · Does it work
+- Why a dark theme and glowing dots? · Why these colours? · How does the globe
+  draw 17,000 points smoothly? (canvas, not SVG) · What happens when I hover a dot? · Does it work
   on a phone? · How is the data inside the page? (packed as JSON by `build_site.py`)
 
 ---
@@ -507,20 +506,25 @@ other_continents, overfit_check, dont_know_summary, feature_importance, relative
 
 | Slides | Speaker |
 |---|---|
-| 1–5 (title, question, data, split, features) | Ashutosh Singh |
-| 6–10 (pipeline, models, Iberia result, confusion matrix, model choice) | Astitva Tripathi |
+| 1 (title, opening) | Keshav Sudarshan |
+| 2–5 (question, data, split, features) | Ashutosh Singh |
+| 6 (pipeline) | Keshav Sudarshan |
+| 7–8 (models, Iberia result) | Astitva Tripathi |
+| 9 (confusion matrix: Solar and Wind transfer, Hybrid does not) | Madhusudan |
+| 10 (is Random Forest the right choice?) | Astitva Tripathi |
 | 11–13 (overfitting, regions, other continents) | Divyanshu Puri |
 | 14 (SHAP) | Keshav Sudarshan |
 | 15 ("I don't know") | Aryan Singh |
 | 16 (improvement round: local-context features) | Ashutosh Singh |
-| 17 (before and after) | Divyanshu Puri |
+| 17 (before and after) | Madhusudan |
 | 18 (which model and what drives it) | Astitva Tripathi |
 | 19 (conformal "I don't know" and archetypes) | Aryan Singh |
 | 20 (locked final test) | Divyanshu Puri |
-| 21 + live website demo | Madhusudan |
-| 22 (how we checked) + GitHub repo | Divyanshu Puri |
-| 23 (limitations), 25 (references) | Aryan Singh |
-| 24 (what we found) + opening and closing | Keshav Sudarshan |
+| 21 (using the model on a new location) + live website demo | Madhusudan |
+| 22 (how we checked the results) | Aryan Singh |
+| 23 (limitations) | Aryan Singh |
+| 24 (what we found, closing) | Keshav Sudarshan |
+| 25 (references) | Aryan Singh |
 
 ### 4D. Viva questions for Aryan Singh and Keshav Sudarshan
 - What's the main finding in one sentence? · What are the limitations? · Why these references? ·

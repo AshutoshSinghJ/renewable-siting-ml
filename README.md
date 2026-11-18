@@ -5,8 +5,7 @@ tested on regions the model has never seen, with an option to answer "I don't kn
 
 Minor project · Machine learning · Geospatial · 2026
 
-🌍 **Live demo:** https://AshutoshSinghJ.github.io/renewable-siting-ml/ (globe) ·
-[detailed page](https://AshutoshSinghJ.github.io/renewable-siting-ml/detailed/)
+🌍 **Live website:** https://AshutoshSinghJ.github.io/renewable-siting-ml/
 
 ---
 
@@ -51,7 +50,7 @@ The model answers *"if something is built here, which type fits?"*. It never jud
 - Neural networks (MLP and a patch network on raw maps) did not beat the tree models.
 
 Full details: [report (PDF)](outputs/REPORT_NOTES.pdf) · [slides](outputs/Project_Presentation.pptx) ·
-[complete guide](docs/COMPLETE_GUIDE.md) · [project journey](docs/JOURNEY.md) · [mind map](docs/MINDMAP.md) · [viva guide](docs/VIVA_GUIDE.md)
+[complete guide](docs/COMPLETE_GUIDE.md) · [contributions](docs/CONTRIBUTIONS.md) · [project journey](docs/JOURNEY.md) · [mind map](docs/MINDMAP.md)
 
 ## How it works
 
@@ -79,8 +78,7 @@ renewable-siting-ml/
 │   └── raw/               large downloads, not in git (see data/raw/README.md)
 ├── outputs/               results (CSV), figures (PNG), trained model, report, slides
 ├── web/
-│   ├── globe/             map-first website (Map · Results · About)
-│   └── detailed/          single-page website with all details
+│   └── globe/             the website (Map · Results · About)
 ├── docs/
 │   ├── JOURNEY.md         what we did, what happened, what we learnt
 │   ├── VIVA_GUIDE.md      viva preparation and likely questions
@@ -110,9 +108,8 @@ python src/09_patterns.py           # siting archetypes and SHAP by region
 python src/10_patch_nn.py           # neural network on raw map patches
 python src/11_final_test.py         # one-time locked final test
 
-# Rebuild the websites
+# Rebuild the website
 python web/globe/build_site.py
-python web/detailed/build_site.py
 ```
 
 Steps 1, 2, 3d and 3e need the raw data listed in [data/raw/README.md](data/raw/README.md).
@@ -127,9 +124,9 @@ Guide: **Dr. N Sangita Acharya**, School of Computer Science and Engineering, KI
 | Ashutosh Singh | Project start, design and dataset (labels, features, local-context features) |
 | Astitva Tripathi | Models and training (baselines, Random Forest, model comparison, Extra Trees, neural networks) |
 | Divyanshu Puri | Validation and testing (regions, continents, locked final test) and GitHub deployment |
-| Keshav Sudarshan | Explainability and patterns (SHAP, archetypes) and the presentation |
-| Aryan Singh | "I don't know" (confidence rules, conformal prediction) and the project report |
-| Madhusudan | Visualisation: UI / UX of both websites |
+| Keshav Sudarshan | Explainability (SHAP) and the presentation |
+| Aryan Singh | "I don't know" (confidence rules, conformal prediction), result checks, the project report and references |
+| Madhusudan | Visualisation: siting archetypes, all figures and maps, the globe website |
 
 Full split of every script and file: [docs/CONTRIBUTIONS.md](docs/CONTRIBUTIONS.md).
 

@@ -55,7 +55,7 @@ Read it in order once. After that, use the contents to jump to a part.
 32. [Using the model on a new location: the assumption](#32-using-the-model-on-a-new-location-the-assumption)
 33. [Limitations](#33-limitations)
 34. [Problems we found and fixed](#34-problems-we-found-and-fixed)
-35. [The websites](#35-the-websites)
+35. [The website](#35-the-website)
 36. [Report, slides, documents and GitHub](#36-report-slides-documents-and-github)
 37. [How to reproduce everything](#37-how-to-reproduce-everything)
 38. [Every decision and its justification](#38-every-decision-and-its-justification)
@@ -203,7 +203,7 @@ different ones.
 | **ETRS89 / LAEA Europe** (EPSG:3035), metres, equal-area | Distance to grid in Europe; 100 km cross-validation blocks | The European standard; accurate distances and areas |
 | **Lambert azimuthal equal-area centred on each country** | Distance to grid in the USA, China, India and the locked countries | Same idea as EPSG:3035, centred where it is needed |
 | **Mollweide** (equal-area) | GHS-SMOD towns and water (improvement round) | The settlement map is published in it; 1 km pixels make distances simple |
-| **Orthographic** (globe site), conic conformal (detailed site) | Drawing website maps | Display only |
+| **Orthographic** (globe website) | Drawing the website map | Display only |
 
 **Why not work in degrees?** One degree of longitude is 111 km at the equator but about 56 km in
 Norway. Distances and areas in degrees would be wrong, and grid cells would shrink towards the poles.
@@ -879,12 +879,12 @@ test regions, more Hybrid examples from other continents, a label check with Glo
 | Locked test integrity | Risk of tuning after peeking | Locked and committed before experiments | Order of operations matters |
 | Re-run check | Full pipeline from scratch | Byte-identical outputs (seed 42) | Reproducibility is a result |
 
-## 35. The websites
+## 35. The website
 
-Two websites, both built from the project CSVs by `build_site.py`, which packs the data into one
+One website, built from the project CSVs by `build_site.py`, which packs the data into one
 `index.html` (no server needed).
 
-**Globe site (main site)**: https://AshutoshSinghJ.github.io/renewable-siting-ml/
+**Globe website**: https://AshutoshSinghJ.github.io/renewable-siting-ml/
 - **Map**: a 3-D globe (D3.js 7.9.0, orthographic projection, HTML canvas, ~17,000 dots). Views:
   - *What was built*: every cell coloured Solar / Wind / Hybrid.
   - *Iberia test*: right/wrong on Spain and Portugal.
@@ -902,11 +902,7 @@ Two websites, both built from the project CSVs by `build_site.py`, which packs t
 - How it draws: only the visible hemisphere is drawn; each dot gets a glow then a solid core; drag to
   rotate, scroll to zoom, buttons "fly" between views.
 
-**Detailed site**: https://AshutoshSinghJ.github.io/renewable-siting-ml/detailed/, a single long
-page with all details of the original study (conic map of Europe). It was intentionally left
-unchanged in the improvement round; the globe site is the main site.
-
-**Hosting:** GitHub Pages serves the `gh-pages` branch (only the two `index.html` files).
+**Hosting:** GitHub Pages serves the `gh-pages` branch.
 
 ## 36. Report, slides, documents and GitHub
 
@@ -917,15 +913,14 @@ unchanged in the improvement round; the globe site is the main site.
 | This guide | `docs/COMPLETE_GUIDE.md` | Everything, start to end |
 | Journey | `docs/JOURNEY.md` | 20 steps: did, happened, learnt |
 | Data and method | `docs/DATA_AND_METHOD.md` | Technical details of every dataset and step |
-| Viva guide | `docs/VIVA_GUIDE.md` | Story, numbers, likely questions |
 | Team guide | `docs/TEAM_GUIDE.md` | Who did what, and what each person must know |
 | Mind map | `docs/MINDMAP.md` | One-page overview |
 | GitHub repo | https://github.com/AshutoshSinghJ/renewable-siting-ml | Code, processed data, results; tags `v1.0-final`, `v1.0.1` |
 
 **Team** (guide: Dr. N Sangita Acharya): Ashutosh Singh (project start, design and dataset);
 Astitva Tripathi (models and training); Divyanshu Puri (validation, locked final test, GitHub);
-Keshav Sudarshan (SHAP, archetypes, presentation); Aryan Singh ("I don't know", conformal
-prediction, report); Madhusudan (websites). Details: `docs/CONTRIBUTIONS.md`.
+Keshav Sudarshan (SHAP, presentation); Aryan Singh ("I don't know", conformal prediction, result
+checks, report); Madhusudan (archetypes, figures and maps, website). Details: `docs/CONTRIBUTIONS.md`.
 
 ## 37. How to reproduce everything
 
@@ -949,7 +944,6 @@ python src/11_final_test.py
 
 # websites
 python web/globe/build_site.py
-python web/detailed/build_site.py
 ```
 
 Steps 1, 2, 3d, 3e, 6 and 10 need the raw downloads listed in `data/raw/README.md` (~25 GB, not in

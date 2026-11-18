@@ -15,7 +15,7 @@ evidence*. All numbers come from the files in `outputs/` and `data/processed/`.
 8. [Extra checks: proving the result](#8-extra-checks-proving-the-result)
 9. [Step 4: explaining the model (SHAP)](#9-step-4-explaining-the-model-shap)
 10. [Step 5: confidence and "I don't know"](#10-step-5-confidence-and-i-dont-know)
-11. [Maps on the websites](#11-maps-on-the-websites)
+11. [Maps on the website](#11-maps-on-the-website)
 12. [Summary: every decision and its justification](#12-summary-every-decision-and-its-justification)
 
 ---
@@ -166,7 +166,7 @@ need different ones.
 | **World Eckert IV** (ESRI:54012), metres, **equal-area** | Building the 5 km grid | Every cell covers the same land area anywhere on Earth, so cells in Norway and Spain are comparable |
 | **ETRS89 / LAEA Europe** (EPSG:3035), metres, equal-area | Distance to grid in Europe; 100 km CV blocks | The European standard projection; accurate distances and areas across Europe |
 | **Lambert azimuthal equal-area centred on each country** | Distance to grid in the USA, China and India | Same idea as EPSG:3035, centred on each country so distances stay accurate there |
-| **Orthographic** (globe site), **conic conformal** (detailed site) | Drawing the website maps only | Display only; no calculation uses them |
+| **Orthographic** (globe website) | Drawing the website map only | Display only; no calculation uses it |
 
 **Why not do everything in degrees?** One degree of longitude is 111 km at the equator but only
 about 56 km in Norway. Distances and areas in degrees would be wrong, and grid cells would shrink
@@ -566,15 +566,15 @@ while the model was confident. Rule B checks *where* the model is used, not how 
 
 ---
 
-## 11. Maps on the websites
+## 11. Maps on the website
 
-| | Globe site | Detailed site |
-|---|---|---|
-| Projection | Orthographic (a globe, as seen from space) | Conic conformal (standard for Europe) |
-| Library | D3.js 7.9.0 | D3.js 7.9.0 |
-| Drawing | HTML canvas (~14,000 dots) | HTML canvas (~10,700 dots) |
-| Borders | GADM, simplified to ~0.1° (`world.json`) | GADM, simplified to ~0.04° (`borders.json`) |
-| Data | Packed into the page by `build_site.py` from the project CSVs | Same |
+| | Globe website |
+|---|---|
+| Projection | Orthographic (a globe, as seen from space) |
+| Library | D3.js 7.9.0 |
+| Drawing | HTML canvas (~17,000 dots) |
+| Borders | GADM, simplified to ~0.1° (`world.json`) |
+| Data | Packed into the page by `build_site.py` from the project CSVs |
 
 **How the globe draws:** the visible hemisphere is tested for each cell (cells on the far side are
 skipped); each dot is drawn twice, first a soft glow, then a solid core in its class colour; Hybrid
@@ -582,7 +582,7 @@ cells are drawn last so they stay visible. Dragging rotates the globe; scrolling
 the "fly" animation moves smoothly between views.
 
 **Views:** what was built · Iberia test (right/wrong) · every region tested · other continents ·
-"I don't know" · wind speed.
+improved model · archetypes · final test · wind speed.
 
 ---
 

@@ -5,8 +5,8 @@ tested on regions the model has never seen, with an option to answer "I don't kn
 
 Minor project · Machine learning · Geospatial · 2026
 
-🌍 **Live demo:** https://YOUR-USERNAME.github.io/renewable-siting-ml/ (globe) ·
-[detailed page](https://YOUR-USERNAME.github.io/renewable-siting-ml/detailed/)
+🌍 **Live demo:** https://AshutoshSinghJ.github.io/renewable-siting-ml/ (globe) ·
+[detailed page](https://AshutoshSinghJ.github.io/renewable-siting-ml/detailed/)
 
 ---
 

@@ -3,7 +3,7 @@
 **Predicting whether a renewable energy site is Solar, Wind or Hybrid from geography alone,
 tested on regions the model has never seen, with an option to answer "I don't know".**
 
-Major project · Machine learning · Geospatial · 2026
+Project-I · Machine learning · Geospatial · 2026
 
 🌍 **Live website:** https://AshutoshSinghJ.github.io/renewable-siting-ml/
 

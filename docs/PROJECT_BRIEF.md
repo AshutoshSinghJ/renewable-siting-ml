@@ -4,7 +4,7 @@
 
 # Project: Predicting Renewable Installation Type from Geography (ML)
 
-Major project (5 credits). Build it in one night. **Keep everything simple, explainable and standard.** Prefer plain Python scripts over frameworks. Do not add features, models or steps that are not listed here.
+Project-I (5 credits). Build it in one night. **Keep everything simple, explainable and standard.** Prefer plain Python scripts over frameworks. Do not add features, models or steps that are not listed here.
 
 ---
 

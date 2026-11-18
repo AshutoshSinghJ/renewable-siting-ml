@@ -124,12 +124,12 @@ Guide: **Dr. N Sangita Acharya**, School of Computer Science and Engineering, KI
 
 | Member | Role |
 |---|---|
-| Ashutosh Singh | Project lead: idea, design and dataset (labels, features, local-context features) |
-| Astitva Tripathi | Model selection and training (baselines, Random Forest, spatial CV, Extra Trees, neural networks) |
-| Divyanshu Puri | Explainability, "I don't know", conformal prediction, locked final test, GitHub deployment |
-| Madhusudan | UI / UX of both websites |
-| Aryan Singh | Project report and references |
-| Keshav Sudarshan | Presentation and viva preparation |
+| Ashutosh Singh | Project start, design and dataset (labels, features, local-context features) |
+| Astitva Tripathi | Models and training (baselines, Random Forest, model comparison, Extra Trees, neural networks) |
+| Divyanshu Puri | Validation and testing (regions, continents, locked final test) and GitHub deployment |
+| Keshav Sudarshan | Explainability and patterns (SHAP, archetypes) and the presentation |
+| Aryan Singh | "I don't know" (confidence rules, conformal prediction) and the project report |
+| Madhusudan | Visualisation: UI / UX of both websites |
 
 Full split of every script and file: [docs/CONTRIBUTIONS.md](docs/CONTRIBUTIONS.md).
 

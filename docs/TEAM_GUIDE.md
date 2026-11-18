@@ -4,16 +4,17 @@
 
 **Guide:** Dr. N Sangita Acharya
 
-| Member | Role | Section |
-|---|---|---|
-| **Ashutosh Singh** | Project lead: idea, design and **dataset** (labels, features, local-context features) | Part 1 |
-| **Astitva Tripathi** | Model selection and training (baselines, Random Forest, spatial CV, Extra Trees, neural networks) | Part 2A |
-| **Divyanshu Puri** | Explainability, "I don't know", conformal prediction, locked final test, GitHub deployment | Part 2A (SHAP, "I don't know") and 2B |
-| **Madhusudan** | UI / UX of both websites | Part 3 |
-| **Aryan Singh** | Project report and references | Part 4A |
-| **Keshav Sudarshan** | Presentation and viva preparation | Part 4B–4D |
+| Member | Role |
+|---|---|
+| **Ashutosh Singh** | Project start, design and **dataset** (labels, features, local-context features) |
+| **Astitva Tripathi** | Models and training (baselines, Random Forest, model comparison, Extra Trees, neural networks) |
+| **Divyanshu Puri** | Validation and testing (regions, continents, locked final test) and GitHub deployment |
+| **Keshav Sudarshan** | Explainability and patterns (SHAP, archetypes) and the presentation |
+| **Aryan Singh** | "I don't know" (confidence rules, conformal prediction) and the project report |
+| **Madhusudan** | Visualisation: UI / UX of both websites |
 
-The exact split of every script and file is in [CONTRIBUTIONS.md](CONTRIBUTIONS.md).
+Each of the five members after Ashutosh owns one technical part and one deliverable. The parts
+below explain each topic in depth; the owner of each topic is in the table above. The exact split of every script and file is in [CONTRIBUTIONS.md](CONTRIBUTIONS.md).
 
 Everyone reads **Part 0** first. Then read your own part carefully, and skim the others so you can
 hand questions to the right person in the viva.
@@ -73,12 +74,12 @@ says "build here".
 
 | If asked about… | Answered by |
 |---|---|
-| Why this problem, dataset, Europe, features, leakage, data errors, local-context features | Ashutosh Singh |
-| Why Random Forest / Extra Trees, baselines, spatial CV, metrics, regions, overfitting, neural networks | Astitva Tripathi |
-| SHAP, "I don't know", conformal prediction, archetypes, locked final test, GitHub, reproducibility | Divyanshu Puri |
-| Website design, map, interactions, colours | Madhusudan |
-| Report structure, references, limitations, conclusion | Aryan Singh |
-| Presentation flow, slide messages, summary | Keshav Sudarshan |
+| Why this problem, design decisions, dataset, filters, grid, features, leakage, data errors, local-context features | Ashutosh Singh |
+| Baselines, Random Forest, tuning, metrics, Iberia result, model comparison, Extra Trees, neural networks | Astitva Tripathi |
+| Overfitting, regions, other continents, before/after, locked final test, GitHub, reproducibility | Divyanshu Puri |
+| SHAP, what drives the model, Hybrid failure, archetypes, presentation flow | Keshav Sudarshan |
+| "I don't know", Rule A/B, conformal prediction, report, limitations, references | Aryan Singh |
+| Websites, map, views, colours, interactions | Madhusudan |
 
 ### Links
 - Repository: https://github.com/AshutoshSinghJ/renewable-siting-ml
@@ -190,7 +191,7 @@ Top countries: Germany 3,054 cells · USA 2,342 · China 2,313 · Italy 1,644 ·
 
 ---
 
-## Part 2 — Astitva Tripathi and Divyanshu Puri: models, explainability, "I don't know" and GitHub
+## Part 2 — Models (Astitva Tripathi), validation and GitHub (Divyanshu Puri), SHAP (Keshav Sudarshan), "I don't know" (Aryan Singh)
 
 Suggested focus: **Astitva** leads on model selection, training and evaluation (2A); **Divyanshu**
 leads on GitHub, deployment and reproducibility (2B). Both should be able to explain both.
@@ -418,7 +419,7 @@ tooltip (features, class probabilities, right/wrong, "I don't know" reason).
 
 ---
 
-## Part 4 — Aryan Singh and Keshav Sudarshan: report and presentation
+## Part 4 — Report (Aryan Singh) and presentation (Keshav Sudarshan)
 
 Suggested focus: **Aryan Singh** leads the report and references (4A); **Keshav** leads the slides
 and presentation flow (4B). Both should know the whole storyline.
@@ -506,13 +507,18 @@ other_continents, overfit_check, dont_know_summary, feature_importance, relative
 
 | Slides | Speaker |
 |---|---|
-| 1–5 (question, data, split, features) | Ashutosh Singh |
-| 6–13 (pipeline, models, results, checks, regions, continents) | Astitva Tripathi |
-| 14–15 (SHAP, "I don't know") | Divyanshu Puri |
-| 16–18 (improvement round: features, before/after, model choice) | Astitva Tripathi |
-| 19–20 (conformal, archetypes, locked final test) | Divyanshu Puri |
+| 1–5 (title, question, data, split, features) | Ashutosh Singh |
+| 6–10 (pipeline, models, Iberia result, confusion matrix, model choice) | Astitva Tripathi |
+| 11–13 (overfitting, regions, other continents) | Divyanshu Puri |
+| 14 (SHAP) | Keshav Sudarshan |
+| 15 ("I don't know") | Aryan Singh |
+| 16 (improvement round: local-context features) | Ashutosh Singh |
+| 17 (before and after) | Divyanshu Puri |
+| 18 (which model and what drives it) | Astitva Tripathi |
+| 19 (conformal "I don't know" and archetypes) | Aryan Singh |
+| 20 (locked final test) | Divyanshu Puri |
 | 21 + live website demo | Madhusudan |
-| 22 (checks) + GitHub repo | Divyanshu Puri |
+| 22 (how we checked) + GitHub repo | Divyanshu Puri |
 | 23 (limitations), 25 (references) | Aryan Singh |
 | 24 (what we found) + opening and closing | Keshav Sudarshan |
 

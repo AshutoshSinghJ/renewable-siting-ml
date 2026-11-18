@@ -282,12 +282,12 @@ with the surrounding 50 km of land), which is future work."
 
 | Member | Role | Owns | Should be able to explain |
 |---|---|---|---|
-| **Ashutosh Singh** | Project lead and **dataset** | `src/01`, `02`, `06`: Dunnett filtering, 5 km grid, split, features, fake wind file and island fixes, local-context features | Why Dunnett, the filters, Hybrid definition, why Iberia, features, leakage, what the new features show |
-| **Astitva Tripathi** | Model selection and training | `src/03`, `03b`–`03e`, `07`, `10`: baselines, RF, spatial CV, regions, continents, LORO, Extra Trees, neural networks | Baselines, macro F1, overfitting, why UK/India fail, why Extra Trees, why not deep learning |
-| **Divyanshu Puri** | Explainability, "I don't know", final test, GitHub | `src/04`, `05`, `08`, `09`, `11`; repository and GitHub Pages | SHAP, Rule A/B, conformal sets, archetypes, the locked-test tie, hosting and reproducibility |
-| **Madhusudan** | UI / UX | `web/globe`, `web/detailed`, `build_site.py` | How the map is drawn, what each view shows, design choices |
-| **Aryan Singh** | Report and references | `REPORT_NOTES`, KIIT-format report, references | Structure, limitations, assumption, references |
-| **Keshav Sudarshan** | Presentation and viva preparation | 25-slide PPT, viva guide, journey, mind map | The story, slide messages, numbers, likely questions |
+| **Ashutosh Singh** | Start, design and **dataset** | `src/01`, `02`, `06`: filtering, grid, split, features, data fixes, local-context features | Why Dunnett, filters, Hybrid definition, why Iberia, features, leakage, new features |
+| **Astitva Tripathi** | Models and training | `src/03`, `03b`, `07`, `10`: baselines, RF, tuning, model comparison, Extra Trees, neural networks | Baselines, metrics, Iberia result, why Extra Trees, why not deep learning |
+| **Divyanshu Puri** | Validation, testing, GitHub | `src/03c`, `03d`, `03e`, `11`; repository and GitHub Pages | Overfitting, regions, continents, the locked-test tie, hosting, reproducibility |
+| **Keshav Sudarshan** | Explainability and presentation | `src/04`, `09`; 25-slide PPT, viva guide | SHAP, Hybrid failure, archetypes, slide messages |
+| **Aryan Singh** | "I don't know" and report | `src/05`, `08`; report and references | Rule A/B, conformal sets, limitations, references |
+| **Madhusudan** | Websites (UI / UX) | `web/globe`, `web/detailed`, `build_site.py` | How the map is drawn, what each view shows |
 
 Full split: `docs/CONTRIBUTIONS.md`. Everyone should know section 1 (the story) and section 2 (the numbers).
 

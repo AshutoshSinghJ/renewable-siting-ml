@@ -80,13 +80,11 @@ data = {
 }
 js = json.dumps(data, separators=(",", ":"))
 html = open("web/detailed/template.html", encoding="utf-8").read().replace("/*__DATA__*/null", js)
-# page fragment (for publishing as a claude.ai artifact, which adds its own <head>)
-open("web/detailed/artifact.html", "w", encoding="utf-8").write(html)
-# full standalone page (for any static host, e.g. Vercel / GitHub Pages)
+# standalone page (for any static host, e.g. GitHub Pages)
 head = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
         '<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>\n')
 title_end = html.index("</style>") + len("</style>")
 open("web/detailed/index.html", "w", encoding="utf-8").write(
     head + html[:title_end] + "\n</head>\n<body>\n" + html[title_end:] + "\n</body>\n</html>\n")
-print(f"cells {len(feat)}, countries {len(countries)}, data {len(js) / 1e6:.2f} MB -> web/detailed/index.html, web/detailed/artifact.html")
+print(f"cells {len(feat)}, countries {len(countries)}, data {len(js) / 1e6:.2f} MB -> web/detailed/index.html")

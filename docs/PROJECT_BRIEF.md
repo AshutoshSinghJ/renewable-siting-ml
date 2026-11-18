@@ -114,7 +114,7 @@ Tech: Python, pandas, geopandas, rasterio, numpy, scikit-learn, shap, matplotlib
 
 ---
 
-## 5. Rules for Claude Code
+## 5. Working rules
 - Keep code short and readable, with comments explaining the WHY.
 - Never use a random train/test split. Never tune on the test region.
 - Never add land cover, roads, or capacity as features.

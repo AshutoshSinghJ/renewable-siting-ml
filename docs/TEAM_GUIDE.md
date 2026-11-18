@@ -286,7 +286,7 @@ renewable-siting-ml/
 
 #### What was removed or kept out, and why
 - Raw rasters and Dunnett files (~25 GB): too large; `.gitignore` excludes `data/raw/*`, `*.tif`, `*.gpkg`.
-- claude.ai preview copies (`artifact.html`), caches, and old stage folders: not needed.
+- Temporary preview copies, caches, and old stage folders: not needed.
 - Website border caches (`world.json`, `borders.json`) are **kept**, so the sites rebuild without
   the 500 MB GADM file.
 

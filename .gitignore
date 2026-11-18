@@ -4,9 +4,6 @@ data/raw/*
 *.tif
 *.gpkg
 
-# claude.ai page copies made by the website builders
-web/*/artifact.html
-
 # Python / Node / OS
 __pycache__/
 *.pyc

@@ -1,5 +1,5 @@
 """
-Build the map-first project website: web/globe/index.html (standalone) and web/globe/artifact.html.
+Build the map-first project website: web/globe/index.html (standalone).
 
 Packs the cells, the Iberia test predictions, the leave-one-region-out predictions, the result
 tables and simplified world borders (GADM, from the Dunnett archive) into template.html.
@@ -92,7 +92,6 @@ data = {
 }
 js = json.dumps(data, separators=(",", ":"))
 html = open("web/globe/template.html", encoding="utf-8").read().replace("/*__DATA__*/null", js)
-open("web/globe/artifact.html", "w", encoding="utf-8").write(html)
 head = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
         '<style>html,body{margin:0;height:100%}[hidden]{display:none!important}</style>\n')

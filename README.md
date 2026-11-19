@@ -49,8 +49,7 @@ The model answers *"if something is built here, which type fits?"*. It never jud
 - **Better "I don't know"** (conformal prediction): the true answer was inside the answer set for **94%** of locked cells (target 90%); 85% got a single answer, right 94% of the time.
 - Neural networks (MLP and a patch network on raw maps) did not beat the tree models.
 
-Full details: [report (PDF)](outputs/REPORT_NOTES.pdf) · [slides](outputs/Project_Presentation.pptx) ·
-[complete guide](docs/COMPLETE_GUIDE.md) · [contributions](docs/CONTRIBUTIONS.md) · [project journey](docs/JOURNEY.md) · [mind map](docs/MINDMAP.md)
+Full details: [report (PDF)](outputs/Project_Report_KIIT.pdf) · [slides](outputs/Project_Presentation.pptx)
 
 ## The website
 
@@ -88,12 +87,6 @@ renewable-siting-ml/
 ├── outputs/               results (CSV), figures (PNG), trained model, report, slides
 ├── web/
 │   └── globe/             the website (Map · Results · About)
-├── docs/
-│   ├── JOURNEY.md         what we did, what happened, what we learnt
-│   ├── VIVA_GUIDE.md      viva preparation and likely questions
-│   ├── MINDMAP.md         one-page mind map of the project
-│   ├── DATA_AND_METHOD.md every dataset, map step and model step, with justification
-│   └── PROJECT_BRIEF.md   original brief and design decisions
 └── tools/                 helpers: report → Word, split map figure
 ```
 
@@ -136,8 +129,6 @@ Guide: **Dr. N Sangita Acharya**, School of Computer Science and Engineering, KI
 | Keshav Sudarshan | Explainability (SHAP) and the presentation |
 | Aryan Singh | "I don't know" (confidence rules, conformal prediction), result checks, the project report and references |
 | Madhusudan | Visualisation: siting archetypes, all figures and maps, the globe website (UI/UX design and build) |
-
-Full split of every script and file: [docs/CONTRIBUTIONS.md](docs/CONTRIBUTIONS.md).
 
 ## References
 
